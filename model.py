@@ -17,10 +17,86 @@ class Event(db.Model):
     duration = db.Column(db.Integer)                                     
     description = db.Column(db.Text)                        
     date = db.Column(db.DateTime)                        
-    price = db.Column(db.Integer)                        
-    duration = db.Column(db.Integer)                        
+    price = db.Column(db.Integer)                    
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
     event_type_id = db.Column(db.Integer, db.ForeignKey('event_type.id'))
+
+    def __repr__(self):
+        return f'<Event id={self.id} duration={self.duration} description={self.description}>'
+
+
+
+class Events_type(db.Model):
+    """A event type"""
+
+    __tablename__ = 'event_type'
+
+    id = db.Column(db.Integer,
+                    autoincrement = True,
+                    primary_key = True)
+    name = db.Column(db.String)
+
+    def __repr__(self):
+        return f'<Event_type id={self.id} name={self.name}>'
+
+
+
+class Locations(db.Model):
+    """A location"""
+
+    __tablename__ = 'location'
+
+    id = db.Column(db.Integer,
+                    autoincrement = True,
+                    primary_key = True)
+    venue_name = db.Column(db.String(25))                                     
+    address = db.Column(db.Text(50))                        
+    city = db.Column(db.String(25))                        
+    state = db.Column(db.String(25))                    
+    zipcode = db.Column(db.Integer)
+
+    def __repr__(self):
+        return f'<Locations id={self.id} venue_name={self.venue_name} address={self.address}>'
+
+
+
+class Users(db.Model):
+    """A user"""
+
+    __classname__ = 'user'
+
+    id = db.Column(db.Integer,
+                    autoincrement = True,
+                    primary_key = True)
+    fname = db.Column(db.String(25))                                     
+    lname = db.Column(db.String(25))                        
+    email = db.Column(db.String(50), unique = True)                        
+    password = db.Column(db.String(30))                    
+    is_adm = db.Column(db.Boolean)
+
+    def __repr__(self):
+        return f'<User id={self.id} fname={self.fname} lname={self.lname} email={self.email}>'
+
+
+
+class Attendances(db.Model):
+    """A attendence"""
+
+    __tablename__ = 'event_type'
+
+    id = db.Column(db.Integer,
+                    autoincrement = True,
+                    primary_key = True)
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+    def __repr__(self):
+        return f'<Event_type id={self.id} name={self.name}>'        
+
+
+
+
                                                                                                   
 
 
