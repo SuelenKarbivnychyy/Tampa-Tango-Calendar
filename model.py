@@ -21,8 +21,8 @@ class Event(db.Model):
     id = db.Column(db.Integer,
                     autoincrement = True,
                     primary_key = True)
-    duration = db.Column(db.Integer)                                     
-    description = db.Column(db.Text)                        
+    duration = db.Column(db.Integer, nullable = False)                                     
+    description = db.Column(db.Text, nullable = False)                        
     date = db.Column(db.DateTime)                        
     price = db.Column(db.Integer)                    
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
@@ -45,7 +45,7 @@ class Event_type(db.Model):
     id = db.Column(db.Integer,
                     autoincrement = True,
                     primary_key = True)
-    name = db.Column(db.String)
+    name = db.Column(db.String, nullable = False)
 
     events = db.relationship("Event", back_populates="event_type")                       #specifing the relationship in between tables
     
@@ -63,11 +63,11 @@ class Location(db.Model):
     id = db.Column(db.Integer,
                     autoincrement = True,
                     primary_key = True)
-    venue_name = db.Column(db.String(25))                                     
-    address = db.Column(db.Text)                        
-    city = db.Column(db.String(25))                        
-    state = db.Column(db.String(25))                    
-    zipcode = db.Column(db.Integer)
+    venue_name = db.Column(db.String(50), nullable = False)                                     
+    address = db.Column(db.Text, nullable = False)                        
+    city = db.Column(db.String(25), nullable = False)                        
+    state = db.Column(db.String(25), nullable = False)                    
+    zipcode = db.Column(db.Integer, nullable = False)
 
     events = db.relationship("Event", back_populates="location")                        #specifing the relationship in between tables
 
@@ -84,10 +84,10 @@ class User(db.Model):
     id = db.Column(db.Integer,
                     autoincrement = True,
                     primary_key = True)
-    fname = db.Column(db.String(25))                                     
-    lname = db.Column(db.String(25))                        
-    email = db.Column(db.String(50), unique = True)                        
-    password = db.Column(db.String(30))                    
+    fname = db.Column(db.String(25), nullable = False)                                     
+    lname = db.Column(db.String(25), nullable = False)                        
+    email = db.Column(db.String(50), unique = True, nullable = False)                        
+    password = db.Column(db.String(30), nullable = False)                    
     is_adm = db.Column(db.Boolean)
 
     attendances = db.relationship("Attendance", back_populates="user")                  #specifing the relationship in between tables

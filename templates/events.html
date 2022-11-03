@@ -3,7 +3,20 @@
 {% block title %} Events {% endblock %}
 
 {% block body %}
-<h1> Events page </h1>
+<h1> Events: </h1>
+
+{% for event in events_inf %}
+
+    <p>Event Description: {{event.description}}</p>
+    <p>Event Date: {{event.date}}</p>
+    <p>Event Duration: {{event.duration}}</p> 
+    <p>Event Price: {{event.price}}</p> 
+    <p>Event Location: {{event.location.venue_name}}</p> 
+
+{% endfor%}
+
+  
+
 {% endblock %}
 
 
