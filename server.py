@@ -1,6 +1,6 @@
 """Server for Tango app."""
 
-from flask import Flask, request, render_template, flash, session, redirect
+from flask import Flask, request, render_template, flash, session, redirect, jsonify
 from model import connect_to_db, db, Event, Location, Event_type
 import crud
 from jinja2 import StrictUndefined                              #configure a Jinja2 setting to make it throw errors for undefined variables 
@@ -73,23 +73,45 @@ def show_event(id):
 
 
 
-@app.route("/users", methods=["POST"])
-def register_user():
-    """Create a new user."""
+@app.route("/check_email", methods=["POST"])
+def check_email():
+    """Check if user in db"""
 
     email = request.form.get("email")
-    password = request.form.get("password")
+    
 
-    user = crud.get_user_by_email(email)
-    if user:
-        flash("This email already exists.")
-    else:
-        user = crud.create_user(email, password)
-        db.session.add(user)
-        db.session.commit()
-        flash("welcome")
+    if crud.get_user_by_email(email) == None:
+        flash("create an account")
+         
 
-    return redirect("/")    
+
+# @app.route("/users", methods=["POST", "GET"])
+# def register_user():
+#     """Create a new user."""
+#     print("We are in users route")
+
+
+#     email = request.form.get("email")
+#     password = request.form.get("password")
+
+#     print(f"THIS IS OUR PARAMETERS {email}, {password}")
+#     user = crud.get_user_by_email(email)
+#     if user == None:
+#         user = crud.create_user(email, password)
+#         session['user'] = user.id
+        
+#         db.session.add(user)
+#         db.session.commit()
+#         print("Welcome")
+#         flash("welcome")
+#     else:
+#         print("Already exists")
+#         flash("This email already exists.")
+#     return redirect("/")
+
+        
+
+#     return redirect("/")    
 
 
 

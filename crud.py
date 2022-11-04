@@ -16,8 +16,7 @@ def create_user(fname, lname, email, password):
 
 
 def get_user_by_email(email):                       #return a user with that email of exists, return none otherwise
-    """Return a user by email."""
-    
+    """Return a user by email."""    
 
     return User.query.filter(User.email == email).first()   
     
@@ -47,8 +46,6 @@ def get_event_by_id(id):                                               #getting 
 
 
 
-
-
 def create_event_type(name):
     """Create and return an event type"""
 
@@ -59,7 +56,8 @@ def create_event_type(name):
 def get_event_type():
     """Return all events title"""
 
-    return Event_type.query.get(id)
+   
+    return Event_type.query.all()
 
 
 
