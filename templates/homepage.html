@@ -1,63 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %} Welcome {% endblock %}
+{% block title %} Homepage {% endblock %}
 
-{% block body %}
+{% block body %}  
 
 <h1>Welcome to Tampa Tango Events Calendar</h1>
-<p></p>
 
-<form action = "/homepage">
-    <!-- <label for="events-buttom">Events:</label> -->
-    <p><a href="login" name="login">Login</a></p>
-    <p><a href="events" name="events">Events</a></p>    
-    <p><a href="subscribe" name="subscribe">Subscribe</a></p>    
-    <p><a href="adm" name="adm">Admin access</a></p>    
-    
-<br><br> 
 <h1> add tango image and text explaining about the dance </h1>
-{% endblock %}
 
-{% block js %}	
-{% endblock %}
+<h2>Create an Account</h2>
+<form action="/users" method="POST">
+  <p>
+    Email <input type="text" name="email">
+  </p>
 
+  <p>
+    Password <input type="password" name="password">
+  </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-<!DOCTYPE html>
-<html>
-<body>
-
-<h1>Welcome to Tampa Tango Events Calendar</h1>
-<p></p>
-
-<form action = "/login">
-    <label for="firstname-input">First Name:</label>
-    <input type="text" name="firstname" id = "firstname-input">
-
-    <label for="lastname-input">Last Name:</label>
-    <input type="text" name="lastname" id = "lastname-input">
-
-    <label for="email-input">Email:</label>
-    <input type="text" name="email" id = "email-input">
-
-    <label for="password-input">Password:</label>
-    <input type="password" name="password" id="password-input">
-
+  <p>
     <input type="submit">
+  </p>
 </form>
+{% endblock %}
 
-</body>
-</html> -->
+
+{% block content %}
+
+
+
+{% endblock %}
+
+<!-- {% block js %}	
+{% endblock %} -->
+
+
+
+
+
+
+
+
+

@@ -2,12 +2,13 @@
 
 from flask import Flask, request, render_template, flash, session, redirect
 from model import connect_to_db, db, Event, Location, Event_type
+import crud
 from jinja2 import StrictUndefined                              #configure a Jinja2 setting to make it throw errors for undefined variables 
 
 app = Flask(__name__)
 app.app_context().push()
 
-app.secret_key = "dev"
+app.secret_key = "tango"
 app.jinja_env.undefined = StrictUndefined
 
 
@@ -17,15 +18,15 @@ def homepage():
     """Render home page"""
     
 
-    identity = request.args.get("/homepage")
+    identify = request.args.get("/homepage")
 
-    if identity == 'events':
+    if identify == 'events':
         return redirect("events")
-    elif identity == 'subscribe':
+    elif identify == 'subscribe':
         return redirect("subscribe")  
-    elif identity == 'adm':
+    elif identify == 'adm':
         return redirect("adm") 
-    elif identity == 'login':
+    elif identify == 'login':
         return redirect("login")               
     else:     
         return render_template("homepage.html")
@@ -33,43 +34,96 @@ def homepage():
     # return redirect("/")    
 
 
-@app.route("/login")
-def login():
-    """Login page"""
+# @app.route("/login")
+# def login():
+#     """Login page"""
 
-    user = request.args.get('firstname')
-    return render_template("login.html", name = user)    
+#     user = request.args.get('firstname')
+#     return render_template("login.html", name = user)    
 
 
 @app.route("/events")
-def events_page():
+def all_events():
+    """View all events"""
     #read\query information from database
     # (as first attempt) put names of events to list
     # (as 2nd attempt)put it to list of dictionaries (or other data structure you want)
     # put that data to events template and in template read and render that data
 
 
-    events_inf = Event.query.all()
-    locations_inf = Location.query.all()
-    events_type_inf = Event_type.query.all()
-        
-    return render_template("events.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)  
+    # events_inf = Event.query.all()
+    # locations_inf = Location.query.all()
+    # events_type_inf = Event_type.query.all()        
+    # return render_template("events.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)  
+
+    
+    
+    event_type = crud.get_event_type()
+    return render_template("events.html", event_type = event_type)
 
 
 
-@app.route("/adm")
-def adm_page():
+@app.route("/events/<id>")    
+def show_event(id):
+    """View event detail"""
 
-    events_inf = Event.query.all()
-    locations_inf = Location.query.all()
-    events_type_inf = Event_type.query.all()
-    return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)     
+    location = crud.get_location(id)
+    event = crud.get_event_by_id(id)
+    return render_template("events_details.html", event = event, location = location)
 
 
-@app.route("/subscribe")
-def subscribe_page():
 
-    return render_template("subscribe.html")        
+@app.route("/users", methods=["POST"])
+def register_user():
+    """Create a new user."""
+
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(email)
+    if user:
+        flash("This email already exists.")
+    else:
+        user = crud.create_user(email, password)
+        db.session.add(user)
+        db.session.commit()
+        flash("welcome")
+
+    return redirect("/")    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# @app.route("/adm")
+# def adm_page():
+
+#     events_inf = Event.query.all()
+#     locations_inf = Location.query.all()
+#     events_type_inf = Event_type.query.all()
+#     return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)     
+
+
+# @app.route("/subscribe")
+# def subscribe_page():
+
+#     return render_template("subscribe.html")        
 
 
 

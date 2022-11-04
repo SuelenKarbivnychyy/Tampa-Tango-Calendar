@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %} Events {% endblock %}
+{% block title %} Adm {% endblock %}
 
 {% block body %}
-<form action = "/adm">
+<!-- <form action = "/adm">
     <p><a href="templates/events.html">Events</a></p>    
     <p><a href="templates/subscribe.html">Subscribe</a></p>    
     <p><a href="templates/adm.html">Admin access</a></p>    
-    <p><a href="templates/homepage.html">Log out</a></p>
+    <p><a href="templates/homepage.html">Log out</a></p> -->
 
 <h1> Administration page </h1>
 
 <h1>List of events</h1>
-{% for event in events_inf %}
-<p>Event name: {{event.event_type.name}}</p>
-{% endfor%}
-<input type="submit" value="Edit Event">
-<input type="submit" value="Delete Event">
-<input type="submit" value="Hide/Show Event">
-
+<ul>
+    {% for event in events_inf %}
+    <li>Event name: {{event.event_type.name}}</li>
+    {% endfor%}
+    <input type="submit" value="Edit Event">
+    <input type="submit" value="Delete Event">
+    <input type="submit" value="Hide/Show Event">
+</ul>
 
 <h1>Add Event Panel</h1>
 <form action = "/add_event">

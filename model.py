@@ -33,7 +33,7 @@ class Event(db.Model):
     attendances = db.relationship("Attendance", back_populates="events")                        #specifing the relationship in between tables
 
     def __repr__(self):
-        return f'<Event id={self.id} duration={self.duration} description={self.description}>'
+        return f'<duration: {self.duration} description: {self.description} date: {self.date} price: {self.price}>'
 
 
 
@@ -72,7 +72,7 @@ class Location(db.Model):
     events = db.relationship("Event", back_populates="location")                        #specifing the relationship in between tables
 
     def __repr__(self):
-        return f'<Locations id={self.id} venue_name={self.venue_name} address={self.address}>'
+        return f'<Venue: {self.venue_name} address: {self.address}>'
 
 
 

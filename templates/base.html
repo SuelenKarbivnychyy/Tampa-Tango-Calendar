@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    <!-- #Setting the viewport to make your website look good on all devices: -->
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-  <!-- Include the page's content with this block. -->
-  {% block body %}
+
+  <form action = "/homepage">    
+    <p><a href="login" name="login">Login</a></p>
+    <p><a href="events" name="events">Events</a></p>    
+    <p><a href="subscribe" name="subscribe">Subscribe</a></p>    
+    <p><a href="adm" name="adm">Admin access</a></p>  
+ 
+
+  {% block body %} 
   {% endblock %}
 
   <!-- Include any page-specific JavaScript using this block. -->
