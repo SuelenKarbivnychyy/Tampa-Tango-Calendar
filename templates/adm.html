@@ -3,7 +3,41 @@
 {% block title %} Events {% endblock %}
 
 {% block body %}
+<form action = "/adm">
+    <p><a href="templates/events.html">Events</a></p>    
+    <p><a href="templates/subscribe.html">Subscribe</a></p>    
+    <p><a href="templates/adm.html">Admin access</a></p>    
+    <p><a href="templates/homepage.html">Log out</a></p>
+
 <h1> Administration page </h1>
+
+<h1>List of events</h1>
+{% for event in events_inf %}
+<p>Event name: {{event.event_type.name}}</p>
+{% endfor%}
+<input type="submit" value="Edit Event">
+<input type="submit" value="Delete Event">
+<input type="submit" value="Hide/Show Event">
+
+
+<h1>Add Event Panel</h1>
+<form action = "/add_event">
+    <label for="event_name_input">Event Name:</label>
+    <input type="text" name="event_name" id = "event_name_input">
+    <br><br>
+    <label for="date_input">Event Date:</label>
+    <input type="text" name="event_date" id = "date_input">
+    <br><br>
+    <label for="location_input">Event location:</label>
+    <input type="text" name="event_location" id = "event_location_input">
+    <br><br>
+    <label for="description_input">Event description:</label>
+    <input type="text" name="description" id="description_input">
+    <br><br>
+    <input type="submit" value="Add new event">
+    <input type="submit" value="Save changes">
+    <input type="submit" value="Cancel">
+
 {% endblock %}
 
 

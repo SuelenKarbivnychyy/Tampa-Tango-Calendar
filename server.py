@@ -1,7 +1,7 @@
 """Server for Tango app."""
 
 from flask import Flask, request, render_template, flash, session, redirect
-from model import connect_to_db, db, Event, Location
+from model import connect_to_db, db, Event, Location, Event_type
 from jinja2 import StrictUndefined                              #configure a Jinja2 setting to make it throw errors for undefined variables 
 
 app = Flask(__name__)
@@ -15,9 +15,30 @@ app.jinja_env.undefined = StrictUndefined
 @app.route("/")
 def homepage():
     """Render home page"""
+    
+
+    identity = request.args.get("/homepage")
+
+    if identity == 'events':
+        return redirect("events")
+    elif identity == 'subscribe':
+        return redirect("subscribe")  
+    elif identity == 'adm':
+        return redirect("adm") 
+    elif identity == 'login':
+        return redirect("login")               
+    else:     
+        return render_template("homepage.html")
+
+    # return redirect("/")    
+
+
+@app.route("/login")
+def login():
+    """Login page"""
 
     user = request.args.get('firstname')
-    return render_template("homepage.html", name=user)
+    return render_template("login.html", name = user)    
 
 
 @app.route("/events")
@@ -30,18 +51,19 @@ def events_page():
 
     events_inf = Event.query.all()
     locations_inf = Location.query.all()
-    # list_of_events = []
-
-    # for event in events_inf:
-    #     list_of_events.append(event)
+    events_type_inf = Event_type.query.all()
         
-    return render_template("events.html", events_inf = events_inf, locations_inf = locations_inf)  
+    return render_template("events.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)  
+
 
 
 @app.route("/adm")
 def adm_page():
 
-    return render_template("adm.html")     
+    events_inf = Event.query.all()
+    locations_inf = Location.query.all()
+    events_type_inf = Event_type.query.all()
+    return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)     
 
 
 @app.route("/subscribe")

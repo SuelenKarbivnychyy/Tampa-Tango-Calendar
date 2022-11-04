@@ -3,17 +3,28 @@
 {% block title %} Events {% endblock %}
 
 {% block body %}
+<!-- <form action = "/adm"> -->
+    <p><a href="templates/events.html">Events</a></p>    
+    <p><a href="templates/subscribe.html">Subscribe</a></p>    
+    <p><a href="templates/adm.html">Admin access</a></p>    
+    <p><a href="templates/homepage.html">Log out</a></p>
 <h1> Events: </h1>
 
 {% for event in events_inf %}
 
+    <p>Event name: {{event.event_type.name}}</p>
     <p>Event Description: {{event.description}}</p>
     <p>Event Date: {{event.date}}</p>
     <p>Event Duration: {{event.duration}}</p> 
     <p>Event Price: {{event.price}}</p> 
     <p>Event Location: {{event.location.venue_name}}</p> 
+    <p>Event Address: {{event.location.address , event.location.city , event.location.zipcode}}</p> 
+    <input type="submit" value="Sign in">
+    <br><br>
 
 {% endfor%}
+
+
 
   
 
