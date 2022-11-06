@@ -6,11 +6,11 @@
 </head>
 <body>
 
-  <form action = "/users" method="POST">    
-    <p><a href="/login" name="login">Login</a></p>
+  <form action = "/users" method="POST">  
     <p><a href="/events" name="events">Events</a></p>    
     <p><a href="/subscribe" name="subscribe">Subscribe</a></p>    
     <p><a href="/adm" name="adm">Admin access</a></p>  
+    <p><a href="/" name="homepage">Home Page</a></p> 
  
 
   {% block body %} 
@@ -18,6 +18,7 @@
 
   <!-- Include any page-specific JavaScript using this block. -->
   {% block js %}
+  
   {% endblock %}
 </body>
 </html>

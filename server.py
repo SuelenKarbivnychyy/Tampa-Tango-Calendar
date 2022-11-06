@@ -25,21 +25,10 @@ def homepage():
     elif identify == 'subscribe':
         return redirect("subscribe")  
     elif identify == 'adm':
-        return redirect("adm") 
-    elif identify == 'login':
-        return redirect("login")               
+        return redirect("adm")            
     else:     
         return render_template("homepage.html")
-
-    # return redirect("/")    
-
-
-# @app.route("/login")
-# def login():
-#     """Login page"""
-
-#     user = request.args.get('firstname')
-#     return render_template("login.html", name = user)    
+  
 
 
 @app.route("/events")
@@ -48,19 +37,10 @@ def all_events():
     #read\query information from database
     # (as first attempt) put names of events to list
     # (as 2nd attempt)put it to list of dictionaries (or other data structure you want)
-    # put that data to events template and in template read and render that data
-
-
-    # events_inf = Event.query.all()
-    # locations_inf = Location.query.all()
-    # events_type_inf = Event_type.query.all()        
-    # return render_template("events.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)  
-
-    
+    # put that data to events template and in template read and render that data    
     
     event_type = crud.get_event_type()
     return render_template("events.html", event_type = event_type)
-
 
 
 @app.route("/events/<id>")    
@@ -73,45 +53,42 @@ def show_event(id):
 
 
 
+#create the receiver API POST endpoint:
 @app.route("/check_email", methods=["POST"])
 def check_email():
-    """Check if user in db"""
+    """Check if user in db"""    
+   
+    email_from_input = request.json.get("email")                                      #information from browser
+    password = request.json.get("password")
+    # print(f" ################################## {email}")
+    # print(f" @@@@@@@@@@@@@@@@@@@ {password}")
 
-    email = request.form.get("email")
+
+    user_db = crud.get_user_by_email(email_from_input)                   #checking if the user's email input from the browser has any matchs at the database
+    if user_db == None :                                                 #checking if user is not in db and return "no results if true"
+        # print("##########")                                            #test
+        return "no result"
+
+    user_password = user_db.password                                      #getting the password from db's user if there is a match
+
+    if user_password == password:                                         #giving access to user is informations macth
+        return "welcome"
+    else:
+        return "incorrect email or password"                              #trowing an error other wise
     
 
-    if crud.get_user_by_email(email) == None:
-        flash("create an account")
-         
+
+@app.route("/create_account") 
+def create_account():
+    """Create an user account"""   
+
+    return render_template("create_account.html")     
 
 
-# @app.route("/users", methods=["POST", "GET"])
-# def register_user():
-#     """Create a new user."""
-#     print("We are in users route")
 
 
-#     email = request.form.get("email")
-#     password = request.form.get("password")
 
-#     print(f"THIS IS OUR PARAMETERS {email}, {password}")
-#     user = crud.get_user_by_email(email)
-#     if user == None:
-#         user = crud.create_user(email, password)
-#         session['user'] = user.id
-        
-#         db.session.add(user)
-#         db.session.commit()
-#         print("Welcome")
-#         flash("welcome")
-#     else:
-#         print("Already exists")
-#         flash("This email already exists.")
-#     return redirect("/")
 
-        
-
-#     return redirect("/")    
 
 
 
