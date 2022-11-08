@@ -82,7 +82,94 @@ def check_email():
 def create_account():
     """Create an user account"""   
 
-    return render_template("create_account.html")     
+    return render_template("create_account.html")  
+
+
+
+@app.route("/add_user_to_db", methods=["POST"]) 
+def add_account():
+    """Add an user account to database"""   
+
+    first_name = request.form.get("firstname")
+    last_name = request.form.get("lastname")
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    new_user = crud.create_user(first_name, last_name, email, password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    # print(new_user) test
+    # print(f"############### {first_name}, {last_name}, {email}, {password}") test
+    return redirect("/")  
+
+
+
+
+@app.route("/adm")
+def adm_page():
+    """Display events at the adm's page"""
+
+    events_inf = Event.query.all()
+    locations_inf = Location.query.all()
+    events_type_inf = Event_type.query.all()
+    return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)     
+
+
+@app.route("/add_event_type", methods=["POST"])
+def add_event_type():
+    """Add a new event type to the database"""
+
+    event_name = request.form.get("event_name")
+    # print(f"########################### {event_name}")            #test
+
+    new_event_title = crud.create_event_type(event_name) 
+
+    db.session.add(new_event_title)
+    db.session.commit()
+   
+    # return render_template("/adm.html", event_name = event_name)
+    return redirect("/adm")
+
+
+
+@app.route("/add_event_location", methods=["POST"])
+def add_event_location():                                        
+
+    venue = request.form.get("venue_name")  
+    address = request.form.get("venue_address") 
+    city = request.form.get("venue_city")  
+    state = request.form.get("venue_state") 
+    zipcode = request.form.get("venue_zipcode")                                
+
+    new_event_location = crud.create_location(venue, address, city, state, zipcode)
+   
+    db.session.add(new_event_location)
+    db.session.commit()
+
+    # print(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ {new_event_location}")              #test
+    return redirect("/adm")
+
+
+@app.route("/add_event", methods=["POST"])
+def add_event():
+    """Add a event to the database"""
+
+    event_date = request.form.get("event_date")  
+    event_description = request.form.get("description")    
+    event_price = request.form.get("price")
+    event_duration = request.form.get("event_duration")
+
+    new_event = crud.create_event(event_date, event_description, event_price, event_duration)
+
+    db.session.add(new_event)
+    db.session.commit()
+
+    return redirect("/adm")
+    # return render_template("/adm.html", event_date = event_date,
+    #                                     description = event_description,
+    #                                     price = event_price,
+    #                                     event_duration= event_duration)    
 
 
 
@@ -90,33 +177,6 @@ def create_account():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# @app.route("/adm")
-# def adm_page():
-
-#     events_inf = Event.query.all()
-#     locations_inf = Location.query.all()
-#     events_type_inf = Event_type.query.all()
-#     return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)     
 
 
 # @app.route("/subscribe")

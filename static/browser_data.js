@@ -39,3 +39,13 @@ const routeUser = (data) => {                               // the response from
 button.addEventListener('click', validateUserCredentials);
 
 
+// createAccount = document.getElementById("create_account");
+
+// const createAccountUser = () => {
+//     let inputFname = document.getElementById("firstname-input").value;
+//     let inputLname = document.getElementById("lastname-input").value;
+//     let inputEmail = document.getElementById("email-input").value;
+//     let inputPassword = document.getElementById("password-input").value;
+// }
+
+// createAccount.addEventListener('click', createAccountUser);

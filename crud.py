@@ -33,7 +33,8 @@ def create_event(duration, description, date, price):           #figure it out h
 
     event = Event(duration=duration,
                 description=description, 
-                date=date, price=price)
+                date=date,
+                price=price)
 
     return event
 
@@ -58,8 +59,7 @@ def create_event_type(name):
 
 def get_event_type():
     """Return all events title"""
-
-    # return Event_type.query.get(id)
+    
     return Event_type.query.all()
 
 
