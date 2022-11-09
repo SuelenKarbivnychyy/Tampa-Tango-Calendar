@@ -28,23 +28,29 @@ def get_user_by_email(email):                       #return a user with that ema
 
 
 
-def create_event(duration, description, date, price):           #figure it out how to add the location and the event type
+def create_event(duration, description, date, price, location_id, event_type_id):           #figure it out how to add the location and the event type
     """Creat and return an event"""
 
     event = Event(duration=duration,
                 description=description, 
                 date=date,
-                price=price)
+                price=price,
+                location_id=location_id,
+                event_type_id=event_type_id)
 
     return event
 
 
-def get_event_by_id(id):                                               #getting events from database
-    """Return all events."""
+def get_event_by_id(id):                                               
+    """Return events by id"""
 
-    return Event.query.get(id)    
+    return Event.query.get(id)  
 
 
+def get_all_events():                                               #getting all events from database
+    """Return all events"""
+    
+    return Event.query.all()
 
 
 
@@ -57,8 +63,8 @@ def create_event_type(name):
 
     return event_type
 
-def get_event_type():
-    """Return all events title"""
+def get_all_events_type():
+    """Return all events type"""
     
     return Event_type.query.all()
 
@@ -90,6 +96,13 @@ def get_location(id):
 
 
 
+
+
+
+# def create_a_subscribe(email):
+#     """Create and return a subscriber user"""
+
+#     email_to_subscribe = Subscribe()
 
 
 

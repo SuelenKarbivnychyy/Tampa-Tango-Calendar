@@ -33,7 +33,7 @@ class Event(db.Model):
     attendances = db.relationship("Attendance", back_populates="events")                        #specifing the relationship in between tables
 
     def __repr__(self):
-        return f'<duration: {self.duration} description: {self.description} date: {self.date} price: {self.price}>'
+        return f'<duration: {self.duration} description: {self.description} date: {self.date} price: {self.price} location: {self.location_id}>'
 
 
 

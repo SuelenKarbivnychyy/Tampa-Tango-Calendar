@@ -7,33 +7,13 @@
 
 <h1> Events: </h1>
 <ul>
-    {% for event in event_type %}
+    {% for event in list_of_events %}
         <li> 
-            <a href="/events/{{ event.id }}" >
-                {{ event.name }}
-            </a>
+            <a href= "/events/{{ event.id }}">{{ event.event_type.name }}</a>                           
         </li>
     {% endfor %}    
 </ul>  
-{% endblock %}           
-
-
-   <!-- <p>Event name: {{event.event_type.name}}</p>
-    <p>Event Description: {{event.description}}</p>
-    <p>Event Date: {{event.date}}</p>
-    <p>Event Duration: {{event.duration}}</p> 
-    <p>Event Price: {{event.price}}</p> 
-    <p>Event Location: {{event.location.venue_name}}</p> 
-    <p>Event Address: {{event.location.address , event.location.city , event.location.zipcode}}</p> 
-    <input type="submit" value="Sign in">
-    <br><br> -->
-
-
-
-
-
-
-  
+{% endblock %}    
 
 
 

@@ -14,8 +14,9 @@
 <h1>List of events</h1>
 <ul>
     {% for event in events_inf %}
-    <li>Event name: {{event.event_type.name}}</li>
-    {% endfor%}
+    <li>Event name: {{event.event_type.name}}</li> <br>
+    {% endfor %}
+   
     <input type="submit" value="Edit Event" id="edit-event">
     <input type="submit" value="Delete Event" id="delete-event">
     <input type="submit" value="Hide/Show Event" id="display-hide">
@@ -23,7 +24,7 @@
 
 <h1>Add Event Panel</h1>
 
-<p>Provide the type of event would you like to add:</p>
+<p>Provide the type of event you would like to add:</p>
 <form action = "/add_event_type" method="POST">
     <label for="event_name_input">Event Name:</label>
     <input type="text" name="event_name" id = "event_name_input">
@@ -48,11 +49,28 @@
     <label for="zipcode_input">Zipcode:</label>    
     <input type="text" name="venue_zipcode" id="zipcode_input">
     <br><br>
-    <input type="submit" value="Add new event" id="add_event_location">
+    <input type="submit" value="Add Venue" id="add_event_location">
 </form> <br><br> 
  
 <p>Provide the event details:</p>
-<form action = "/add_event_type" method="POST">
+<form action = "/add_event" method="POST">
+
+    <label for="venue_select">Select the Venue:</label>
+    <select name="venues" id="venue">
+    <option value="">--Please choose an option--</option>
+    {% for venue in locations_inf %}    
+        <option value={{venue.id}}>{{venue.venue_name}}</option>
+    {% endfor %}
+    </select>  
+    <br><br> 
+    <label for="event_type">Select the Event type:</label>
+    <select name="type" id="event_title">
+    <option value="">--Please choose an option--</option>
+    {% for e_type in events_type_inf %}    
+        <option value={{e_type.id}}>{{e_type.name}}</option>
+    {% endfor %}
+    </select>  
+    <br><br> 
     <label for="date_input">Event Date:</label>
     <input type="date" name="event_date" id = "date_input">
     <br><br>
@@ -66,9 +84,8 @@
     <input type="number" name="event_duration" id="duration_input">
     <br><br>
     <input type="submit" value="Add Event" id="add_event_description">
-</form>  <br><br> 
- 
-    
+
+</form>  <br><br>     
     <input type="submit" value="Save changes" id="save-changes">
     <input type="submit" value="Cancel" id="cancel">
 

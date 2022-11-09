@@ -39,17 +39,19 @@ def all_events():
     # (as 2nd attempt)put it to list of dictionaries (or other data structure you want)
     # put that data to events template and in template read and render that data    
     
-    event_type = crud.get_event_type()
-    return render_template("events.html", event_type = event_type)
+    list_of_events= crud.get_all_events()
+
+    return render_template("events.html", list_of_events=list_of_events)
 
 
 @app.route("/events/<id>")    
 def show_event(id):
     """View event detail"""
 
-    location = crud.get_location(id)
+    # location = crud.get_location(id)
     event = crud.get_event_by_id(id)
-    return render_template("events_details.html", event = event, location = location)
+
+    return render_template("events_details.html", event = event)
 
 
 
@@ -60,8 +62,8 @@ def check_email():
    
     email_from_input = request.json.get("email")                                      #information from browser
     password = request.json.get("password")
-    # print(f" ################################## {email}")
-    # print(f" @@@@@@@@@@@@@@@@@@@ {password}")
+    # print(f" ################################## {email}, {password}")
+  
 
 
     user_db = crud.get_user_by_email(email_from_input)                   #checking if the user's email input from the browser has any matchs at the database
@@ -159,9 +161,12 @@ def add_event():
     event_description = request.form.get("description")    
     event_price = request.form.get("price")
     event_duration = request.form.get("event_duration")
+    event_location_id = request.form.get("venues")
+    event_type_id = request.form.get("type")
+ 
 
-    new_event = crud.create_event(event_date, event_description, event_price, event_duration)
-
+    new_event = crud.create_event(date=event_date, description=event_description, price=event_price, duration=event_duration, location_id=event_location_id, event_type_id=event_type_id)
+    print(f"%%%%%%%%%%%%%%%%%%%%%%%%%%%%{new_event}")
     db.session.add(new_event)
     db.session.commit()
 
@@ -172,6 +177,12 @@ def add_event():
     #                                     event_duration= event_duration)    
 
 
+@app.route("/edit_event/<id>")
+def edit_event(id):
+    """Edit events"""
+
+    event_id = crud.get_event_by_id(id)
+    return render_template("edit_event.html", event_id = event_id)
 
 
 
@@ -181,8 +192,18 @@ def add_event():
 
 # @app.route("/subscribe")
 # def subscribe_page():
+#     """Subscribe user to automatic email recieve"""
 
-#     return render_template("subscribe.html")        
+#     return render_template("subscribe.html")   
+
+# @app.route("/add_subscribe_user")         
+# def subscribe_user():
+#     """Add subscribe user to database"""
+
+#     email_subscribe = request.form.get("subscribe")
+
+
+#     return redirect("/")
 
 
 
