@@ -3,23 +3,20 @@
 {% block title %} Adm {% endblock %}
 
 {% block body %}
-<!-- <form action = "/adm">
-    <p><a href="templates/events.html">Events</a></p>    
-    <p><a href="templates/subscribe.html">Subscribe</a></p>    
-    <p><a href="templates/adm.html">Admin access</a></p>    
-    <p><a href="templates/homepage.html">Log out</a></p> -->
 
 <h1> Administration page </h1>
 
 <h1>List of events</h1>
 <ul>
     {% for event in events_inf %}
-    <li>Event name: {{event.event_type.name}}</li> <br>
+    <li>Event name: {{event.event_type.name}}  /
+        Event Venue: {{event.location.venue_name}}
+        <button onclick="window.location.href = '/edit_event/{{event.id}}'" name="edit_event">Edit Event</button>
+        <button name="delete_event">Delete Event</button>
+    </li><br><br>    
     {% endfor %}
    
-    <input type="submit" value="Edit Event" id="edit-event">
-    <input type="submit" value="Delete Event" id="delete-event">
-    <input type="submit" value="Hide/Show Event" id="display-hide">
+
 </ul>
 
 <h1>Add Event Panel</h1>
@@ -86,8 +83,7 @@
     <input type="submit" value="Add Event" id="add_event_description">
 
 </form>  <br><br>     
-    <input type="submit" value="Save changes" id="save-changes">
-    <input type="submit" value="Cancel" id="cancel">
+
 
 {% endblock %}
 

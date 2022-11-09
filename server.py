@@ -115,7 +115,9 @@ def adm_page():
     events_inf = Event.query.all()
     locations_inf = Location.query.all()
     events_type_inf = Event_type.query.all()
-    return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)     
+    return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)  
+    
+
 
 
 @app.route("/add_event_type", methods=["POST"])
@@ -179,14 +181,20 @@ def add_event():
 
 @app.route("/edit_event/<id>")
 def edit_event(id):
-    """Edit events"""
+    """Show edit event form"""
 
-    event_id = crud.get_event_by_id(id)
-    return render_template("edit_event.html", event_id = event_id)
+    # events_inf = Event.query.all()
+    locations_inf = Location.query.all()
+    events_type_inf = crud.get_all_events_type()   
+    event = crud.get_event_by_id(id)
+
+
+    return render_template("edit_event.html", event = event, locations_inf = locations_inf, events_type_inf = events_type_inf)
+    
 
 
 
-
+    
 
 
 

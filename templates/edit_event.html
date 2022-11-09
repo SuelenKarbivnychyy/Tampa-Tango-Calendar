@@ -9,6 +9,47 @@
 
 <h1>Edit events:</h1>
 
+<p>Edit event details:</p>
+<form action = "/update_event">
+
+    <label for="venue_select">Select the Venue:</label>
+    <select name="venue" id="venue">    
+    <!-- <option value="">--Please choose an option--</option>  -->
+    <option value="">{{event.location.venue_name}}</option>
+
+    {% for venue in locations_inf %}           
+        <option value="{{venue.id}}">{{venue.venue_name}}</option>
+    {% endfor %}
+    </select>  
+    <br><br> 
+
+    <label for="event_type">Select the Event type:</label>
+    <select name="type" id="event_title">
+    <option value="">{{event.event_type.name}}</option>
+    {% for e_type in events_type_inf %}    
+        <option value={{e_type.id}}>{{e_type.name}}</option>
+    {% endfor %}
+    </select>  
+    <br><br> 
+    <label for="date_input">Event Date:</label>
+    <input type="date" name="event_date" id = "date_input" value="{{event.date.strftime('%Y-%m-%d')}}">
+    <br><br>
+    <label for="description_input">Event description:</label>
+    <input type="text" name="description" id="description_input" value="{{event.description}}">
+    <br><br>
+    <label for="price_input">Event price:</label>    
+    <input type="number" name="price" id="price_input" value="{{event.price}}">
+    <br><br>
+    <label for="duration_input">Event Duration:</label>    
+    <input type="number" name="event_duration" id="duration_input" value="{{event.duration}}">
+    <br><br>
+    <input type="submit" value="Add event" id="add_event">
+    <input type="submit" value="Save changes" id="save-changes">
+    <input type="submit" value="Cancel" id="cancel">
+
+
+</form>  <br><br> 
+
 
 
 {% endblock %}
