@@ -10,12 +10,18 @@
 <h1>Edit events:</h1>
 
 <p>Edit event details:</p>
-<form action = "/update_event">
+<form action = "/update_event" method="POST">
+    
+    <input type="hidden" name="event_id" value="{{event.id}}">
+    <br>
 
     <label for="venue_select">Select the Venue:</label>
-    <select name="venue" id="venue">    
-    <!-- <option value="">--Please choose an option--</option>  -->
-    <option value="">{{event.location.venue_name}}</option>
+    <select name="venue" id="venue">   
+
+    <!-- NEXT LINE-->  
+    {% if event.location != None %}
+        <option value="{{event.location.id}}">{{event.location.venue_name}}</option>
+    {% endif %}
 
     {% for venue in locations_inf %}           
         <option value="{{venue.id}}">{{venue.venue_name}}</option>
@@ -25,7 +31,11 @@
 
     <label for="event_type">Select the Event type:</label>
     <select name="type" id="event_title">
-    <option value="">{{event.event_type.name}}</option>
+    <!-- NEXT LINE-->    
+    {%if event.event_type != None %}
+        <option value="{{event.event_type.id}}">{{event.event_type.name}}</option>
+    {% endif %}    
+
     {% for e_type in events_type_inf %}    
         <option value={{e_type.id}}>{{e_type.name}}</option>
     {% endfor %}
@@ -43,12 +53,10 @@
     <label for="duration_input">Event Duration:</label>    
     <input type="number" name="event_duration" id="duration_input" value="{{event.duration}}">
     <br><br>
-    <input type="submit" value="Add event" id="add_event">
-    <input type="submit" value="Save changes" id="save-changes">
-    <input type="submit" value="Cancel" id="cancel">
-
-
-</form>  <br><br> 
+    
+    <input type="submit" value="Save"/>
+</form> <br>
+<button onclick="window.location.href ='/adm'">Cancel</button>
 
 
 

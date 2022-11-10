@@ -11,15 +11,13 @@
     {% for event in events_inf %}
     <li>Event name: {{event.event_type.name}}  /
         Event Venue: {{event.location.venue_name}}
-        <button onclick="window.location.href = '/edit_event/{{event.id}}'" name="edit_event">Edit Event</button>
-        <button name="delete_event">Delete Event</button>
-    </li><br><br>    
+        <button onclick="window.location.href = '/edit_event/{{event.id}}'">Edit Event</button>
+        <button onclick="window.location.href ='/delete_event/{{event.id}}'">Delet Event</button><br>
+    </li><br>                                  
     {% endfor %}
-   
-
 </ul>
+<button onclick="window.location.href ='/edit_event/new'" name="add_event">Add new event</button><br><br>            <!-- adding this button with '/edit_event/new' to create a new event instead od updating an existing event -->
 
-<h1>Add Event Panel</h1>
 
 <p>Provide the type of event you would like to add:</p>
 <form action = "/add_event_type" method="POST">
@@ -47,43 +45,7 @@
     <input type="text" name="venue_zipcode" id="zipcode_input">
     <br><br>
     <input type="submit" value="Add Venue" id="add_event_location">
-</form> <br><br> 
- 
-<p>Provide the event details:</p>
-<form action = "/add_event" method="POST">
-
-    <label for="venue_select">Select the Venue:</label>
-    <select name="venues" id="venue">
-    <option value="">--Please choose an option--</option>
-    {% for venue in locations_inf %}    
-        <option value={{venue.id}}>{{venue.venue_name}}</option>
-    {% endfor %}
-    </select>  
-    <br><br> 
-    <label for="event_type">Select the Event type:</label>
-    <select name="type" id="event_title">
-    <option value="">--Please choose an option--</option>
-    {% for e_type in events_type_inf %}    
-        <option value={{e_type.id}}>{{e_type.name}}</option>
-    {% endfor %}
-    </select>  
-    <br><br> 
-    <label for="date_input">Event Date:</label>
-    <input type="date" name="event_date" id = "date_input">
-    <br><br>
-    <label for="description_input">Event description:</label>
-    <input type="text" name="description" id="description_input">
-    <br><br>
-    <label for="price_input">Event price:</label>    
-    <input type="number" name="price" id="price_input">
-    <br><br>
-    <label for="duration_input">Event Duration:</label>    
-    <input type="number" name="event_duration" id="duration_input">
-    <br><br>
-    <input type="submit" value="Add Event" id="add_event_description">
-
-</form>  <br><br>     
-
+</form> <br><br>
 
 {% endblock %}
 

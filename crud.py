@@ -85,9 +85,15 @@ def create_location(venue_name, address, city, state, zipcode):
     return location
 
 def get_location(id):
-    """Return all locations"""
+    """Return location by id"""
 
     return Location.query.get(id)
+
+def get_all_location():
+    """Return all locations"""
+
+    return Location.query.all()
+
 
 
     # figure out about attendance table

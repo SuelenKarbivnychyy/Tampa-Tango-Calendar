@@ -3,7 +3,8 @@
 from flask import Flask, request, render_template, flash, session, redirect, jsonify
 from model import connect_to_db, db, Event, Location, Event_type
 import crud
-from jinja2 import StrictUndefined                              #configure a Jinja2 setting to make it throw errors for undefined variables 
+from jinja2 import StrictUndefined 
+from datetime import datetime                             #configure a Jinja2 setting to make it throw errors for undefined variables 
 
 app = Flask(__name__)
 app.app_context().push()
@@ -57,16 +58,15 @@ def show_event(id):
 
 #create the receiver API POST endpoint:
 @app.route("/check_email", methods=["POST"])
-def check_email():
+def check_email():           #rename this metdod to check credential and search everywhere
     """Check if user in db"""    
    
     email_from_input = request.json.get("email")                                      #information from browser
     password = request.json.get("password")
     # print(f" ################################## {email}, {password}")
-  
-
 
     user_db = crud.get_user_by_email(email_from_input)                   #checking if the user's email input from the browser has any matchs at the database
+    
     if user_db == None :                                                 #checking if user is not in db and return "no results if true"
         # print("##########")                                            #test
         return "no result"
@@ -97,13 +97,22 @@ def add_account():
     email = request.form.get("email")
     password = request.form.get("password")
 
-    new_user = crud.create_user(first_name, last_name, email, password)
-    db.session.add(new_user)
-    db.session.commit()
+    #
+    #check if email user is typing match with any rmail from data base
+    user_account = crud.get_user_by_email(email)
+
+    print(f"################### USER EMAIL [{user_account}]")
+    if user_account != None:
+        return "You already have an account"
+    else:
+        new_user = crud.create_user(first_name, last_name, email, password)
+        db.session.add(new_user)
+        db.session.commit()
+        return "Sucessfully created an account. Welcome"
 
     # print(new_user) test
     # print(f"############### {first_name}, {last_name}, {email}, {password}") test
-    return redirect("/")  
+    # return redirect("/")  
 
 
 
@@ -155,7 +164,7 @@ def add_event_location():
     return redirect("/adm")
 
 
-@app.route("/add_event", methods=["POST"])
+@app.route("/add_event", methods=["POST"])                                      #adding a new event to the data base
 def add_event():
     """Add a event to the database"""
 
@@ -184,14 +193,73 @@ def edit_event(id):
     """Show edit event form"""
 
     # events_inf = Event.query.all()
-    locations_inf = Location.query.all()
-    events_type_inf = crud.get_all_events_type()   
-    event = crud.get_event_by_id(id)
+    locations_inf = crud.get_all_location()
+    events_type_inf = crud.get_all_events_type()    
+    print(f"######################################{id}")
+    print(f"###################################### expression : {id == 'new'}")
 
+    if id == "new":
+        event = Event(id=-1, duration=0, description="", date=datetime.now(), price=0)             #create a new instance of Event class
+        # print(f"********Babe's event {event}")                                                   #test                                 
+    else:
+        event = crud.get_event_by_id(id)   
 
     return render_template("edit_event.html", event = event, locations_inf = locations_inf, events_type_inf = events_type_inf)
     
 
+@app.route("/delete_event/<id>")
+def delete_event(id):
+    """Delete a event"""
+   
+    event_to_delete = crud.get_event_by_id(id) 
+    db.session.delete(event_to_delete)
+    db.session.commit()
+
+    return redirect("/adm")
+
+@app.route("/update_event", methods=["POST"])
+def check_event():
+    """Check if event exists in database"""
+
+     
+    form_event_id = request.form.get("event_id")                # getting id from html form
+    if form_event_id == "-1":
+        print(f"#######################{form_event_id}")
+        event = Event()    
+    else:                                         # create a new event if id == -1
+        event = crud.get_event_by_id(form_event_id)                 # passing the form id to the crud function
+
+
+    event_duration = request.form.get("event_duration")
+    event_description = request.form.get("description") 
+    event_date = request.form.get("event_date")      
+    event_price = request.form.get("price")    
+    event_location_id = request.form.get("venue")
+    event_type_id = request.form.get("type")
+    print(f" EVENT LOCATION { event_location_id }")
+    print(f" EVENT TYPE ID {event_type_id}")
+
+    event.duration = event_duration
+    event.description = event_description
+    event.date = event_date
+    event.price = event_price
+    event.location_id = event_location_id
+    event.event_type_id = event_type_id
+
+    if event != None:                                       #checking if the event being edit already in database and update it if does
+        db.session.add(event)
+        db.session.commit()
+    elif event == event:
+        db.session.add(event)                               # add new event if does not exist in data base
+        db.session.commit()
+    else:
+        print("############################### cancel")        
+
+    print(f"UPDATED EVENTS #####################{event}")
+
+    # print(date=event_date, description=event_description, price=event_price, duration=event_duration, location_id=event_location_id, event_type_id=event_type_id)
+
+    return redirect("/adm")    
 
 
     
