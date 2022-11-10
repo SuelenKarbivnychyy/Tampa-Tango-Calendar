@@ -3,8 +3,8 @@
 from flask import Flask, request, render_template, flash, session, redirect, jsonify
 from model import connect_to_db, db, Event, Location, Event_type
 import crud
-from jinja2 import StrictUndefined 
-from datetime import datetime                             #configure a Jinja2 setting to make it throw errors for undefined variables 
+from jinja2 import StrictUndefined                                   #configure a Jinja2 setting to make it throw errors for undefined variables
+from datetime import datetime                             
 
 app = Flask(__name__)
 app.app_context().push()
@@ -13,11 +13,9 @@ app.secret_key = "tango"
 app.jinja_env.undefined = StrictUndefined
 
 
-# Replace this with routes and view functions!
 @app.route("/")
 def homepage():
-    """Render home page"""
-    
+    """Render home page"""    
 
     identify = request.args.get("/homepage")
 
@@ -36,8 +34,6 @@ def homepage():
 def all_events():
     """View all events"""
     #read\query information from database
-    # (as first attempt) put names of events to list
-    # (as 2nd attempt)put it to list of dictionaries (or other data structure you want)
     # put that data to events template and in template read and render that data    
     
     list_of_events= crud.get_all_events()
@@ -47,75 +43,77 @@ def all_events():
 
 @app.route("/events/<id>")    
 def show_event(id):
-    """View event detail"""
-
-    # location = crud.get_location(id)
+    """View event details"""
+  
     event = crud.get_event_by_id(id)
-
     return render_template("events_details.html", event = event)
 
 
 
 #create the receiver API POST endpoint:
-@app.route("/check_email", methods=["POST"])
-def check_email():           #rename this metdod to check credential and search everywhere
-    """Check if user in db"""    
+@app.route("/validate_user_credentials", methods=["POST"])
+def validate_user_credentials():           
+    """Check if user is in db"""    
    
-    email_from_input = request.json.get("email")                                      #information from browser
+    email_from_input = request.json.get("email")                                      #information from browser as json
     password = request.json.get("password")
     # print(f" ################################## {email}, {password}")
 
-    user_db = crud.get_user_by_email(email_from_input)                   #checking if the user's email input from the browser has any matchs at the database
-    
-    if user_db == None :                                                 #checking if user is not in db and return "no results if true"
-        # print("##########")                                            #test
+    user_db = crud.get_user_by_email(email_from_input)                      #checking if the user's email input from the browser has any matchs at the database
+    if user_db == None :                                                    #checking if user is not in db and return "no results if true"
         return "no result"
 
-    user_password = user_db.password                                      #getting the password from db's user if there is a match
-
-    if user_password == password:                                         #giving access to user is informations macth
+    user_password = user_db.password                                         #getting the password from db's user if there is a match
+    if user_password == password:                                           #giving access to user is informations macth
         return "welcome"
     else:
-        return "incorrect email or password"                              #trowing an error other wise
+        return "incorrect email or password"                                 #trowing an error other wise
     
+
+#pseudocode
+# create a route function to check if email is in data base
+# for the purpose of telling user if he already has an account
+# on the create account feature
+
+@app.route("/validate_email", methods=["POST"])
+def validate_email():
+    """Validate email to create an account"""
+
+    email = request.json.get("email")
+    user = crud.get_user_by_email(email)
+
+    if user != None:
+        return "true"
+    else:
+        return "false"
 
 
 @app.route("/create_account") 
 def create_account():
-    """Create an user account"""   
+    """Render create account template"""   
 
-    return render_template("create_account.html")  
+    return render_template("create_account.html") 
 
-
-
-@app.route("/add_user_to_db", methods=["POST"]) 
+#Route to submit the form
+@app.route("/add_user_to_db", methods=["POST"])                              #route to submit the form
 def add_account():
-    """Add an user account to database"""   
+    """Add an user account to database (create account)"""   
 
     first_name = request.form.get("firstname")
     last_name = request.form.get("lastname")
     email = request.form.get("email")
-    password = request.form.get("password")
+    password = request.form.get("password") 
 
-    #
-    #check if email user is typing match with any rmail from data base
-    user_account = crud.get_user_by_email(email)
-
-    print(f"################### USER EMAIL [{user_account}]")
-    if user_account != None:
-        return "You already have an account"
-    else:
-        new_user = crud.create_user(first_name, last_name, email, password)
-        db.session.add(new_user)
-        db.session.commit()
-        return "Sucessfully created an account. Welcome"
-
-    # print(new_user) test
-    # print(f"############### {first_name}, {last_name}, {email}, {password}") test
-    # return redirect("/")  
+    new_user = crud.create_user(first_name, last_name, email, password)
+    db.session.add(new_user)
+    db.session.commit()
+        # print(new_user)                                                    #test
+  
+    return redirect("/")  
 
 
-
+##########################################################################################################################
+# ADM BUSINESS STARTS FROM HERE  
 
 @app.route("/adm")
 def adm_page():
