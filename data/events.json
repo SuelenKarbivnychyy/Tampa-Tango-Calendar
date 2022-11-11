@@ -1,10 +1,42 @@
 [
     {
         "duration": "4",
-        "description": "Workshop By the best dances from argentina",
+        "description": "Workshop By the best dances from argentina.",
         "date": "2023-02-03",
         "price": "30",
         "location_id": "2",
         "event_type_id": "1"
-    } 
+    },
+    {
+        "duration": "2",
+        "description": "Tango Lesson focused on basics steps.",
+        "date": "2023-02-10",
+        "price": "15",
+        "location_id": "1",
+        "event_type_id": "2"
+    },
+    {
+        "duration": "5",
+        "description": "Milonga social dance night.",
+        "date": "2023-02-16",
+        "price": "15",
+        "location_id": "3",
+        "event_type_id": "4"
+    },
+    {       
+        "duration": 2,
+        "description": "Time to practice what you learn during class.",
+        "date": "2023-02-23",
+        "price": "10",
+        "location_id": "5",
+        "event_type_id": "3"
+    },
+    {       
+        "duration": "7",
+        "description": "We will spend a fun day together with music, dance and games.",
+        "date": "2023-02-28",
+        "price": "0",
+        "location_id": "2",
+        "event_type_id": "5"
+    }
 ]
