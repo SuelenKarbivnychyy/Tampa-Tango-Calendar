@@ -1,0 +1,37 @@
+[
+    {
+        "venue_name": "District Dance Academy",
+        "address" : "14100 US Hwy 19 N Suite 139",
+        "city": "Clearwater",
+        "state": "Florida",
+        "zipcode": "33764"
+    },
+    {
+        "venue_name": "La casa",
+        "address" : "4032 Edegwater ln",
+        "city": "Oldmar",
+        "state": "Florida",
+        "zipcode": "32563"
+    },
+    {
+        "venue_name": "Zebra Room",
+        "address" : "4852 alice poen",
+        "city": "Orlando",
+        "state": "Florida",
+        "zipcode": "32158"
+    },
+    {
+        "venue_name": "Mama Mia Academy",
+        "address" : "8591 janio cambridge",
+        "city": "Tampa",
+        "state": "Florida",
+        "zipcode": "37561"
+    },
+    {
+        "venue_name": "Tango House",
+        "address" : "10005 tampa road",
+        "city": "Tampa",
+        "state": "Florida",
+        "zipcode": "48951"
+    }
+]
