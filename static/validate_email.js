@@ -9,11 +9,12 @@ const validateUserEmail = (evt) => {
     let lNameInput = document.getElementById("lastname-input").value;
     let passwordInput = document.getElementById("password-input").value;
     let emailInput = document.getElementById("email-input").value;
+    console.log(fNameInput, lNameInput, passwordInput, emailInput);
 
-    if (fNameInput || lNameInput || passwordInput || emailInput === "") {                   // checking if all the fields are filled and let the user now if its not
-        alert("All the fields are required");
-        return ;
-    }
+    if (fNameInput === '' || lNameInput === '' || passwordInput === '' || emailInput === '') {                   // checking if all the fields are filled and let the user now if its not
+        alert("All the fields are required");   
+        return ;     
+    }    
 
     let emailImputValue = document.getElementById("email-input").value;                     // alert(emailImputValue);
 

@@ -6,10 +6,11 @@ const validateUserCredentials = (evt) => {
     let emailImputValue = document.getElementById("email").value;
     let passwordImputValue = document.getElementById("password").value;
     // alert(emailImputValue);
-    if (emailImputValue && passwordImputValue === "") {         // checking if all the fields are filled an let the users now if its not
-        alert("All the fields are required")
-        return ;
-    }
+    if (emailImputValue === '' || passwordImputValue === '') {         // checking if all the fields are filled and let the users now if its not
+        alert("All the fields are required");   
+        return ;    
+    } 
+    
     
     const emailValidation = {                                  //object. the keys are the expected value from server.py and value is the value from browser
         email: emailImputValue, 
