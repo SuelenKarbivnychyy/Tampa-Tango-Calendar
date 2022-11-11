@@ -24,10 +24,26 @@ def homepage():
     elif identify == 'subscribe':
         return redirect("subscribe")  
     elif identify == 'adm':
-        return redirect("adm")            
+        return redirect("adm") 
+    elif identify == "user_profile":
+        return redirect("user_profile")                       
     else:     
         return render_template("homepage.html")
-  
+
+
+@app.route("/user_profile")
+def user_profile():
+    """Display user's profile"""
+
+    return render_template("user_profile.html")
+
+# @app.route("/users_attendance_events")
+# def users_events():
+#     """Display events user's are sign up for"""
+
+#     events = crud.get_all_events()
+
+#     return "You are sucessfully sign up for this event"    
 
 
 @app.route("/events")
@@ -53,7 +69,7 @@ def show_event(id):
 #create the receiver API POST endpoint:
 @app.route("/validate_user_credentials", methods=["POST"])
 def validate_user_credentials():           
-    """Check if user is in db"""    
+    """Check if user's credential are correct to login"""    
    
     email_from_input = request.json.get("email")                                      #information from browser as json
     password = request.json.get("password")
