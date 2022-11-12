@@ -38,17 +38,28 @@ def user_profile():
     return render_template("user_profile.html")   
 
 
-# @app.route("/event_attendance", methods=["POST"])
-# def count_attendance():
-#     """Display the attendance for an event"""
+@app.route("/event_attendance", methods=["POST"])
+def count_attendance():
+    """Display the attendance for an event"""
    
-#     # events= crud.get_all_events() 
-#     # users = crud.get_user_by_email()
-#     sign_up = request.json.get("event_id")
 
-#     print(f"############################# BUTTON ID {sign_up}")
+    event_id = request.json.get("event_id")
+    user_id = session['current_user']
 
-#     return redirect("/event")
+    check_attendance = crud.get_attendance(event_id, user_id)
+    # print(f"############################### I'M THE event id and user id: {check_attendance}")            test
+    
+
+    if check_attendance == None:
+        # print("##################### I'M IN DATA BASE")
+        add_attendance = crud.create_attendance(event_id, user_id)
+        db.session.add(add_attendance)        
+        db.session.commit()
+        print(f"############ ADDED TO DATABASE {event_id} {user_id}")
+        return "added to db"
+    else:
+        return "I'm in database already"
+
 
 ####################################################################
 
@@ -91,7 +102,7 @@ def validate_user_credentials():
     user_password = user_db.password                                        #getting the password from db's user if there is a match
     if user_password == password:                                           #giving access to user if informations macth
         session['current_user'] = user_id
-        # print(f"#############################{user_id}")                  #test
+        print(f"#############################{user_id}")                  #test
         # flash(f"Logged in as {user_db.fname, user_db.lname}")
         return "true"
     else:

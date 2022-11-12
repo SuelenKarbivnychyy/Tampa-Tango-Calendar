@@ -100,22 +100,25 @@ def get_all_location():
 
 # figure out about attendance table
 
-def create_attendance(id, event_id, user_id):
+def create_attendance(event_id, user_id):
     """Create and return a attendance"""
 
-    attendance = Attendance(id=id,
-                            event_id=event_id,
+    attendance = Attendance(event_id=event_id,
                             user_id=user_id)
 
     return attendance                        
 
 
 
+def get_attendance(event_id, user_id):
+    """Return an attendance"""
+
+    return Attendance.query.filter(Attendance.event_id == event_id, Attendance.user_id == user_id).first()
+
+
 def get_all_attendance():
-    """Return all attendances"""
 
     return Attendance.query.all()
-
 
 
 
