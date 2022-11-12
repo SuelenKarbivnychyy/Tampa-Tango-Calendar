@@ -31,10 +31,10 @@ const validateUserCredentials = (evt) => {
 const routeUser = (data) => {                               // the response from server as "data"
     alert(data);
 
-    if (data == "welcome") {                                //checking what the response from server will be
+    if (data == "true") {                                //checking what the response from server will be
         window.location.href = "/events";                  // redirecting to that route if condition is true
     }
-    else if (data == "no result") {
+    else if (data == "false") {
         window.location.href = "/create_account";
     }
     else {

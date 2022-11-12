@@ -35,16 +35,22 @@ def homepage():
 def user_profile():
     """Display user's profile"""
 
-    return render_template("user_profile.html")
+    return render_template("user_profile.html")   
 
-# @app.route("/users_attendance_events")
-# def users_events():
-#     """Display events user's are sign up for"""
 
-#     events = crud.get_all_events()
+# @app.route("/event_attendance", methods=["POST"])
+# def count_attendance():
+#     """Display the attendance for an event"""
+   
+#     # events= crud.get_all_events() 
+#     # users = crud.get_user_by_email()
+#     sign_up = request.json.get("event_id")
 
-#     return "You are sucessfully sign up for this event"    
+#     print(f"############################# BUTTON ID {sign_up}")
 
+#     return redirect("/event")
+
+####################################################################
 
 @app.route("/events")
 def all_events():
@@ -53,8 +59,9 @@ def all_events():
     # put that data to events template and in template read and render that data    
     
     list_of_events= crud.get_all_events()
+    list_of_attendance = crud.get_all_attendance() #getting all the attendance for events
 
-    return render_template("events.html", list_of_events=list_of_events)
+    return render_template("events.html", list_of_events=list_of_events, list_of_attendance=list_of_attendance)
 
 
 @app.route("/events/<id>")    
@@ -77,13 +84,21 @@ def validate_user_credentials():
 
     user_db = crud.get_user_by_email(email_from_input)                      #checking if the user's email input from the browser has any matchs at the database
     if user_db == None :                                                    #checking if user is not in db and return "no results if true"
+        # flash("create an account")
         return "no result"
 
-    user_password = user_db.password                                         #getting the password from db's user if there is a match
-    if user_password == password:                                           #giving access to user is informations macth
-        return "welcome"
+    user_id= user_db.id
+    user_password = user_db.password                                        #getting the password from db's user if there is a match
+    if user_password == password:                                           #giving access to user if informations macth
+        session['current_user'] = user_id
+        # print(f"#############################{user_id}")                  #test
+        # flash(f"Logged in as {user_db.fname, user_db.lname}")
+        return "true"
     else:
-        return "incorrect email or password"                                 #trowing an error other wise
+        # flash("incorrect email or password")
+        return "false"
+
+
     
 
 #pseudocode

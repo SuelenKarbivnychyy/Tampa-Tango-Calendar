@@ -20,6 +20,8 @@ def get_user_by_email(email):                       #return a user with that ema
     
 
     return User.query.filter(User.email == email).first()   
+
+    
     
 
 
@@ -78,7 +80,8 @@ def create_location(venue_name, address, city, state, zipcode):
     """Create and return a location"""
 
     location = Location(venue_name=venue_name,
-                        address=address, city=city,
+                        address=address, 
+                        city=city,
                         state=state, 
                         zipcode=zipcode )
 
@@ -95,8 +98,23 @@ def get_all_location():
     return Location.query.all()
 
 
+# figure out about attendance table
 
-    # figure out about attendance table
+def create_attendance(id, event_id, user_id):
+    """Create and return a attendance"""
+
+    attendance = Attendance(id=id,
+                            event_id=event_id,
+                            user_id=user_id)
+
+    return attendance                        
+
+
+
+def get_all_attendance():
+    """Return all attendances"""
+
+    return Attendance.query.all()
 
 
 

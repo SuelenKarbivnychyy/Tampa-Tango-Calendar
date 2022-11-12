@@ -112,7 +112,7 @@ class Attendance(db.Model):
     user = db.relationship("User", back_populates="attendances")                        #specifing the relationship in between tables
 
     def __repr__(self):
-        return f'<Event_type id={self.id} name={self.name}>' 
+        return f'<Event_type id={self.id} name={self.events.event_type.name}>' 
 
 
 

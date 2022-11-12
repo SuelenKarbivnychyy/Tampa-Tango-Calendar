@@ -1,11 +1,35 @@
-// let signInButton = document.getElementById("sign_up");
+let signInButton = document.querySelectorAll("button");
 
-// const signInForEvent = (evt) => {
-//     evt.preventDefault();
-//     let validadeSignIn = document.getElementById("sign_up").value;
-//     alert(validadeSignIn);
+const signInForEvent = (evt) => {
+    evt.preventDefault();
 
-//     // if (validadeSignIn == "")
+    let button = evt.target;
+    let eventId = button.value;
+    alert(eventId);
+}    
+
+//     const countAttendance = {
+//         event_id : eventId
+//     }
+
+//     fetch('/event_attendance',{
+//         method: 'POST',
+//         body: JSON.stringify(countAttendance),
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//     })  
+//         .then((response) => response.text())
+//         .then(serverReplay)        
 // }
 
-// signInButton.addEventListener('click', signInForEvent);
+// const serverReplay = (data) => {
+//     alert(data);
+// }
+
+for (button of signInButton) {    
+   button.addEventListener('click', signInForEvent);
+};
+
+
+

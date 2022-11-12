@@ -10,16 +10,26 @@
     {% for event in list_of_events %}
         <li>             
             <a href= "/events/{{ event.id }}">{{ event.event_type.name }}</a>  
-            <button type="submit" name="sign_up" id="sign_up">Sign in</button> 
-
+            <button type="submit" value="{{event.id}}" name="sign_up" id="sign_up">Sign in</button>             
             <br><br>                  
         </li>
     {% endfor %}    
-</ul>  
+</ul> 
+<h1>Attendances</h1>
+
+    {% for attendance in list_of_attendance %}
+    <p>
+        {{attendance.id}}
+    </p>
+    {% endfor %}
+
+
+    <script src="static/user_profile_attendance.js"></script>    
+
 {% endblock %}    
 
 
-<script src="static/user_profile_attendance.js"></script>
+
 
 
 
