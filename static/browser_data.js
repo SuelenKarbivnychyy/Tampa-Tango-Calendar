@@ -38,7 +38,7 @@ const routeUser = (data) => {                               // the response from
         window.location.href = "/create_account";
     }
     else {
-        window.location.href = "/" ;       
+        window.location.href = "/create_account" ;       
     }
 }
 

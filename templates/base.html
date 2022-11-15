@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">    <!-- #Setting the viewport to make your website look good on all devices: -->
-  <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Tampa Tango Calendar</a>
 
-  <p><a href="/create_account" name ="account">Create Account</a></p>
-  <p><a href="/events" name="events">Events</a></p>    
-  <p><a href="/subscribe" name="subscribe">Subscribe</a></p>    
-  <p><a href="/adm" name="adm">Admin access</a></p>  
-  <p><a href="/" name="homepage">Home Page</a></p> 
-  <p><a href="/user_profile" name="user_profile">My Profile</a></p>
+    <div class="collapse navbar-collapse">
+         <ul class="navbar-nav me-auto">          <!--change the me-auto to ms-auto,mx-auto -->
+            <li class="nav-item-active">
+                <a class="nav-link" href="/events">Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/subscribe">Subscribe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create_account">Create Account</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/adm">Adm Access</a>
+            </li>  
+        </ul>
+        <div class="login-container">
+            <form class="form-inline" action="/users" method="Post">
+              <!-- <label for="email">Email</label>   -->
+              <input type="text" placeholder="Email" name="email" id="email">
+              <input type="password" placeholder="Password" name="password" id="password">
+              <button id="submit">Login</button>
+            </form>
+          </div>
+    </div>
+</nav>
 
+<script src="static/browser_data.js"></script>      <!-- link to javascript file -->
 
-  {% block body %} 
-  {% endblock %}
+{% block body %} 
+{% endblock %}
 
-  <!-- Include any page-specific JavaScript using this block. -->
-  {% block js %}
-  
-  {% endblock %}
 </body>
 </html>

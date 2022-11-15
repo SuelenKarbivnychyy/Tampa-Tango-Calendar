@@ -3,9 +3,49 @@
 {% block title %} All Events {% endblock %}
 
 {% block body %}
+
+
+<!-- <div class="container">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card border-0">
+                <img class="card-img-top" src="https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6e/b6/16.jpg">
+                <div class="card-body">
+                    <p class="text-center"> 
+                        {% for event in list_of_events %} 
+                        <li>             
+                            <a href= "/events/{{ event.id }}">{{ event.event_type.name }}</a>  
+                            <button type="submit" value="{{event.id}}" name="sign_up" id="sign_up">Sign in</button>             
+                            <br><br>                  
+                        </li>
+                    {% endfor %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 
-<h1> Events: </h1>
+<h1> Events page:  </h1>
 <ul>
     {% for event in list_of_events %}
         <li>             
@@ -19,7 +59,7 @@
 
     {% for attendance in list_of_attendance %}
     <p>
-        {{attendance.id}}
+        Attendance id: {{attendance.id}}
     </p>
     {% endfor %}
 

@@ -31,11 +31,11 @@ def homepage():
         return render_template("homepage.html")
 
 
-@app.route("/user_profile")
-def user_profile():
-    """Display user's profile"""
+# @app.route("/user_profile")
+# def user_profile():
+#     """Display user's profile"""
 
-    return render_template("user_profile.html")   
+#     return render_template("user_profile.html")   
 
 
 @app.route("/event_attendance", methods=["POST"])
@@ -303,6 +303,9 @@ def check_event():
 
 
     
+
+
+
 
 
 

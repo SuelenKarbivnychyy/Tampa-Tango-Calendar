@@ -4,60 +4,75 @@
 
 {% block body %}
 
+<div class="container rounded border border-primary mt-2">
+    <h1 class="text-center">Edit / Add event</h1>
 
+    <form class="row" action = "/update_event" method="POST">
+        
+        <div class="col-md-8">
+        
+            <div class="row pb-4 px-5"> 
+                <input type="hidden" name="event_id" value="{{event.id}}">
 
+                <label for="venue_select" class="form-label">Select the Venue:</label>
+                <select class="form-select" name="venue" id="venue"> 
+                    
+                {% if event.location != None %}
+                    <option value="{{event.location.id}}">{{event.location.venue_name}}</option>
+                {% endif %}
+            
+                {% for venue in locations_inf %}           
+                    <option value="{{venue.id}}">{{venue.venue_name}}</option>
+                {% endfor %}
+                </select>  
+            </div>
 
-<h1>Edit events:</h1>
+            <div class="row pb-4 px-5">    
+                <label for="event_type" class="form-label">Select the Event type:</label>
+                <select class="form-select" name="type" id="event_title">
+                
+                {%if event.event_type != None %}
+                    <option value="{{event.event_type.id}}">{{event.event_type.name}}</option>
+                {% endif %}    
+            
+                {% for e_type in events_type_inf %}    
+                    <option value={{e_type.id}}>{{e_type.name}}</option>
+                {% endfor %}
+                </select>                
+            </div> 
 
-<p>Edit event details:</p>
-<form action = "/update_event" method="POST">
+            <div class="row pb-4 px-5">
+                <label for="date_input">Event Date:</label>
+                <input class="form-select" type="date" name="event_date" id = "date_input" value="{{event.date.strftime('%Y-%m-%d')}}">            
+            </div>
+
+            <div class="row pb-4 px-5">
+                <label for="description_input">Event description:</label>
+                <input class="form-control" type="text" name="description" id="description_input" value="{{event.description}}">
+            </div>     
+
+            <div class="row pb-4 mx-4">
+                <div class="col-4">
+                    <label for="price_input">Event price:</label>    
+                    <input class="form-control" type="number" name="price" id="price_input" value="{{event.price}}">                   
+                </div>
+                
+                <div class="col">
+                    <label for="duration_input">Event Duration:</label>    
+                    <input class="form-control" type="number" name="event_duration" id="duration_input" value="{{event.duration}}">                    
+                </div>                
+            </div>            
+       
+            <div class="row pb-4 mx-4">
+                <div class="col">
+                    <input type="submit" value="Save" class="btn btn-primary"/>
+                    <button onclick="window.location.href ='/adm'"  class="btn btn-warning">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>    
     
-    <input type="hidden" name="event_id" value="{{event.id}}">
-    <br>
-
-    <label for="venue_select">Select the Venue:</label>
-    <select name="venue" id="venue">   
-
-    <!-- NEXT LINE-->  
-    {% if event.location != None %}
-        <option value="{{event.location.id}}">{{event.location.venue_name}}</option>
-    {% endif %}
-
-    {% for venue in locations_inf %}           
-        <option value="{{venue.id}}">{{venue.venue_name}}</option>
-    {% endfor %}
-    </select>  
-    <br><br> 
-
-    <label for="event_type">Select the Event type:</label>
-    <select name="type" id="event_title">
-    <!-- NEXT LINE-->    
-    {%if event.event_type != None %}
-        <option value="{{event.event_type.id}}">{{event.event_type.name}}</option>
-    {% endif %}    
-
-    {% for e_type in events_type_inf %}    
-        <option value={{e_type.id}}>{{e_type.name}}</option>
-    {% endfor %}
-    </select>  
-    <br><br> 
-    <label for="date_input">Event Date:</label>
-    <input type="date" name="event_date" id = "date_input" value="{{event.date.strftime('%Y-%m-%d')}}">
-    <br><br>
-    <label for="description_input">Event description:</label>
-    <input type="text" name="description" id="description_input" value="{{event.description}}">
-    <br><br>
-    <label for="price_input">Event price:</label>    
-    <input type="number" name="price" id="price_input" value="{{event.price}}">
-    <br><br>
-    <label for="duration_input">Event Duration:</label>    
-    <input type="number" name="event_duration" id="duration_input" value="{{event.duration}}">
-    <br><br>
-    
-    <input type="submit" value="Save"/>
-</form> <br>
-<button onclick="window.location.href ='/adm'">Cancel</button>
-
+</div> 
 
 
 {% endblock %}
