@@ -49,7 +49,6 @@ class Event_type(db.Model):
     name = db.Column(db.String, nullable = False)
 
     events = db.relationship("Event", back_populates="event_type")                       #specifing the relationship in between tables
-    
 
     def __repr__(self):
         return f'<Event_type id={self.id} name={self.name}>'
@@ -139,28 +138,3 @@ if __name__ == "__main__":
 
     
     connect_to_db(app, "tango-project") 
-
-     
-
-
-
-
-
-
-
-
-
-
-
-# from flask import Flask
-# from flask_sqlalchemy import SQLAlchemy
-
-# # create the extension
-# db = SQLAlchemy()
-# # create the app
-# app = Flask(__name__)
-# # configure the SQLite database, relative to the app instance folder
-# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tango-final-project"
-# # initialize the app with the extension
-# db.init_app(app)
-# db.create_all()

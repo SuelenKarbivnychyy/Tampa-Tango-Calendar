@@ -54,6 +54,14 @@ def get_all_events():                                               #getting all
     
     return Event.query.all()
 
+################################################################
+#NEW QUERY TO GET EVENT ID AND NAME
+
+def get_event_id_and_name():
+
+    return db.session.query(Event_type.id, Event_type.name).all()
+
+
 
 
 
@@ -118,8 +126,8 @@ def get_attendance(event_id, user_id):
 
 def get_all_attendance():
 
-    # return Attendance.query.all()
-    return db.session.query(Event_type.name, db.func.count(Attendance.id)).join(Event, Attendance.event_id == Event.id).join(Event_type, Event.event_type_id == Event_type.id).group_by(Event_type.name).all()
+   
+    return db.session.query(Attendance.event_id, db.func.count(Attendance.id)).join(Event, Attendance.event_id == Event.id).join(Event_type, Event.event_type_id == Event_type.id).group_by(Attendance.event_id).all()
 
 
 

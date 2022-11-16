@@ -80,6 +80,23 @@ for event in events:
 
 model.db.session.add_all(events_in_db)
 
+############################################################################################################################################
+#SEED THE ATTENDANCE TABLE
+
+
+with open('data/events_attendance.json') as attendance_file:
+    attendances= json.loads(attendance_file.read()) 
+
+attendance_in_db = []
+for attendance in attendances:
+    event_id = attendance['event_id']  
+    user_id = attendance['user_id']
+ 
+    
+    db_attendance = crud.create_attendance(event_id, user_id)
+    attendance_in_db.append(db_attendance)
+
+model.db.session.add_all(attendance_in_db)    
 
 # ###########################################################################################################################################
 #GENERATE 10 FAKES ACCOUNTS

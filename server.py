@@ -47,7 +47,7 @@ def count_attendance():
     user_id = session['current_user']
 
     check_attendance = crud.get_attendance(event_id, user_id)
-    # print(f"############################### I'M THE event id and user id: {check_attendance}")            test
+    print(f"############################### I'M THE event id and user id: {check_attendance}")           # test
     
 
     if check_attendance == None:
@@ -63,9 +63,6 @@ def count_attendance():
 
 
 
-
-
-
 ####################################################################
 
 @app.route("/events")
@@ -73,15 +70,40 @@ def all_events():
     """View all events"""
     #read\query information from database
     # put that data to events template and in template read and render that data    
-    
+    event_type_details = crud.get_event_id_and_name()
+    # print(f"############# ID AND NAME {event_type_details}")  #test
+    list_of_attendance = crud.get_all_attendance()
+
+    event_details_dict = {}
+   
+
+    for i in event_type_details:
+        event_details_dict[i[0]] = i[1]
+    print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}") 
+
+        
+
+    # for y in event_details_dict:
+    #     for z in list_of_attendance:
+    #         for x in z:
+    #             if x[0] == y[0] :
+    #                 new_result.append(y[0], y[1], x[1])
+    # print(f"############################ THIS IS THE NEW RESULT WITH 3 VALUES {new_result}")            
+                
+
+
+
+
+
+
     # list_of_events= crud.get_all_events()
     list_of_attendance = crud.get_all_attendance() #getting all the attendance for events
-    print(f"EVENTS LIST ##################### {list_of_attendance}")
-    return render_template("events.html", list_of_attendance=list_of_attendance)
+    print(f"##################### EVENTS LIST attendance {list_of_attendance}")
+    return render_template("events.html", list_of_attendance=list_of_attendance, event_types=event_details_dict)
 
 
 @app.route("/events/<id>")    
-def show_event(id):
+def show_event_details(id):
     """View event details"""
   
     event = crud.get_event_by_id(id)
