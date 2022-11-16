@@ -61,6 +61,11 @@ def count_attendance():
         return "I'm in database already"
 
 
+
+
+
+
+
 ####################################################################
 
 @app.route("/events")
@@ -69,10 +74,10 @@ def all_events():
     #read\query information from database
     # put that data to events template and in template read and render that data    
     
-    list_of_events= crud.get_all_events()
+    # list_of_events= crud.get_all_events()
     list_of_attendance = crud.get_all_attendance() #getting all the attendance for events
-
-    return render_template("events.html", list_of_events=list_of_events, list_of_attendance=list_of_attendance)
+    print(f"EVENTS LIST ##################### {list_of_attendance}")
+    return render_template("events.html", list_of_attendance=list_of_attendance)
 
 
 @app.route("/events/<id>")    

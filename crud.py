@@ -118,7 +118,8 @@ def get_attendance(event_id, user_id):
 
 def get_all_attendance():
 
-    return Attendance.query.all()
+    # return Attendance.query.all()
+    return db.session.query(Event_type.name, db.func.count(Attendance.id)).join(Event, Attendance.event_id == Event.id).join(Event_type, Event.event_type_id == Event_type.id).group_by(Event_type.name).all()
 
 
 

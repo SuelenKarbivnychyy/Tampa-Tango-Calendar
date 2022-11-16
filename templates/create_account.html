@@ -4,33 +4,41 @@
 
 {% block body %}  
 
-<h1>Create an account</h1>
 
-<form action ="/add_user_to_db" method = "POST" id="submit_form">
-<p>
-    <label for="firstname-input">First Name:</label>
-    <input type="text" name="firstname" id = "firstname-input"> 
-</p>
-<p> 
-    <label for="lastname-input">Last Name:</label>
-    <input type="text" name="lastname" id = "lastname-input">
-</p>
 
-<p> 
-  <label for="email-input">Email:</label>
-  <input type="text" name="email" id = "email-input">
-</p>
 
-<p>
-  <label for="password-input">Password:</label>
-  <input type="password" name="password" id="password-input">
-</p>
+<div class="container rounded border border-secondary mt-3">
+  <h1 class="text-center">Create an account</h1>
+  
+  <form class="row" action ="/add_user_to_db" method = "POST" id="submit_form">
+    <div class="col-md-6">
+      <div class="row pb-4 px-5">
+        <label for="firstname-input">First Name:</label>
+        <input type="text" name="firstname" id = "firstname-input">
+      </div>  
+      <div class="row pb-4 px-5">
+        <label for="lastname-input">Last Name:</label>
+        <input type="text" name="lastname" id = "lastname-input">
+      </div>
+      <div class="row pb-4 px-5">
+        <label for="email-input">Email:</label>
+        <input type="text" name="email" id = "email-input">
+      </div>  
+      <div class="row pb-4 px-5">
+        <label for="password-input">Password:</label>
+        <input type="password" name="password" id="password-input">
+      </div>
+        
+      
 
-<p>
-  <input type="submit" value = "Create Account" id="create_account"> 
-</p>
-
-</form>
+      <div class="row pb-4 mx-4">
+        <div class="col">
+            <input type="submit" value="Create Account" id="create_account"/>            
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 
 <script src="static/validate_email.js"></script> 
 

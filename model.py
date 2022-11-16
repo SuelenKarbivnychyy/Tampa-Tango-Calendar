@@ -6,6 +6,7 @@
 
 """Model for Tango app"""
 
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -112,7 +113,7 @@ class Attendance(db.Model):
     user = db.relationship("User", back_populates="attendances")                        #specifing the relationship in between tables
 
     def __repr__(self):
-        return f'<Event_type id={self.id} name={self.events.event_type.name}>' 
+        return f'<Event_type id={self.id} event_id={self.event_id}>' 
 
 
 

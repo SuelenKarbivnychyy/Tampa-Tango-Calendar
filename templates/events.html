@@ -4,73 +4,42 @@
 
 {% block body %}
 
+<h1 class="text-center"> Events page:  </h1>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 
-<!-- <div class="container">
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;    
+}
+</style>
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card border-0">
-                <img class="card-img-top" src="https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6e/b6/16.jpg">
-                <div class="card-body">
-                    <p class="text-center"> 
-                        {% for event in list_of_events %} 
-                        <li>             
-                            <a href= "/events/{{ event.id }}">{{ event.event_type.name }}</a>  
-                            <button type="submit" value="{{event.id}}" name="sign_up" id="sign_up">Sign in</button>             
-                            <br><br>                  
-                        </li>
-                    {% endfor %}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+<table class="table">    
+    <thead>
+      <tr>   
+        <th scope="col">Event Name</th>
+        <th scope="col">Number of attendance</th>
+        <th scope="col">Subscribe button</th>        
+      </tr>
+    </thead>
+    <tbody>    
+        
+      <tr>   
+            {% for event in list_of_attendance %}     
+                <td> <a href= "/events/{{ event[0] }}">{{ event[0] }}</a> </td>
+                <td> {{ event[1] }} </td>
+                <td> <button type="submit" value="{{event[0]}}" name="sign_up" id="sign_up">Sign in</button> </td>
+      </tr> 
+            {% endfor %}
+    </tbody>
+</table>
 
-</div> -->
+<script src="static/user_profile_attendance.js"></script>       <!-- importing javascript file -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-<h1> Events page:  </h1>
-<ul>
-    {% for event in list_of_events %}
-        <li>             
-            <a href= "/events/{{ event.id }}">{{ event.event_type.name }}</a>  
-            <button type="submit" value="{{event.id}}" name="sign_up" id="sign_up">Sign in</button>             
-            <br><br>                  
-        </li>
-    {% endfor %}    
-</ul> 
-<h1>Attendances</h1>
-
-    {% for attendance in list_of_attendance %}
-    <p>
-        Attendance id: {{attendance.id}}
-    </p>
-    {% endfor %}
-
-
-    <script src="static/user_profile_attendance.js"></script>    
-
-{% endblock %}    
-
-
-
-
+{% endblock %}
 
 
 {% block js %}	
