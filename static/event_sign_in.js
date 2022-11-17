@@ -25,11 +25,10 @@ const signInForEvent = (evt) => {
 
 const serverData = (data) => {
     alert(data);
+
     window.location.href = "/events";
 
 }
-
-
 
 for (button of signInButton) {                                                          // adding event handler for each button
    button.addEventListener('click', signInForEvent);
@@ -39,7 +38,6 @@ for (button of signInButton) {                                                  
 // HANDLING THE SIGN OUT BUTTON
 
 let signOutButton = document.querySelectorAll('[name="sign_out"]');
-
 
 const signOutFromEvent = (evt) => {
     evt.preventDefault();    

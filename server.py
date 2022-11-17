@@ -31,26 +31,24 @@ def homepage():
         return render_template("homepage.html")
 
 
-# @app.route("/user_profile")
-# def user_profile():
-#     """Display user's profile"""
-
-#     return render_template("user_profile.html")   
-
 
 @app.route("/event_attendance", methods=["POST"])
 def count_attendance():
-    """Display the attendance for an event"""
-    
+    """Display the attendance for an event"""    
 
     event_id = request.json.get("event_id")
-    user_id = session['current_user']
+    user_id = session.get('current_user')
+
+    if user_id == None:                                                                                  #if user not in session it will not allows user to sign in for event
+        print(user_id)
+        return "Please login."
 
     check_attendance = crud.get_attendance(event_id, user_id)
     print(f"############################### I'M THE event id and user id: {check_attendance}")           # test
-    
+        
 
     if check_attendance == None:
+       
         # print("##################### I'M IN DATA BASE")
         add_attendance = crud.create_attendance(event_id, user_id)
         db.session.add(add_attendance)        
