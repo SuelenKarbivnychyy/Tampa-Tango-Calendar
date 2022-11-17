@@ -217,7 +217,7 @@ def add_event_location():
     zipcode = request.form.get("venue_zipcode")                                
 
     new_event_location = crud.create_location(venue, address, city, state, zipcode)
-   
+       
     db.session.add(new_event_location)
     db.session.commit()
 

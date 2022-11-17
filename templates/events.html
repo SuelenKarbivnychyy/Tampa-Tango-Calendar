@@ -26,7 +26,9 @@ table, th, td {
             {% for event in list_of_attendance %}     
                 <td> <a href= "/events/{{ event[0] }}">{{ event_types[event[0]] }}</a> </td>
                 <td> {{ event[1] }} </td>
-                <td> <button type="submit" value="{{event[0]}}" name="sign_up" id="sign_up">Sign in</button> </td>
+                <td> <button type="submit" value="{{event[0]}}" name="sign_up">Sign in</button> 
+                  
+                </td>
       </tr> 
             {% endfor %}
     </tbody>

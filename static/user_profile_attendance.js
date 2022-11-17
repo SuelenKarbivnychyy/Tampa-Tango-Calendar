@@ -1,11 +1,11 @@
-let signInButton = document.querySelectorAll("button");
+let signInButton = document.querySelectorAll('[name="sign_up"]');
 
 const signInForEvent = (evt) => {
     evt.preventDefault();
 
     let button = evt.target;
     let eventId = button.value;
-    alert(eventId);
+    // alert(eventId);
     
 
     const countAttendance = {
@@ -25,16 +25,17 @@ const signInForEvent = (evt) => {
 
 const serverAnswer = (data) => {
     alert(data);
+    window.location.href = "/events";
+
 }
-
-
-
 
 
 
 for (button of signInButton) {                                                          // adding event handler for each button
    button.addEventListener('click', signInForEvent);
 };
+
+
 
 
 
