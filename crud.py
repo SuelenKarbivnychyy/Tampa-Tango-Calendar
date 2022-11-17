@@ -114,7 +114,16 @@ def create_attendance(event_id, user_id):
     attendance = Attendance(event_id=event_id,
                             user_id=user_id)
 
-    return attendance                        
+    return attendance  
+
+
+
+def delete_attendance(id, event_id, user_id):
+    """Delete a attendance"""   
+
+    delete = Attendance(id=id, event_id=event_id, user_id=user_id)      
+
+    return delete               
 
 
 
@@ -124,8 +133,9 @@ def get_attendance(event_id, user_id):
     return Attendance.query.filter(Attendance.event_id == event_id, Attendance.user_id == user_id).first()
 
 
-def get_all_attendance():
 
+def get_all_attendance():
+    """Return all attendances"""
    
     return db.session.query(Attendance.event_id, db.func.count(Attendance.id)).join(Event, Attendance.event_id == Event.id).join(Event_type, Event.event_type_id == Event_type.id).group_by(Attendance.event_id).all()
 

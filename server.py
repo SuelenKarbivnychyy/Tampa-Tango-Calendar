@@ -41,7 +41,7 @@ def homepage():
 @app.route("/event_attendance", methods=["POST"])
 def count_attendance():
     """Display the attendance for an event"""
-   
+    
 
     event_id = request.json.get("event_id")
     user_id = session['current_user']
@@ -56,9 +56,25 @@ def count_attendance():
         db.session.add(add_attendance)        
         db.session.commit()
         print(f"############ ADDED TO DATABASE {event_id} {user_id}")
-        return "added to db"
+        return "You are sucessfully sign in for this event."
     else:
-        return "I'm in database already"
+        return "You are already sign in for this event."
+
+@app.route("/sign_out", methods=["POST"])    
+def cancel_user_attendance():
+    """Cancel user attendance to an event"""   
+
+    event_id = request.json.get("event_id")
+    user_id = session['current_user'] 
+    check_attendance = crud.get_attendance(event_id, user_id)
+
+    if check_attendance != None: 
+        db.session.delete(check_attendance)
+        db.session.commit()
+        return "You are signed out for this event. We are sorry to let you go."
+    else:
+        return "You've signed out."      
+
 
 
 
@@ -78,11 +94,12 @@ def all_events():
     
     for i in event_type_details:
         event_details_dict[i[0]] = i[1]
-    print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}")           
+    # print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}")           
 
     current_user_events = {}
     # session.get("user_id") = user_id
-    user_id = session.get("user_id")
+    user_id = session.get("current_user")
+    print(f"########################## ID IN SESSION {user_id}")
 
     if user_id != None:    
         list_of_attendance = crud.get_all_attendance_for_a_user(user_id)  
@@ -93,7 +110,7 @@ def all_events():
    
     list_of_attendance = crud.get_all_attendance()                                                  #getting all the attendance for events
     # print(f"##################### EVENTS LIST attendance {list_of_attendance}")
-    return render_template("events.html", list_of_attendance=list_of_attendance, event_types=event_details_dict)
+    return render_template("events.html", list_of_attendance=list_of_attendance, event_types=event_details_dict, user_events=current_user_events)
 
 
 @app.route("/events/<id>")    

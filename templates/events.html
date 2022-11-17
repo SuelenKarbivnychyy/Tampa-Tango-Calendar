@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<h1 class="text-center"> Events:  </h1>
+<h1 class="text-center"> Events  </h1>
 
 <style>
 table, th, td {
@@ -17,24 +17,29 @@ table, th, td {
     <thead>
       <tr>   
         <th scope="col">Event Name</th>
-        <th scope="col">Number of attendance</th>
-        <th scope="col">Subscribe button</th>        
+        <th scope="col">People attending this event</th>
+        <th scope="col">Wants to attend this event? Sign in on the button bellow</th>        
       </tr>
     </thead>
     <tbody>       
-      <tr>   
-            {% for event in list_of_attendance %}     
+            {% for event in list_of_attendance %}  
+      <tr>     
                 <td> <a href= "/events/{{ event[0] }}">{{ event_types[event[0]] }}</a> </td>
                 <td> {{ event[1] }} </td>
-                <td> <button type="submit" value="{{event[0]}}" name="sign_up">Sign in</button> 
-                  
-                </td>
+                
+                {% if event[0] in user_events.keys() %} 
+                  <td> <button class="bg-warning text-white" type="submit" value="{{event[0]}}" name="sign_out">Sign out</button> </td>
+                {% else %}
+                  <td> <button class="bg-primary text-white" type="submit" value="{{event[0]}}" name="sign_up">Sign in</button> </td>
+                {% endif %}                
       </tr> 
             {% endfor %}
+
     </tbody>
 </table>
 
-<script src="static/user_profile_attendance.js"></script>       <!-- importing javascript file -->
+<script src="static/event_sign_in.js"></script>       <!-- importing javascript file -->
+
 
 {% endblock %}
 

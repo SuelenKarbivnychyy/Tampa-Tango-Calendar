@@ -40,7 +40,10 @@ const routeUser = (data) => {                                 // the response fr
     }
 }
 
-button.addEventListener('click', validateUserCredentials);
+if (button) {
+    button.addEventListener('click', validateUserCredentials);
+}
+
 
 
 
