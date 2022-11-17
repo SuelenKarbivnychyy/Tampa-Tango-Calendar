@@ -11,7 +11,6 @@ const validateUserCredentials = (evt) => {
         return ;    
     } 
     
-    
     const emailValidation = {                                  //object. the keys are the expected value from server.py and value is the value from browser
         email: emailImputValue, 
         password: passwordImputValue       
@@ -19,26 +18,25 @@ const validateUserCredentials = (evt) => {
 
     fetch('/validate_user_credentials', {
         method: 'POST',
-        body: JSON.stringify(emailValidation),                  // body takes in a object
+        body: JSON.stringify(emailValidation),                      // body takes in a object
         headers: {
             'Content-Type': 'application/json',
         },
     })  
         .then((response) => response.text())
-        .then(routeUser);                                   // .then function is taking the routeUser function as parameter 
+        .then(routeUser);                                       // .then function is taking the routeUser function as parameter 
 } 
 
-const routeUser = (data) => {                               // the response from server as "data"
+const routeUser = (data) => {                                 // the response from server as "data"
     alert(data);
 
-    if (data == "true") {                                //checking what the response from server will be
+    if (data == "true") {                                   //checking what the response from server will be
         window.location.href = "/events";                  // redirecting to that route if condition is true
-    }
-    else if (data == "false") {
-        window.location.href = "/create_account";
-    }
-    else {
-        window.location.href = "/create_account" ;       
+    } else if (data == "no result") {
+        window.location.href = "/create_account";   
+
+    } else {
+        window.location.href = "/" ;       
     }
 }
 

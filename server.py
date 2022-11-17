@@ -1,6 +1,6 @@
 """Server for Tango app."""
 
-from flask import Flask, request, render_template, flash, session, redirect, jsonify
+from flask import Flask, request, render_template, flash, session, redirect, jsonify, flash
 from model import connect_to_db, db, Event, Location, Event_type
 import crud
 from jinja2 import StrictUndefined                                   #configure a Jinja2 setting to make it throw errors for undefined variables
@@ -79,26 +79,11 @@ def all_events():
 
     for i in event_type_details:
         event_details_dict[i[0]] = i[1]
-    print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}") 
+    print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}")           
 
-        
-
-    # for y in event_details_dict:
-    #     for z in list_of_attendance:
-    #         for x in z:
-    #             if x[0] == y[0] :
-    #                 new_result.append(y[0], y[1], x[1])
-    # print(f"############################ THIS IS THE NEW RESULT WITH 3 VALUES {new_result}")            
-                
-
-
-
-
-
-
-    # list_of_events= crud.get_all_events()
-    list_of_attendance = crud.get_all_attendance() #getting all the attendance for events
-    print(f"##################### EVENTS LIST attendance {list_of_attendance}")
+   
+    list_of_attendance = crud.get_all_attendance()                                                  #getting all the attendance for events
+    # print(f"##################### EVENTS LIST attendance {list_of_attendance}")
     return render_template("events.html", list_of_attendance=list_of_attendance, event_types=event_details_dict)
 
 
@@ -121,20 +106,29 @@ def validate_user_credentials():
     # print(f" ################################## {email}, {password}")
 
     user_db = crud.get_user_by_email(email_from_input)                      #checking if the user's email input from the browser has any matchs at the database
+    
     if user_db == None :                                                    #checking if user is not in db and return "no results if true"
-        # flash("create an account")
+        # flash("Account does not existe. create an account")        
         return "no result"
-
+   
     user_id= user_db.id
     user_password = user_db.password                                        #getting the password from db's user if there is a match
     if user_password == password:                                           #giving access to user if informations macth
         session['current_user'] = user_id
-        print(f"#############################{user_id}")                  #test
+        session["user_name"]= f"{user_db.fname} {user_db.lname}"            #setting first name and last name from session
+        print(f"#############################{user_id}")                    #test
         # flash(f"Logged in as {user_db.fname, user_db.lname}")
         return "true"
     else:
         # flash("incorrect email or password")
         return "false"
+
+@app.route("/logout")
+def lougout():        
+    session.pop('user_name')
+    session.pop('current_user')
+
+    return redirect('/')
 
 
     

@@ -2,6 +2,15 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <!-- {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}    
+        </ul>
+    {% endif %}  
+    {% endwith%}   -->
 </head>
 <body>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -23,15 +32,23 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/adm">Adm Access</a>
-            </li>  
+            </li>                      
         </ul>
-        <div class="login-container">
-            <form class="form-inline" action="/users" method="Post">              
-              <input type="text" placeholder="Email" name="email" id="email">
-              <input type="password" placeholder="Password" name="password" id="password">
-              <button id="submit">Login</button>
-            </form>
-          </div>
+        {% if session.get("user_name") == None %}     
+        <li class="nav-item "> 
+            <div class="login-container">
+                <form class="form-inline" action="/users" method="Post">              
+                  <input type="text" placeholder="Email" name="email" id="email">
+                  <input type="password" placeholder="Password" name="password" id="password">
+                  <button id="submit">Login</button>
+                </form>
+            </div>              
+        {% else %}   
+            <text class="navbar-text">Welcome {{ session["user_name"].title() }}</text>
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>         
+        {% endif %}                 
+        
     </div>
 </nav>
 
