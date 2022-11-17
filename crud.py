@@ -106,7 +106,7 @@ def get_all_location():
     return Location.query.all()
 
 
-# figure out about attendance table
+
 
 def create_attendance(event_id, user_id):
     """Create and return a attendance"""
@@ -130,6 +130,10 @@ def get_all_attendance():
     return db.session.query(Attendance.event_id, db.func.count(Attendance.id)).join(Event, Attendance.event_id == Event.id).join(Event_type, Event.event_type_id == Event_type.id).group_by(Attendance.event_id).all()
 
 
+
+def get_all_attendance_for_a_user(user_id):
+
+    return Attendance.query.filter(Attendance.user_id == user_id).all()                 #returning a list of attendance objects
 
 
 

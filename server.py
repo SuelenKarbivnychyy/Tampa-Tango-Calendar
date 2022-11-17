@@ -74,12 +74,21 @@ def all_events():
     # print(f"############# ID AND NAME {event_type_details}")  #test
     list_of_attendance = crud.get_all_attendance()
 
-    event_details_dict = {}
-   
-
+    event_details_dict = {}   
+    
     for i in event_type_details:
         event_details_dict[i[0]] = i[1]
     print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}")           
+
+    current_user_events = {}
+    # session.get("user_id") = user_id
+    user_id = session.get("user_id")
+
+    if user_id != None:    
+        list_of_attendance = crud.get_all_attendance_for_a_user(user_id)  
+        for attendance in list_of_attendance:
+            current_user_events[attendance.event_id] = "true"
+        print(f"########################## DICTIONARY WITH EVENTS USER IS GOING TO {current_user_events}")    
 
    
     list_of_attendance = crud.get_all_attendance()                                                  #getting all the attendance for events
