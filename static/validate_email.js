@@ -10,9 +10,12 @@ const validateUserEmail = (evt) => {
     // console.log(fNameInput, lNameInput, passwordInput, emailInput);
 
     if (fNameInput === '' || lNameInput === '' || passwordInput === '' || emailInput === '') {                   // checking if all the fields are filled and let the user now if its not
-        display_warning_message("All fields are required")
+        display_warning_message("All fields are required", "Please check your informations and try again")
         return ;     
-    }    
+    } else if (! emailInput.includes("@") || ! emailInput.includes(".com")) {
+        display_warning_message("Invalid email", "Make sure you entered a valid email contaning'@' and '.com' at it.")
+        return ;
+    }   
 
     let emailImputValue = document.getElementById("email-input").value;                     // alert(emailImputValue);
 
@@ -38,10 +41,10 @@ const redirectHandler = () => {
 const emailUser = (data) => {                               // the response from server as "data"
     
     if (data == "true") {                                   //checking what the response from server will be
-        display_warning_message("You already have an account please login");
+        display_warning_message("It looks like you already have an account", "Please login");
     }
     else {
-        display_warning_message("Sucessfully created an account", redirectHandler);                  
+        display_warning_message("Sucessfully created an account", "You are welcome", redirectHandler);                  
     }
 }
 

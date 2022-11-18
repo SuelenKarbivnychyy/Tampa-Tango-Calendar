@@ -25,8 +25,12 @@ const redirect_after_action = () => {
     window.location.href = "/events";
 }
 
-const serverData = (data) => {
-    display_warning_message("You're sucessfully sign in for this event.", redirect_after_action)
+const serverData = (data) => {    
+    if(data == "Please login.") {
+        display_warning_message("Please login in.", "You need to login to register for a class.", redirect_after_action);
+    } else {
+        display_warning_message("Signed in.", "You're sucessfully sign in for this event.", redirect_after_action);
+    }    
 }
 
 for (button of signInButton) {                                                          // adding event handler for each button
@@ -60,7 +64,7 @@ const signOutFromEvent = (evt) => {
 }
 
 const serverAnswer = (data) => {
-    display_warning_message("You are sign out.", redirect_after_action);    
+    display_warning_message("You are sign out.", "We are sorry to see you go!" ,redirect_after_action);    
 }
 
 for (button of signOutButton) {                                                          // adding event handler for each button

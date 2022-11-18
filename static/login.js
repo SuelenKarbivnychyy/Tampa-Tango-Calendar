@@ -7,7 +7,7 @@ const validateUserCredentials = (evt) => {
     let passwordImputValue = document.getElementById("password").value;
     // alert(emailImputValue);
     if (emailImputValue === '' || passwordImputValue === '') {         // checking if all the fields are filled and let the users now if its not
-        display_warning_message("All the fields are required");   
+        display_warning_message("All the fields are required", "Please verify the informations and try again");   
         return ;    
     } 
     
@@ -37,7 +37,7 @@ const routeUser = (data) => {                                 // the response fr
     if (data == "true") {                                   //checking what the response from server will be
         window.location.href = "/events";                  // redirecting to that route if condition is true
     } else if (data == "no result") {
-        display_warning_message("Please create an account", redirectToCreateAccount);                               //taking a call back function as second parameter
+        display_warning_message("Please create an account", "No registers for this email in the records.", redirectToCreateAccount);                               //taking a call back function as second parameter
     } else {
         window.location.href = "/" ;       
     }

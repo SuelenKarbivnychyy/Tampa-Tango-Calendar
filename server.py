@@ -194,7 +194,6 @@ def add_account():
     db.session.add(new_user)
     db.session.commit()
         # print(new_user)                                                    #test
-  
     return redirect("/")  
 
 
