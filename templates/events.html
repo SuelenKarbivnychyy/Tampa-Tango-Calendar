@@ -13,30 +13,32 @@ table, th, td {
 }
 </style>
 
-<table class="table">    
-    <thead>
-      <tr>   
-        <th scope="col">Event Name</th>
-        <th scope="col">People attending this event</th>
-        <th scope="col">Wants to attend this event? Sign in on the button bellow</th>        
-      </tr>
-    </thead>
-    <tbody>       
-            {% for event in list_of_attendance %}  
-      <tr>     
-                <td> <a href= "/events/{{ event[0] }}">{{ event_types[event[0]] }}</a> </td>
-                <td> {{ event[1] }} </td>
-                
-                {% if event[0] in user_events.keys() %} 
-                  <td> <button class="bg-warning text-white" type="submit" value="{{event[0]}}" name="sign_out">Sign out</button> </td>
-                {% else %}
-                  <td> <button class="bg-primary text-white" type="submit" value="{{event[0]}}" name="sign_up">Sign in</button> </td>
-                {% endif %}                
-      </tr> 
-            {% endfor %}
+<div class="container rounded border border-secondary mt-3 py-4 px-5">
+  <table class="table">    
+      <thead>
+        <tr  class="card-header bg-info">   
+          <th scope="col">Event Name</th>
+          <th scope="col">People attending this event</th>
+          <th scope="col">Wants to attend this event? Sign in on the button bellow</th>        
+        </tr>
+      </thead>
+      <tbody>       
+              {% for event in list_of_attendance %}  
+        <tr>     
+            <td> <a href= "/events/{{ event[0] }}">{{ event_types[event[0]] }}</a> </td>
+            <td> {{ event[1] }} </td>
+            
+            {% if event[0] in user_events.keys() %} 
+              <td> <button class="bg-warning text-white" type="submit" value="{{event[0]}}" name="sign_out">Sign out</button> </td>
+            {% else %}
+              <td> <button class="bg-primary text-white" type="submit" value="{{event[0]}}" name="sign_up">Sign in</button> </td>
+            {% endif %}                
+        </tr> 
+              {% endfor %}
+      </tbody>
+  </table>
+</div>
 
-    </tbody>
-</table>
 
 <script src="static/event_sign_in.js"></script>       <!-- importing javascript file -->
 

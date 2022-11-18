@@ -32,9 +32,9 @@ def homepage():
 
 
 
-@app.route("/event_attendance", methods=["POST"])
+@app.route("/event_sign_in", methods=["POST"])
 def count_attendance():
-    """Display the attendance for an event"""    
+    """Display the attendance for the events"""    
 
     event_id = request.json.get("event_id")
     user_id = session.get('current_user')
@@ -44,12 +44,10 @@ def count_attendance():
         return "Please login."
 
     check_attendance = crud.get_attendance(event_id, user_id)
-    print(f"############################### I'M THE event id and user id: {check_attendance}")           # test
-        
-
-    if check_attendance == None:
-       
-        # print("##################### I'M IN DATA BASE")
+    # print(f"############################### I'M THE event id and user id: {check_attendance}")           #test
+    
+    if check_attendance == None:       
+        # print("##################### I'M IN DATA BASE")                                                  #test
         add_attendance = crud.create_attendance(event_id, user_id)
         db.session.add(add_attendance)        
         db.session.commit()
@@ -57,6 +55,7 @@ def count_attendance():
         return "You are sucessfully sign in for this event."
     else:
         return "You are already sign in for this event."
+
 
 @app.route("/sign_out", methods=["POST"])    
 def cancel_user_attendance():

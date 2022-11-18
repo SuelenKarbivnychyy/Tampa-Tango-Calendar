@@ -4,9 +4,12 @@
 
 {% block body %} 
 
+
+
 <div class="container rounded border border-secondary mt-3">
-  <h1 class="text-center">Create an account</h1>
+  <h1 class="card-header">Create an account</h1>
   
+  <div class="card-body">
   <form class="row" action ="/add_user_to_db" method = "POST" id="submit_form">
     <div class="col-md-6">
       <div class="row pb-4 px-5">
@@ -27,13 +30,15 @@
       </div>
       <div class="row pb-4 mx-4">
         <div class="col">
-            <input type="submit" value="Create Account" id="create_account"/>            
+            <input class="bg-primary text-white" type="submit" value="Create Account" id="create_account"/>            
         </div>
       </div>
     </div>
   </form>
-</div>
 
+
+</div>
+</div>
 <script src="static/validate_email.js"></script> 
 
 

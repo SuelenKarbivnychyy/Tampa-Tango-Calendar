@@ -12,7 +12,7 @@ const signInForEvent = (evt) => {
         event_id : eventId        
     }
 
-    fetch('/event_attendance', {
+    fetch('/event_sign_in', {
         method: 'POST',
         body: JSON.stringify(countAttendance),
         headers: {
