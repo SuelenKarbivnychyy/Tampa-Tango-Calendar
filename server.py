@@ -349,7 +349,10 @@ def check_event():
     
 
 
+@app.route("/test")
+def test():
 
+    return render_template("test.html")
 
 
 
