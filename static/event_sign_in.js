@@ -4,9 +4,7 @@ const signInForEvent = (evt) => {
     evt.preventDefault();
 
     let button = evt.target;
-    let eventId = button.value;
-    // alert(eventId);
-    
+    let eventId = button.value;    
 
     const countAttendance = {
         event_id : eventId        
@@ -23,11 +21,12 @@ const signInForEvent = (evt) => {
         .then(serverData)        
 }
 
-const serverData = (data) => {
-    alert(data);
-
+const redirect_after_action = () => {
     window.location.href = "/events";
+}
 
+const serverData = (data) => {
+    display_warning_message("You're sucessfully sign in for this event.", redirect_after_action)
 }
 
 for (button of signInButton) {                                                          // adding event handler for each button
@@ -61,9 +60,7 @@ const signOutFromEvent = (evt) => {
 }
 
 const serverAnswer = (data) => {
-    alert(data);
-    window.location.href = "/events";
-
+    display_warning_message("You are sign out.", redirect_after_action);    
 }
 
 for (button of signOutButton) {                                                          // adding event handler for each button

@@ -1,24 +1,8 @@
 let createAccountButton = document.getElementById("create_account");
 
-const display_warning_message = (message) => {
-
-    const myModal = new bootstrap.Modal('#exampleModal', {                                                          //bootstrap function to show a wan=ening message instead of alert
-        keyboard: false             
-    })
-    document.getElementById("text").innerHTML = message;
-    myModal.show()
-
-}
-
-
-
 const validateUserEmail = (evt) => {    
     evt.preventDefault();
-    const myModal = new bootstrap.Modal('#exampleModal', {                                                          //bootstrap function to show a wan=ening message instead of alert
-        keyboard: false             
-    })
-
-
+    
     let fNameInput = document.getElementById("firstname-input").value;
     let lNameInput = document.getElementById("lastname-input").value;
     let passwordInput = document.getElementById("password-input").value;
@@ -47,17 +31,17 @@ const validateUserEmail = (evt) => {
         .then(emailUser);                                   // .then function is taking the routeUser function as parameter 
 } 
 
-const emailUser = (data) => {                               // the response from server as "data"
-    const myModal = new bootstrap.Modal('#exampleModal', {                                                          //bootstrap function to show a wan=ening message instead of alert
-        keyboard: false             
-    })
+const redirectHandler = () => {
+    document.getElementById("submit_form").submit();
+}
 
+const emailUser = (data) => {                               // the response from server as "data"
+    
     if (data == "true") {                                   //checking what the response from server will be
-        display_warning_message("You already have an account please login")
+        display_warning_message("You already have an account please login");
     }
     else {
-        display_warning_message("Sucessfully created an account")
-        document.getElementById("submit_form").submit();          
+        display_warning_message("Sucessfully created an account", redirectHandler);                  
     }
 }
 

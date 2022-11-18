@@ -7,7 +7,7 @@ const validateUserCredentials = (evt) => {
     let passwordImputValue = document.getElementById("password").value;
     // alert(emailImputValue);
     if (emailImputValue === '' || passwordImputValue === '') {         // checking if all the fields are filled and let the users now if its not
-        alert("All the fields are required");   
+        display_warning_message("All the fields are required");   
         return ;    
     } 
     
@@ -27,14 +27,17 @@ const validateUserCredentials = (evt) => {
         .then(routeUser);                                       // .then function is taking the routeUser function as parameter 
 } 
 
+function redirectToCreateAccount() {
+    window.location.href = "/create_account"; 
+}
+
 const routeUser = (data) => {                                 // the response from server as "data"
-    alert(data);
+    // alert(data);
 
     if (data == "true") {                                   //checking what the response from server will be
         window.location.href = "/events";                  // redirecting to that route if condition is true
     } else if (data == "no result") {
-        window.location.href = "/create_account";   
-
+        display_warning_message("Please create an account", redirectToCreateAccount);                               //taking a call back function as second parameter
     } else {
         window.location.href = "/" ;       
     }
