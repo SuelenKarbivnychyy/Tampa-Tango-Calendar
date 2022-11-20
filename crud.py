@@ -4,22 +4,28 @@ from model import db, Event, Event_type, Location, User, Attendance, connect_to_
 
 
 
-def create_user(fname, lname, email, password):
+def create_user(fname, lname, email, password, is_adm):
     """Create and return a new user."""
 
     user = User(fname=fname,
                 lname=lname,
                 email=email,
-                password=password)
+                password=password,
+                is_adm=is_adm)
 
     return user
 
 
 def get_user_by_email(email):                       #return a user with that email if exists, return none otherwise
-    """Return a user by email."""
-    
+    """Return a user by email."""    
 
-    return User.query.filter(User.email == email).first()   
+    return User.query.filter(User.email == email).first()  
+
+def get_user_by_id(id):
+    """Return an user by id"""
+
+    return User.query.filter(User.id == id).first()
+
 
     
     

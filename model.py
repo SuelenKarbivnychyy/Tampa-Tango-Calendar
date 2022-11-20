@@ -93,7 +93,7 @@ class User(db.Model):
     attendances = db.relationship("Attendance", back_populates="user")                  #specifing the relationship in between tables
 
     def __repr__(self):
-        return f'<User id={self.id} fname={self.fname} lname={self.lname} email={self.email} password={self.password}>'
+        return f'<User id={self.id} fname={self.fname} lname={self.lname} email={self.email} password={self.password} adm={self.is_adm}>'
 
 
 

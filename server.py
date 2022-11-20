@@ -132,24 +132,28 @@ def validate_user_credentials():
     
     if user_db == None :                                                    #checking if user is not in db and return "no results if true"
         # flash("Account does not existe. create an account")        
-        return "no result"
+        return "no result"  
    
     user_id= user_db.id
     user_password = user_db.password                                        #getting the password from db's user if there is a match
     if user_password == password:                                           #giving access to user if informations macth
         session['current_user'] = user_id
         session["user_name"]= f"{user_db.fname} {user_db.lname}"            #setting first name and last name from session
-        print(f"#############################{user_id}")                    #test
-        # flash(f"Logged in as {user_db.fname, user_db.lname}")
+        
+        is_administrator = user_db.is_adm
+        session["is_adm"]= is_administrator  
+        print(f"################# adm information {is_administrator}")      
+        # print(f"#############################{user_id}")                    #test
         return "true"
     else:
-        # flash("incorrect email or password")
         return "false"
+
 
 @app.route("/logout")
 def lougout():        
     session.pop('user_name')
     session.pop('current_user')
+    session.pop('is_adm')
 
     return redirect('/')
 
@@ -207,8 +211,19 @@ def adm_page():
     events_inf = Event.query.all()
     locations_inf = Location.query.all()
     events_type_inf = Event_type.query.all()
-    return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)  
+
+    user_id = session.get('current_user')
+    # print(f"####### user in session {user_id}")                       #test
     
+    user_id_in_db = crud.get_user_by_id(user_id)
+    # print(f"######### database {user_id_in_db}")                     #test
+
+    if user_id == None:
+        return redirect('/')
+    elif user_id_in_db.is_adm == True:
+        return render_template("adm.html", events_inf = events_inf, locations_inf = locations_inf, events_type_inf = events_type_inf)  
+    else:
+        return redirect('/')
 
 
 
@@ -265,10 +280,7 @@ def add_event():
     db.session.commit()
 
     return redirect("/adm")
-    # return render_template("/adm.html", event_date = event_date,
-    #                                     description = event_description,
-    #                                     price = event_price,
-    #                                     event_duration= event_duration)    
+     
 
 
 @app.route("/edit_event/<id>")
@@ -283,7 +295,6 @@ def edit_event(id):
 
     if id == "new":
         event = Event(id=-1, duration=0, description="", date=datetime.now(), price=0)             #create a new instance of Event class
-        # print(f"********Babe's event {event}")                                                   #test                                 
     else:
         event = crud.get_event_by_id(id)   
 
@@ -299,6 +310,7 @@ def delete_event(id):
     db.session.commit()
 
     return redirect("/adm")
+
 
 @app.route("/update_event", methods=["POST"])
 def check_event():
@@ -319,8 +331,8 @@ def check_event():
     event_price = request.form.get("price")    
     event_location_id = request.form.get("venue")
     event_type_id = request.form.get("type")
-    print(f" EVENT LOCATION { event_location_id }")
-    print(f" EVENT TYPE ID {event_type_id}")
+    # print(f" EVENT LOCATION { event_location_id }")
+    # print(f" EVENT TYPE ID {event_type_id}")
 
     event.duration = event_duration
     event.description = event_description
@@ -337,15 +349,8 @@ def check_event():
         db.session.commit()
     else:
         print("############################### cancel")        
-
-    print(f"UPDATED EVENTS #####################{event}")
-
-    # print(date=event_date, description=event_description, price=event_price, duration=event_duration, location_id=event_location_id, event_type_id=event_type_id)
-
     return redirect("/adm")    
 
-
-    
 
 
 @app.route("/test")

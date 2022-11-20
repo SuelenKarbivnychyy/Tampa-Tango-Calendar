@@ -106,8 +106,9 @@ for n in range(10):
     lname = f"karb{n}"
     email = f"user{n}@test.com"  # Voila! A unique email!
     password = "test"
+    is_adm = False
 
-    user = crud.create_user(fname, lname, email, password)
+    user = crud.create_user(fname, lname, email, password, is_adm)
     model.db.session.add(user)
 
 model.db.session.commit()                                               #COMMIT TO THE DATABASE AT THE VERY END TO AVOID COMMIT ALL THE TIME YOU ADD NEW INF TO THE DATABASE
