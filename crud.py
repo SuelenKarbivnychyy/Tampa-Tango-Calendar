@@ -26,6 +26,11 @@ def get_user_by_id(id):
 
     return User.query.filter(User.id == id).first()
 
+def get_all_users():
+    """Return all users"""   
+
+    return User.query.all()
+
 
     
     

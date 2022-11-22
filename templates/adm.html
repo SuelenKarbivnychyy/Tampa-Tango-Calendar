@@ -95,79 +95,17 @@ table, th, td {
 
 
 
+<div class="container rounded border border-secondary mt-3">  
+    <p class="card-body bg-info">Click at the buttom bellow to send news to the subscribes:</p>         
+    <div class="row pb-4 mx-4">
+        <div class="col"> 
+            <button class="bg-primary text-white" type="submit" id="subscribe">Send Events Info</button>   
+        </div>
+    </div>     
+</div>    
 
+<script src="static/email_update.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-<ul>
-    {% for event in events_inf %}
-    <li>Event name: {{event.event_type.name}}  /
-        Event Venue: {{event.location.venue_name}}
-        <button onclick="window.location.href = '/edit_event/{{event.id}}'">Edit Event</button>
-        <button onclick="window.location.href ='/delete_event/{{event.id}}'">Delet Event</button><br>
-    </li><br>                                  
-    {% endfor %}
-</ul>
-<button onclick="window.location.href ='/edit_event/new'" name="add_event">Add new event</button><br><br>            adding this button with '/edit_event/new' to create a new event instead od updating an existing event -->
-
-
-<!-- <p>Provide the type of event you would like to add:</p>
-<form action = "/add_event_type" method="POST">
-    <label for="event_name_input">Event Name:</label>
-    <input type="text" name="event_name" id = "event_name_input">
-    <br><br>
-    <input type="submit" value="Add Event Type" id="add_event_type">
-</form> <br><br>  -->
-<!-- 
-<p>Provide the venue informations:</p>
-<form action = "/add_event_location" method="POST">
-    <label for="venue_input">Venue Name:</label>    
-    <input type="text" name="venue_name" id="venue_input">
-    <br><br>
-    <label for="address_input">Address:</label>    
-    <input type="text" name="venue_address" id="address_input">
-    <br><br>
-    <label for="city_input">City:</label>    
-    <input type="text" name="venue_city" id="city_input">
-    <br><br>
-    <label for="state_input">State:</label>    
-    <input type="text" name="venue_state" id="state_input">
-    <br><br>
-    <label for="zipcode_input">Zipcode:</label>    
-    <input type="text" name="venue_zipcode" id="zipcode_input">
-    <br><br>
-    <input type="submit" value="Add Venue" id="add_event_location">
-</form> <br><br> -->
 
 {% endblock %}
 

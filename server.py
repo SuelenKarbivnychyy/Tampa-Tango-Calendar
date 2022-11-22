@@ -4,7 +4,8 @@ from flask import Flask, request, render_template, flash, session, redirect, jso
 from model import connect_to_db, db, Event, Location, Event_type
 import crud
 from jinja2 import StrictUndefined                                   #configure a Jinja2 setting to make it throw errors for undefined variables
-from datetime import datetime                             
+from datetime import datetime 
+import send_email                            
 
 app = Flask(__name__)
 app.app_context().push()
@@ -352,31 +353,32 @@ def check_event():
     return redirect("/adm")    
 
 
+@app.route("/send_email", methods=["POST"])
+def send_email_handler():
 
-@app.route("/test")
-def test():
+    email_subject = "Tampa Tango Calendar updates."
+    events = crud.get_all_events_type()
+    email_message = (f"We are happy to send you our upcoming events, Register yourself for: ")
+    
+    for event in events:
+        email_message += event.name + ", "   
+    print(f"######## MESSAGE : {email_message}")
 
-    return render_template("test.html")
+    users = crud.get_all_users()
+    users_email = []
 
+    for user in users:
+        users_email.append(user.email)
 
+    # print(f"############### ALL USERS email: {users_email}")   
 
-# @app.route("/subscribe")
-# def subscribe_page():
-#     """Subscribe user to automatic email recieve"""
+    result = send_email.send_email_updates(users_email, email_subject, email_message)
 
-#     return render_template("subscribe.html")   
-
-# @app.route("/add_subscribe_user")         
-# def subscribe_user():
-#     """Add subscribe user to database"""
-
-#     email_subscribe = request.form.get("subscribe")
-
-
-#     return redirect("/")
-
-
-
+    if result == True:
+        return "true"
+    else:
+        return "false"    
+   
 
 
 if __name__ == "__main__":

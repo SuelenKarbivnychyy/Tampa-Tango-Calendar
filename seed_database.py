@@ -101,10 +101,10 @@ model.db.session.add_all(attendance_in_db)
 # ###########################################################################################################################################
 #GENERATE 10 FAKES ACCOUNTS
 
-for n in range(10):
+for n in range(5):
     fname = f"{n}dima"
     lname = f"karb{n}"
-    email = f"user{n}@test.com"  # Voila! A unique email!
+    email = f"suelenmatosr+{n}@gmail.com"  # Voila! A unique email!
     password = "test"
     is_adm = False
 
