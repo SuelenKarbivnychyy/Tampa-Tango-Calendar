@@ -1,1 +1,4 @@
+__pycache__
 env
+secrets.sh
+test.py

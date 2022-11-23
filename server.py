@@ -22,8 +22,7 @@ def homepage():
 
     if identify == 'events':
         return redirect("events")
-    elif identify == 'subscribe':
-        return redirect("subscribe")  
+     
     elif identify == 'adm':
         return redirect("adm") 
     elif identify == "user_profile":
@@ -369,6 +368,8 @@ def send_email_handler():
 
     for user in users:
         users_email.append(user.email)
+
+    users_email = 'suelenmatosr@gmail.com';                         #this overrides the users_email list to be only one email.
 
     # print(f"############### ALL USERS email: {users_email}")   
 

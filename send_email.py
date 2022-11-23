@@ -16,8 +16,7 @@ def send_email_updates(recipients, subject, content):                           
     result = True
 
     try:
-        sg = SendGridAPIClient("PUT YOUR KEY HERE")
-        # sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        sg = SendGridAPIClient(os.environ.get('EMAIL_KEY'))
         response = sg.send(message)
         print(response.status_code)
         print(response.body)

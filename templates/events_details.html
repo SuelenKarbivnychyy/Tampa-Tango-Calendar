@@ -4,24 +4,28 @@
 
 {% block body %}
 
-<div class="container rounded border border-secondary mt-3  py-4  px-5">
+<div class="container rounded border border-secondary mt-3 py-4 px-5">
   <table class="table">    
       <thead>
-        <tr class="card-header bg-info">   
+        <tr class="card-header bg-info text-center">   
             <th scope="col">Event</th>
             <th scope="col">Description</th>
-            <th scope="col">date</th>  
-            <th scope="col">price</th> 
-            <th scope="col">location</th>       
+            <th scope="col">Date</th>  
+            <th scope="col">Time</th> 
+            <th scope="col">Price</th> 
+            <th scope="col">Venue</th> 
+            <th scope="col">Address</th>      
         </tr>
       </thead>
       <tbody>         
-          <tr> 
+          <tr class="text-center"> 
             <td>{{event.event_type.name}}</td> 
             <td>{{event.description}}</td>
-            <td>{{event.date}}</td>   
+            <td>{{event.date.date()}}</td> 
+            <td>{{event.date.strftime("%H:%M")}}</td>  
             <td>{{event.price}}</td> 
-            <td>{{event.location}}</td>
+            <td>{{event.location.venue_name}}</td>
+            <td>{{event.location.address}}, {{event.location.city}}, {{event.location.state}} - {{event.location.zipcode}}</td>
           </tr> 
       </tbody>
   </table>
