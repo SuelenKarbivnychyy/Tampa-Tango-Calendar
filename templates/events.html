@@ -13,34 +13,45 @@ table, th, td {
 }
 </style>
 
-<div class="container rounded border border-secondary mt-3 py-4 px-5">
-  <table class="table">    
-      <thead>
-        <tr  class="card-header bg-info">   
-          <th scope="col">Event Name</th>
-          <th scope="col">People attending this event</th>
-          <th scope="col">Wants to attend this event? Sign in on the button bellow</th>        
-        </tr>
-      </thead>
-      <tbody>       
-             {% for event in events %}
-              <tr>
-                  <td> <a href="events/{{event.id}}"> {{event.name}}</a></td>               
-                    <td>{{event.attendances|length}}</td> 
-
-                    {% if event.id in attendances.keys() %} 
-                      <td> <button class="bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Sign out</button> </td>
-                    {% else %}
-                      <td> <button class="bg-primary text-white" type="submit" value="{{event.id}}" name="sign_up">Sign in</button> </td>
-                    {% endif %}         
-              </tr>
-             {% endfor %}
-      </tbody>
-  </table>
-</div>
-
-
 <script src="static/event_sign_in.js"></script>       <!-- importing javascript file -->
+
+
+
+<main role="main">
+  <div class="container">    
+          <div class="row">
+              <div class="card-group">
+              {% for event in events %}               
+                      <div class="card" style_old="width: 18rem;">
+                          <div class="card-header">
+                              <a href="events/{{event.id}}"> {{event.name}}</a>
+                              <img src="/static/css/card2.jpg" class="card-img-top" alt="img">
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-title">{{event.name}}</h5>
+                              <p class="card-text">{{event.description}}</p>
+                          </div>
+                          <div class="card-footer">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">number of attendace: {{event.attendances|length}} </li>
+                              <li class="list-group-item">event rate</li>
+                              <li class="list-group-item">Add to your wish list</li>
+                            </ul>
+                            {% if event.id in attendances.keys() %} 
+                              <button class="bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Sign out</button>
+                            {% else %}
+                              <button class="bg-primary text-white" type="submit" value="{{event.id}}" name="sign_up">Sign in</button>
+                          {% endif %} 
+                          </div>        
+                      </div>                
+              {% endfor %}
+              </div>
+          </div>        
+  </div>  
+  </main>
+
+
+
 
 
 {% endblock %}
