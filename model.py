@@ -22,6 +22,7 @@ class Event(db.Model):
     id = db.Column(db.Integer,
                     autoincrement = True,
                     primary_key = True)
+    name = db.Column(db.String)                
     duration = db.Column(db.Integer, nullable = False)                                     
     description = db.Column(db.Text, nullable = False)                        
     date = db.Column(db.DateTime)                        
@@ -34,7 +35,7 @@ class Event(db.Model):
     attendances = db.relationship("Attendance", back_populates="events")                        #specifing the relationship in between tables
 
     def __repr__(self):
-        return f'<ID: {self.id} duration: {self.duration} description: {self.description} date: {self.date} price: {self.price} location: {self.location.venue_name} event_type: {self.event_type.name}>'
+        return f'<ID: {self.id} event_name: {self.name} duration: {self.duration} description: {self.description} date: {self.date} price: {self.price} location: {self.location.venue_name} event_type: {self.event_type.name}>'
 
 
 

@@ -62,6 +62,7 @@ def cancel_user_attendance():
     """Cancel user attendance to an event"""   
 
     event_id = request.json.get("event_id")
+    print(f"######### EVENT ID FROM SIGN OUT ROUT {event_id} %%%%%%%%%%%%")
     user_id = session['current_user'] 
     check_attendance = crud.get_attendance(event_id, user_id)
 
@@ -74,40 +75,67 @@ def cancel_user_attendance():
 
 
 
-
-
-####################################################################
-
 @app.route("/events")
 def all_events():
     """View all events"""
-    #read\query information from database
-    # put that data to events template and in template read and render that data    
-    event_type_details = crud.get_event_id_and_name()
-    # print(f"############# ID AND NAME {event_type_details}")  #test
+
+
+    events = crud.get_all_events()
     list_of_attendance = crud.get_all_attendance()
+    print(f"############ LIST OF ATTENDANCE {list_of_attendance}")
 
-    event_details_dict = {}   
-    
-    for i in event_type_details:
-        event_details_dict[i[0]] = i[1]
-    # print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}")           
+    print(f" ################## all events: {events}")
 
-    current_user_events = {}
-    # session.get("user_id") = user_id
     user_id = session.get("current_user")
-    print(f"########################## ID IN SESSION {user_id}")
+    # print(f"########################## ID IN SESSION {user_id}")
+
+    current_user_events={}
 
     if user_id != None:    
-        list_of_attendance = crud.get_all_attendance_for_a_user(user_id)  
-        for attendance in list_of_attendance:
+        attendances = crud.get_all_attendance_for_a_user(user_id)  
+        for attendance in attendances:
             current_user_events[attendance.event_id] = "true"
-        print(f"########################## DICTIONARY WITH EVENTS USER IS GOING TO {current_user_events}")    
+    print(f"########################## DICTIONARY WITH EVENTS USER IS GOING TO {current_user_events}") 
+
+    return render_template("events.html", events=events,
+                                        attendances=current_user_events,
+                                        attendance_number = list_of_attendance
+                                        )
+
+
+
+
+
+
+
+    # #read\query information from database
+    # # put that data to events template and in template read and render that data    
+   
+    # event_type_details = crud.get_event_id_and_name()
+    # # print(f"############# ID AND NAME {event_type_details}")  #test
+    # list_of_attendance = crud.get_all_attendance()
+
+    # event_details_dict = {}   
+    
+    # for i in event_type_details:
+    #     event_details_dict[i[0]] = i[1]
+    # print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}")           
+
+    # current_user_events = {}
+    # # session.get("user_id") = user_id
+    # user_id = session.get("current_user")
+    # print(f"########################## ID IN SESSION {user_id}")
+
+    # if user_id != None:    
+    #     list_of_attendance = crud.get_all_attendance_for_a_user(user_id)  
+    #     for attendance in list_of_attendance:
+    #         current_user_events[attendance.event_id] = "true"
+    #     print(f"########################## DICTIONARY WITH EVENTS USER IS GOING TO {current_user_events}")    
 
    
-    list_of_attendance = crud.get_all_attendance()                                                  #getting all the attendance for events
-    # print(f"##################### EVENTS LIST attendance {list_of_attendance}")
-    return render_template("events.html", list_of_attendance=list_of_attendance, event_types=event_details_dict, user_events=current_user_events)
+    # list_of_attendance = crud.get_all_attendance()                                                  #getting all the attendance for events
+    # # print(f"##################### EVENTS LIST attendance {list_of_attendance}")
+    # return render_template("events.html", list_of_attendance=list_of_attendance, event_types=event_details_dict, user_events=current_user_events)
 
 
 @app.route("/events/<id>")    
@@ -116,6 +144,10 @@ def show_event_details(id):
   
     event = crud.get_event_by_id(id)
     return render_template("events_details.html", event = event)
+
+
+
+################################################################################################################################################
 
 
 
@@ -199,6 +231,34 @@ def add_account():
     db.session.commit()
         # print(new_user)                                                    #test
     return redirect("/")  
+
+
+
+
+@app.route("/user_profile")
+def user_profile():
+    """Display user's profile"""
+
+    user = session["current_user"]                                                          #getting user id from session
+    # print(f"################ user id from session: {user}")
+    
+    attendances = crud.get_all_attendance_for_a_user(user)                                 #returning a list
+    events = []
+    
+    for attendance in attendances:
+        events.append(attendance.events)
+    print(f"################# EVENTS THE USER IS SIGN IN FOR: {events}")
+
+    return render_template("/user_profile.html", events=events)
+
+
+
+
+
+
+
+
+
 
 
 ##########################################################################################################################
@@ -317,11 +377,11 @@ def check_event():
     """Check if event exists in database"""
 
      
-    form_event_id = request.form.get("event_id")                # getting id from html form
+    form_event_id = request.form.get("event_id")                         # getting id from html form
     if form_event_id == "-1":
         print(f"#######################{form_event_id}")
         event = Event()    
-    else:                                         # create a new event if id == -1
+    else:                                                            # create a new event if id == -1
         event = crud.get_event_by_id(form_event_id)                 # passing the form id to the crud function
 
 
@@ -341,11 +401,11 @@ def check_event():
     event.location_id = event_location_id
     event.event_type_id = event_type_id
 
-    if event != None:                                       #checking if the event being edit already in database and update it if does
+    if event == -1:                                              # checking if the event being edit already in database add new event if does not exist in data base   
         db.session.add(event)
         db.session.commit()
     elif event == event:
-        db.session.add(event)                               # add new event if does not exist in data base
+        db.session.add(event)                                        # and update it if does exists in data base
         db.session.commit()
     else:
         print("############################### cancel")        
@@ -379,7 +439,13 @@ def send_email_handler():
         return "true"
     else:
         return "false"    
-   
+
+
+
+@app.route("/review")
+def review_event():
+
+    return render_template("/review.html")   
 
 
 if __name__ == "__main__":

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+
+
+{% block body %}
+
+<p class="text-center">Welcome {{ session["user_name"].title() }}</p>
+
+<main role="main">
+<div class="container">    
+        <div class="row">
+            <div class="card-group">
+            {% for event in events %}               
+                    <div class="card" style_old="width: 18rem;">
+                        <div class="card-header">
+                            <img src="/static/css/card1.jpg" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{event.name}}</h5>
+                            <p class="card-text">{{event.description}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" name="un_going" class="btn btn-primary" value="{{event.id}}">Sign out</button>
+                        </div>        
+                    </div>                
+            {% endfor %}
+            </div>
+        </div>        
+</div>  
+</main>
+
+<br><br>
+<hr/>                       <!-- horizontal line -->
+<br>
+<p class="text-center"> Wish list </p>
+
+
+
+
+
+<script src="static/event_sign_in.js"></script>
+
+{% endblock %}

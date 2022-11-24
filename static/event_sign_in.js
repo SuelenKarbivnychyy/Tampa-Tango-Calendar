@@ -22,7 +22,8 @@ const signInForEvent = (evt) => {
 }
 
 const redirect_after_action = () => {
-    window.location.href = "/events";
+    // window.location.href = "/events";
+    window.location.href=window.location.href;
 }
 
 const serverData = (data) => {    
@@ -43,10 +44,13 @@ for (button of signInButton) {                                                  
 let signOutButton = document.querySelectorAll('[name="sign_out"]');
 
 const signOutFromEvent = (evt) => {
-    evt.preventDefault();    
+    evt.preventDefault();  
+
+   
 
     let button = evt.target;
-    let eventId = button.value;    
+    let eventId = button.value;  
+    alert(evt.target.outerHTML) ; 
 
     const checkAttendance = {
         event_id : eventId        
@@ -69,5 +73,14 @@ const serverAnswer = (data) => {
 
 for (button of signOutButton) {                                                          // adding event handler for each button
     button.addEventListener('click', signOutFromEvent);
+};
+
+
+// adding event handler to the events in user_profile as well
+
+let unGoButton = document.querySelectorAll('[name="un_going"]');
+
+for (b of unGoButton) {
+    b.addEventListener('click', signOutFromEvent);
 };
 

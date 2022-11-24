@@ -41,10 +41,11 @@ def get_all_users():
 
 
 
-def create_event(duration, description, date, price, location_id, event_type_id):           #figure it out how to add the location and the event type
+def create_event(name, duration, description, date, price, location_id, event_type_id):           #figure it out how to add the location and the event type
     """Creat and return an event"""
 
-    event = Event(duration=duration,
+    event = Event(name=name,
+                duration=duration,
                 description=description, 
                 date=date,
                 price=price,

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<h1 class="text-center"> Events  </h1>
+<h1 class="text-center mt-5"> Events  </h1>
 
 <style>
 table, th, td {
@@ -23,18 +23,18 @@ table, th, td {
         </tr>
       </thead>
       <tbody>       
-              {% for event in list_of_attendance %}  
-        <tr>     
-            <td> <a href= "/events/{{ event[0] }}">{{ event_types[event[0]] }}</a> </td>
-            <td> {{ event[1] }} </td>
-            
-            {% if event[0] in user_events.keys() %} 
-              <td> <button class="bg-warning text-white" type="submit" value="{{event[0]}}" name="sign_out">Sign out</button> </td>
-            {% else %}
-              <td> <button class="bg-primary text-white" type="submit" value="{{event[0]}}" name="sign_up">Sign in</button> </td>
-            {% endif %}                
-        </tr> 
-              {% endfor %}
+             {% for event in events %}
+              <tr>
+                  <td> <a href="events/{{event.id}}"> {{event.name}}</a></td>               
+                    <td>{{event.attendances|length}}</td> 
+
+                    {% if event.id in attendances.keys() %} 
+                      <td> <button class="bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Sign out</button> </td>
+                    {% else %}
+                      <td> <button class="bg-primary text-white" type="submit" value="{{event.id}}" name="sign_up">Sign in</button> </td>
+                    {% endif %}         
+              </tr>
+             {% endfor %}
       </tbody>
   </table>
 </div>
