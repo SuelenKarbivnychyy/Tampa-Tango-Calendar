@@ -99,8 +99,28 @@ for attendance in attendances:
 
 model.db.session.add_all(attendance_in_db)    
 
+#######################################################################################################################################
+#SEED THE REVIEW TABLE
+
+with open('data/review.json') as review_file:
+    reviews = json.loads(review_file.read())
+
+reviews_in_db = []
+for review in reviews:
+    rate = review['rate']
+    comment = review['comment']
+    event_id = review['event_id']
+    user_id = review['user_id']
+
+    db_review = crud.create_review(rate, comment, event_id, user_id)
+    reviews_in_db.append(db_review)
+
+model.db.session.add_all(reviews_in_db)
+
+
+
 # ###########################################################################################################################################
-#GENERATE 10 FAKES ACCOUNTS
+#GENERATE 10 FAKE ACCOUNTS
 
 for n in range(5):
     fname = f"{n}dima"

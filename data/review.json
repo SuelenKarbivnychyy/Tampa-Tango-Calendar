@@ -1,0 +1,29 @@
+[
+    {
+        "rate": "4",
+        "comment": "Nice event, everyone had so much fun and the music was great",
+        "event_id": "2",
+        "user_id": "1"
+    },
+
+    {
+        "rate": "5",
+        "comment": "The event was great.",
+        "event_id": "1",
+        "user_id": "3"
+    },
+
+    {
+        "rate": "3",
+        "comment": "I love it.",
+        "event_id": "4",
+        "user_id": "2"
+    },
+
+    {
+        "rate": "5",
+        "comment": "This is perfect.",
+        "event_id": "3",
+        "user_id": "2"
+    }
+]

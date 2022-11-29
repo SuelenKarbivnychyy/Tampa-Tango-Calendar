@@ -1,6 +1,6 @@
 """CRUD operations."""
 
-from model import db, Event, Event_type, Location, User, Attendance, connect_to_db
+from model import db, Event, Event_type, Location, User, Attendance, Review, connect_to_db
 
 
 
@@ -33,9 +33,16 @@ def get_all_users():
 
 
     
-    
+def create_review(rate, comment, event_id, user_id):
+    """Create an return a review"""
 
+    review = Review(rate=rate, comment=comment, event_id=event_id, user_id=user_id)
+    return review
 
+def get_all_reviews():
+    """Return all reviews"""
+
+    return Review.query.all()
 
 
 

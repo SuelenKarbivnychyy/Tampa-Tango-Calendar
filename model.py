@@ -21,7 +21,7 @@ class Review(db.Model):
                     autoincrement = True,
                     primary_key = True)
     rate = db.Column(db.Integer, nullable = True)
-    comment = db.Column(db.Text) 
+    comment = db.Column(db.Text, nullable = True) 
     event_id = db.Column(db.Integer, db.ForeignKey('events.id')) 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))                  
 
@@ -109,7 +109,7 @@ class User(db.Model):
     email = db.Column(db.String(50), unique = True, nullable = False)                        
     password = db.Column(db.String(30), nullable = False)                    
     is_adm = db.Column(db.Boolean, nullable = True)
-    review_id = db.Column(db.Integer, db.ForeignKey('reviews.id'))
+   
 
     reviews = db.relationship("Review", back_populates="user")
     attendances = db.relationship("Attendance", back_populates="user")                  #specifing the relationship in between tables

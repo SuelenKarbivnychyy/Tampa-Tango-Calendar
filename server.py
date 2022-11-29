@@ -103,41 +103,6 @@ def all_events():
                                         )
 
 
-
-
-
-
-
-    # #read\query information from database
-    # # put that data to events template and in template read and render that data    
-   
-    # event_type_details = crud.get_event_id_and_name()
-    # # print(f"############# ID AND NAME {event_type_details}")  #test
-    # list_of_attendance = crud.get_all_attendance()
-
-    # event_details_dict = {}   
-    
-    # for i in event_type_details:
-    #     event_details_dict[i[0]] = i[1]
-    # print (f"################## DICTIONARY WITH ID AND EVENT NAME {event_details_dict}")           
-
-    # current_user_events = {}
-    # # session.get("user_id") = user_id
-    # user_id = session.get("current_user")
-    # print(f"########################## ID IN SESSION {user_id}")
-
-    # if user_id != None:    
-    #     list_of_attendance = crud.get_all_attendance_for_a_user(user_id)  
-    #     for attendance in list_of_attendance:
-    #         current_user_events[attendance.event_id] = "true"
-    #     print(f"########################## DICTIONARY WITH EVENTS USER IS GOING TO {current_user_events}")    
-
-   
-    # list_of_attendance = crud.get_all_attendance()                                                  #getting all the attendance for events
-    # # print(f"##################### EVENTS LIST attendance {list_of_attendance}")
-    # return render_template("events.html", list_of_attendance=list_of_attendance, event_types=event_details_dict, user_events=current_user_events)
-
-
 @app.route("/events/<id>")    
 def show_event_details(id):
     """View event details"""
@@ -146,6 +111,12 @@ def show_event_details(id):
     return render_template("events_details.html", event = event)
 
 
+@app.route("/review")
+def display_review():
+    """Display event review"""
+
+    review = crud.get_all_reviews()
+    return review
 
 ################################################################################################################################################
 
