@@ -39,10 +39,11 @@ def create_review(rate, comment, event_id, user_id):
     review = Review(rate=rate, comment=comment, event_id=event_id, user_id=user_id)
     return review
 
-def get_all_reviews():
+def get_all_reviews_for_a_user(user_id):
     """Return all reviews"""
 
-    return Review.query.all()
+    return Review.query.filter(Review.user_id == user_id).all()
+    
 
 
 

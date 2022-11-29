@@ -34,7 +34,13 @@
 <br><br>
 <hr/>                       <!-- horizontal line -->
 <br>
-<p class="text-center"> Wish list </p>
+<p class="text-center"> Events rated </p>
+
+{% for review in reviews %}
+<p>Event id: {{review.event.name}}</p>
+<p>Rate: {{review.rate}}</p>
+<p>review: {{review.comment}}</p>
+{% endfor %}
 
 
 

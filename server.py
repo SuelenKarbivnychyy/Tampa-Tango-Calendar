@@ -62,7 +62,7 @@ def cancel_user_attendance():
     """Cancel user attendance to an event"""   
 
     event_id = request.json.get("event_id")
-    print(f"######### EVENT ID FROM SIGN OUT ROUT {event_id} %%%%%%%%%%%%")
+    # print(f"######### EVENT ID FROM SIGN OUT ROUT {event_id} %%%%%%%%%%%%")
     user_id = session['current_user'] 
     check_attendance = crud.get_attendance(event_id, user_id)
 
@@ -82,9 +82,9 @@ def all_events():
 
     events = crud.get_all_events()
     list_of_attendance = crud.get_all_attendance()
-    print(f"############ LIST OF ATTENDANCE {list_of_attendance}")
+    # print(f"############ LIST OF ATTENDANCE {list_of_attendance}")
 
-    print(f" ################## all events: {events}")
+    # print(f" ################## all events: {events}")
 
     user_id = session.get("current_user")
     # print(f"########################## ID IN SESSION {user_id}")
@@ -95,7 +95,7 @@ def all_events():
         attendances = crud.get_all_attendance_for_a_user(user_id)  
         for attendance in attendances:
             current_user_events[attendance.event_id] = "true"
-    print(f"########################## DICTIONARY WITH EVENTS USER IS GOING TO {current_user_events}") 
+    # print(f"########################## DICTIONARY WITH EVENTS USER IS GOING TO {current_user_events}") 
 
     return render_template("events.html", events=events,
                                         attendances=current_user_events,
@@ -111,12 +111,21 @@ def show_event_details(id):
     return render_template("events_details.html", event = event)
 
 
-@app.route("/review")
-def display_review():
-    """Display event review"""
+# @app.route("/review")
+# def display_review():
+#     """Display event review"""
 
-    review = crud.get_all_reviews()
-    return review
+#     #to display user's events reviwed
+#     #get user from session
+#     #check if user id in review table
+#     #if does, display the reviews/rate he made
+
+
+#     user = session.get('current_user')
+#     print(f"####################### USER ID: {user}")
+
+#     review = crud.get_all_reviews()
+#     return review
 
 ################################################################################################################################################
 
@@ -218,9 +227,16 @@ def user_profile():
     
     for attendance in attendances:
         events.append(attendance.events)
-    print(f"################# EVENTS THE USER IS SIGN IN FOR: {events}")
+    # print(f"################# EVENTS THE USER IS SIGN IN FOR: {events}")
 
-    return render_template("/user_profile.html", events=events)
+    user_reviews = crud.get_all_reviews_for_a_user(user)
+    reviews = []
+
+    for review in user_reviews:
+        reviews.append(review)
+    print(f"########################## REVIEWS: {reviews}")    
+
+    return render_template("/user_profile.html", events=events, reviews=reviews)
 
 
 
