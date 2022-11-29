@@ -12,6 +12,24 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+class Review(db.Model):
+    """A Review"""
+
+    __tablename__ = 'reviews'
+
+    id = db.Column(db.Integer,
+                    autoincrement = True,
+                    primary_key = True)
+    rate = db.Column(db.Integer, nullable = True)
+    comment = db.Column(db.Text) 
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id')) 
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))                  
+
+    event = db.relationship("Event", back_populates="reviews")
+    user = db.relationship("User", back_populates="reviews")
+
+    def __repr__(self):
+        return f'<Id: {self.id} rate: {self.rate} comment: {self.comment}>'
 
 
 class Event(db.Model):
@@ -28,11 +46,12 @@ class Event(db.Model):
     date = db.Column(db.DateTime)                        
     price = db.Column(db.Integer)                    
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
-    event_type_id = db.Column(db.Integer, db.ForeignKey('events_type.id'))
+    event_type_id = db.Column(db.Integer, db.ForeignKey('events_type.id'))    
 
     location = db.relationship("Location", back_populates="events")                             #specifing the relationship in between tables
     event_type = db.relationship("Event_type", back_populates="events")                         #specifing the relationship in between tables
     attendances = db.relationship("Attendance", back_populates="events")                        #specifing the relationship in between tables
+    reviews = db.relationship("Review", back_populates="event")
 
     def __repr__(self):
         return f'<ID: {self.id} event_name: {self.name} duration: {self.duration} description: {self.description} date: {self.date} price: {self.price} location: {self.location.venue_name} event_type: {self.event_type.name}>'
@@ -90,7 +109,9 @@ class User(db.Model):
     email = db.Column(db.String(50), unique = True, nullable = False)                        
     password = db.Column(db.String(30), nullable = False)                    
     is_adm = db.Column(db.Boolean, nullable = True)
+    review_id = db.Column(db.Integer, db.ForeignKey('reviews.id'))
 
+    reviews = db.relationship("Review", back_populates="user")
     attendances = db.relationship("Attendance", back_populates="user")                  #specifing the relationship in between tables
 
     def __repr__(self):
