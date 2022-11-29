@@ -4,7 +4,7 @@ from model import db, Event, Event_type, Location, User, Attendance, connect_to_
 
 
 
-def create_user(fname, lname, email, password, is_adm):
+def create_user(fname, lname, email, password, is_adm=False):
     """Create and return a new user."""
 
     user = User(fname=fname,

@@ -89,7 +89,7 @@ class User(db.Model):
     lname = db.Column(db.String(25), nullable = False)                        
     email = db.Column(db.String(50), unique = True, nullable = False)                        
     password = db.Column(db.String(30), nullable = False)                    
-    is_adm = db.Column(db.Boolean)
+    is_adm = db.Column(db.Boolean, nullable = True)
 
     attendances = db.relationship("Attendance", back_populates="user")                  #specifing the relationship in between tables
 

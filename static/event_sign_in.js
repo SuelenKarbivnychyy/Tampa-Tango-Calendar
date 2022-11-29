@@ -2,7 +2,7 @@ let signInButton = document.querySelectorAll('[name="sign_up"]');
 
 const signInForEvent = (evt) => {
     evt.preventDefault();
-
+    
     let button = evt.target;
     let eventId = button.value;    
 
@@ -50,7 +50,7 @@ const signOutFromEvent = (evt) => {
 
     let button = evt.target;
     let eventId = button.value;  
-    alert(evt.target.outerHTML) ; 
+    // alert(evt.target.outerHTML); 
 
     const checkAttendance = {
         event_id : eventId        
