@@ -46,8 +46,6 @@ let signOutButton = document.querySelectorAll('[name="sign_out"]');
 const signOutFromEvent = (evt) => {
     evt.preventDefault();  
 
-   
-
     let button = evt.target;
     let eventId = button.value;  
     // alert(evt.target.outerHTML); 

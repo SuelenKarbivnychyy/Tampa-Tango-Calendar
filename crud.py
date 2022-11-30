@@ -43,7 +43,12 @@ def get_all_reviews_for_a_user(user_id):
     """Return all reviews"""
 
     return Review.query.filter(Review.user_id == user_id).all()
-    
+
+
+def get_review_by_event_and_user(event_id, user_id):
+    """Return review by event id"""
+
+    return Review.query.filter(Review.event_id == event_id, Review.user_id == user_id).first()
 
 
 

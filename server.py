@@ -106,26 +106,41 @@ def all_events():
 @app.route("/events/<id>")    
 def show_event_details(id):
     """View event details"""
-  
+
     event = crud.get_event_by_id(id)
+    
     return render_template("events_details.html", event = event)
 
 
-# @app.route("/review")
-# def display_review():
-#     """Display event review"""
+@app.route("/review", methods=["POST"])
+def make_review():
+    """Create an review"""
 
-#     #to display user's events reviwed
-#     #get user from session
-#     #check if user id in review table
-#     #if does, display the reviews/rate he made
+    event_id = request.json.get('event_id')
+    print(f"################################### event id in python: {event_id}")
+    user_id = session.get('current_user')    
+    user_rate = request.json.get("user_rate")
+    print(f"####### user rate python: {user_rate}")
+    user_review = request.json.get("user_review")
+    print(f"################## user review: {user_review}")
+    review_from_db = crud.get_review_by_event_and_user(event_id, user_id)
 
+    if review_from_db == None:    
+        new_review = crud.create_review(user_rate, user_review, event_id, user_id)
+        db.session.add(new_review)
+        db.session.commit()
+        return "true"
+    else:
+        print(f"################## review {review_from_db.comment}")
+        return "false"
 
-#     user = session.get('current_user')
-#     print(f"####################### USER ID: {user}")
+#pseudocode
+#get user in session
+#get event id
+#get rate and review using json.get
+#check if event already have an review from this user
+#add it to the databe if dont
 
-#     review = crud.get_all_reviews()
-#     return review
 
 ################################################################################################################################################
 
@@ -427,12 +442,6 @@ def send_email_handler():
     else:
         return "false"    
 
-
-
-@app.route("/review")
-def review_event():
-
-    return render_template("/review.html")   
 
 
 if __name__ == "__main__":

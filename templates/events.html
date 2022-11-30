@@ -16,40 +16,40 @@ table, th, td {
 
 <main role="main">
   <div class="container">    
-          <div class="row">
-              <div class="card-group">
-              {% for event in events %}               
-                      <div class="card" style_old="width: 18rem;">
-                          <div class="card-header">
-                              <a href="events/{{event.id}}"> {{event.name}}</a>
-                              <img src="/static/css/card2.jpg" class="card-img-top" alt="img">
-                          </div>
-                          <div class="card-body">
-                            <h5 class="card-title">{{event.name}}</h5>
-                              <p class="card-text">{{event.description}}</p>
-                          </div>
-                          <div class="card-footer">
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item">number of attendance: {{event.attendances|length}} </li>
-                              <li class="list-group-item">display the event's rate</li>
-                              <li class="list-group-item">Add to your wish list</li>
-                            </ul>
-                            {% if event.id in attendances.keys() %} 
-                              <button class="bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Sign out</button>
-                            {% else %}
-                              <button class="bg-primary text-white" type="submit" value="{{event.id}}" name="sign_up">Sign in</button>
-                          {% endif %} 
-                          </div>        
-                      </div>                
-              {% endfor %}
-              </div>
-          </div>        
+    <div class="row">
+        <div class="card-group">
+        {% for event in events %}               
+          <div class="card" style_old="width: 18rem;">
+            <div class="card-header">
+                <a href="events/{{event.id}}"> {{event.name}}</a>
+                <img src="/static/css/card2.jpg" class="card-img-top" alt="img">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{event.name}}</h5>
+                <p class="card-text">{{event.description}}</p>
+            </div>
+            <div class="card-footer">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">number of attendance: {{event.attendances|length}} </li>
+                <li class="list-group-item">display the event's rate</li>
+                <li class="list-group-item">Add to your wish list</li>
+              </ul>
+              {% if event.id in attendances.keys() %} 
+                <button class="bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Sign out</button>
+              {% else %}
+                <button class="bg-primary text-white" type="submit" value="{{event.id}}" name="sign_up">Sign in</button>
+            {% endif %} 
+            </div>        
+          </div>                
+        {% endfor %}
+        </div>
+    </div>        
   </div>  
   </main>
 
 
 
-<script src="static/event_sign_in.js"></script>       <!-- importing javascript file -->
+<script src="/static/event_sign_in.js"></script>       <!-- importing javascript file -->
 
 {% endblock %}
 
