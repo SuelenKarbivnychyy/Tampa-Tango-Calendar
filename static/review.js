@@ -1,4 +1,4 @@
-submitReviewButton = document.getElementById("review_button");
+let submitReviewButton = document.getElementById("review_button");
 
 const submitReview = (evt) => {
     evt.preventDefault();
@@ -13,8 +13,7 @@ const submitReview = (evt) => {
         user_review: review,  
         event_id: eventId
     }
-    alert(rate);
-    alert(review);
+
 
     fetch('/review', {
         method: 'POST',
@@ -28,15 +27,18 @@ const submitReview = (evt) => {
 
 }
 
+function redirectToEventsPage() {
+    window.location.href = "/events"; 
+}
+
 const userResponse = (data) => {
     if (data == "true") {
-        alert("review sucessfully added");
+        display_warning_message( "Thank you for your review", "Review sucessfully added", redirectToEventsPage);
     }
     else if (data == "false") {
-        alert("you've reviewd this event already");
+        display_warning_message("You've reviewd this event already", "Thank you for your feedback", redirectToEventsPage);
     }
 }
 
-
-
 submitReviewButton.addEventListener('click', submitReview);
+

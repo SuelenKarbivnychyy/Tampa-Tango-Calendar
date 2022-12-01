@@ -115,15 +115,23 @@ def show_event_details(id):
 @app.route("/review", methods=["POST"])
 def make_review():
     """Create an review"""
+    
+    #pseudocode
+    #get user in session
+    #get event id
+    #get rate and review using json.get
+    #check if event already have an review from this user
+    #add it to the databe if dont
 
     event_id = request.json.get('event_id')
-    print(f"################################### event id in python: {event_id}")
+    # print(f"################################### event id in python: {event_id}")
     user_id = session.get('current_user')    
     user_rate = request.json.get("user_rate")
-    print(f"####### user rate python: {user_rate}")
+    # print(f"####### user rate python: {user_rate}")
     user_review = request.json.get("user_review")
-    print(f"################## user review: {user_review}")
+    # print(f"################## user review: {user_review}")
     review_from_db = crud.get_review_by_event_and_user(event_id, user_id)
+    print(f"############# review from db: {review_from_db}")
 
     if review_from_db == None:    
         new_review = crud.create_review(user_rate, user_review, event_id, user_id)
@@ -134,12 +142,32 @@ def make_review():
         print(f"################## review {review_from_db.comment}")
         return "false"
 
-#pseudocode
-#get user in session
-#get event id
-#get rate and review using json.get
-#check if event already have an review from this user
-#add it to the databe if dont
+
+
+@app.route("/delete_review", methods=["POST"])
+def delete_review():
+    """Delete a review"""
+
+    #pseudocode
+    #get event id and user id
+    #check if has a review in data base with that event id and user id
+    #delete event if it does
+
+    user_id = session.get('current_user')  
+    event_id = request.json.get('event_id')
+    review_id = request.json.get('review_id')
+    review_in_db = crud.get_review_by_id(review_id)
+    
+    print(f"############################# review id: [{review_in_db}]")
+    if review_in_db != None:
+        db.session.delete(review_in_db)
+        db.session.commit()
+        return "Review deleted"
+    else:
+        return "deleted"    
+
+
+
 
 
 ################################################################################################################################################
@@ -249,7 +277,7 @@ def user_profile():
 
     for review in user_reviews:
         reviews.append(review)
-    print(f"########################## REVIEWS: {reviews}")    
+    # print(f"########################## REVIEWS: {reviews}")    
 
     return render_template("/user_profile.html", events=events, reviews=reviews)
 
