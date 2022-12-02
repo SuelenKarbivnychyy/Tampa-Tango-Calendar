@@ -32,7 +32,10 @@ table, th, td {
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">number of attendance: {{event.attendances|length}} </li>
                 <li class="list-group-item">display the event's rate</li>
-                <li class="list-group-item">Add to your wish list</li>
+                <li class="list-group-item">
+                  <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                  </div>            
+                </li>
               </ul>
               {% if event.id in attendances.keys() %} 
                 <button class="bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Sign out</button>
@@ -46,7 +49,6 @@ table, th, td {
     </div>        
   </div>  
   </main>
-
 
 
 <script src="/static/event_sign_in.js"></script>       <!-- importing javascript file -->
