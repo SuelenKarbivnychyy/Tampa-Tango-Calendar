@@ -67,14 +67,14 @@ with open('data/events.json') as events_file:
 events_in_db = []
 for event in events:
     name = event['name']
-    duration = event['duration']  
     description = event['description']
-    date = event['date']
+    start_date_time = event['start_date_time']
+    end_date_time = event['end_date_time']
     price = event['price']
     location_id = event['location_id']
     event_type_id = event['event_type_id']
     
-    db_event = crud.create_event(name, duration, description, date, price, location_id, event_type_id)
+    db_event = crud.create_event(name, description, start_date_time, end_date_time, price, location_id, event_type_id)
     events_in_db.append(db_event)
 
 

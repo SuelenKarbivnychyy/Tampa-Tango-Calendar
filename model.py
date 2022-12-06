@@ -40,10 +40,10 @@ class Event(db.Model):
     id = db.Column(db.Integer,
                     autoincrement = True,
                     primary_key = True)
-    name = db.Column(db.String)                
-    duration = db.Column(db.Integer, nullable = False)                                     
+    name = db.Column(db.String)         
     description = db.Column(db.Text, nullable = False)                        
-    date = db.Column(db.DateTime)                        
+    start_date_time = db.Column(db.DateTime)    
+    end_date_time = db.Column(db.DateTime)                    
     price = db.Column(db.Integer)                    
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
     event_type_id = db.Column(db.Integer, db.ForeignKey('events_type.id'))    

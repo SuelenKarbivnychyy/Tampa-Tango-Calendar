@@ -59,13 +59,14 @@ def get_review_by_id(review_id):
 
 
 
-def create_event(name, duration, description, date, price, location_id, event_type_id):           #figure it out how to add the location and the event type
+def create_event(name, description, start_date_time, end_date_time, price, location_id, event_type_id):           #figure it out how to add the location and the event type
     """Creat and return an event"""
 
     event = Event(name=name,
-                duration=duration,
+                
                 description=description, 
-                date=date,
+                start_date_time=start_date_time,
+                end_date_time=end_date_time,
                 price=price,
                 location_id=location_id,
                 event_type_id=event_type_id)
