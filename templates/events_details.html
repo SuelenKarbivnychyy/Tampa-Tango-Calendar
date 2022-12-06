@@ -22,7 +22,7 @@
           <tr class="text-center"> 
             <td>{{event.event_type.name}}</td> 
             <td>{{event.description}}</td>
-            <td>{{event.start_date_time.date()}}</td> 
+            <td>{{event.start_date_time.strftime('%d/%m/%y')}}</td> 
             <td>{{event.start_date_time.strftime("%H:%M")}}</td>  
             <td>{{event.price}}</td> 
             <td>{{event.location.venue_name}}</td>
