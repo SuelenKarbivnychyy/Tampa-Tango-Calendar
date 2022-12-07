@@ -33,11 +33,12 @@
   
 </div>
 
-<p id="event_id">{{event.id}}</p>
+<p hidden id="event_id">{{event.id}}</p>
 <!-- create a element with hidden display that holds the event id / get in java script and alert it -->
 
 <br>
 
+{% if session.get("user_name") != None %}
 <form method = "POST">
   <label for="rate_id">Rate this event:</label>
 
@@ -59,7 +60,31 @@
   </textarea> <br>
 {% endif %}
 <button id="review_button">Submit Review</button>
+{% endif %}
 
+<br><br>
+<hr/> 
+
+<p class="text-center"> What does people are talking about our events: </p>
+<main role="main">
+<div class="container">
+    <div class="row">
+        <div class="card-group">
+            {% for review in reviews_db %}
+            <div class="card" style_old="width: 18rem;">
+                <div class="card-header">
+                    <p>Event: {{review.events.name}}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-title">Rate: {{review.rate}}</p>
+                    <p class="card-text">review: {{review.comment}}</p>
+                </div>                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</main>
 
 <!-- <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> -->
 

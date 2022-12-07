@@ -55,6 +55,11 @@ def get_review_by_id(review_id):
 
     return Review.query.filter(Review.id == review_id).first() 
 
+def get_all_reviews_by_event_id(event_id):
+    """Return all the reviews for an event"""
+
+    return Review.query.filter(Review.event_id == event_id).all()    
+
 
 
 

@@ -108,12 +108,13 @@ def show_event_details(id):
     """View event details"""
 
     user = session.get("current_user")
-    print(f"####### user id {user}")
+    # print(f"####### user id {user}")
     event = crud.get_event_by_id(id)
     review = crud.get_review_by_event_and_user(event.id, user)
-    print(f"######################### review {review}")
+    # print(f"######################### review {review}")
+    reviews_db = crud.get_all_reviews_by_event_id(event.id)
     
-    return render_template("events_details.html", event = event, review = review)
+    return render_template("events_details.html", event = event, review = review, reviews_db = reviews_db)
 
 
 @app.route("/review", methods=["POST"])

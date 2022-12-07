@@ -25,13 +25,17 @@
          <ul class="navbar-nav me-auto">          <!--change the me-auto to ms-auto,mx-auto -->
             <li class="nav-item-active">
                 <a class="nav-link" href="/events">Events</a>
-            </li>            
-            <li class="nav-item">
-                <a class="nav-link" href="/create_account">Create Account</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user_profile">Profile</a>
-          </li> 
+            {% if session.get("user_name") == None %}
+              <li class="nav-item">
+                  <a class="nav-link" href="/create_account">Create Account</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/user_profile">Profile</a>
+              </li> 
+            {% endif %}
+
             {% if session.get("is_adm") == True %}
               <li class="nav-item">
                   <a class="nav-link" href="/adm">Adm Access</a>
