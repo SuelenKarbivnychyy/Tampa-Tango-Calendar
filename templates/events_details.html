@@ -50,11 +50,18 @@
   </select>
 </form> <br>
 <p>Review this event</p>
-<textarea id="review_text"></textarea> <br>
+
+{% if review == None %}
+  <textarea id="review_text"></textarea> <br>
+{% else %}
+  <textarea id="review_text">
+    {{review.comment}}
+  </textarea> <br>
+{% endif %}
 <button id="review_button">Submit Review</button>
 
 
-<div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+<!-- <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> -->
 
 
 <!-- ############################################################################################################# -->

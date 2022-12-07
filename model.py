@@ -25,7 +25,7 @@ class Review(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('events.id')) 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))                  
 
-    event = db.relationship("Event", back_populates="reviews")
+    events = db.relationship("Event", back_populates="reviews")
     user = db.relationship("User", back_populates="reviews")
 
     def __repr__(self):
@@ -51,10 +51,10 @@ class Event(db.Model):
     location = db.relationship("Location", back_populates="events")                             #specifing the relationship in between tables
     event_type = db.relationship("Event_type", back_populates="events")                         #specifing the relationship in between tables
     attendances = db.relationship("Attendance", back_populates="events")                        #specifing the relationship in between tables
-    reviews = db.relationship("Review", back_populates="event")
+    reviews = db.relationship("Review", back_populates="events")
 
     def __repr__(self):
-        return f'<ID: {self.id} event_name: {self.name} duration: {self.duration} description: {self.description} date: {self.date} price: {self.price} location: {self.location.venue_name} event_type: {self.event_type.name}>'
+        return f'<review: {self.reviews.comment} event_name: {self.name} description: {self.description} date: {self.start_date_time} price: {self.price} location: {self.location.venue_name} event_type: {self.event_type.name}>'
 
 
 

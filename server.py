@@ -107,9 +107,13 @@ def all_events():
 def show_event_details(id):
     """View event details"""
 
+    user = session.get("current_user")
+    print(f"####### user id {user}")
     event = crud.get_event_by_id(id)
+    review = crud.get_review_by_event_and_user(event.id, user)
+    print(f"######################### review {review}")
     
-    return render_template("events_details.html", event = event)
+    return render_template("events_details.html", event = event, review = review)
 
 
 @app.route("/review", methods=["POST"])
@@ -262,9 +266,12 @@ def add_account():
 def user_profile():
     """Display user's profile"""
 
-    user = session["current_user"]                                                          #getting user id from session
+    # user = session["current_user"]                                                          #getting user id from session
     # print(f"################ user id from session: {user}")
-    
+    user = session.get("current_user")
+    if user == None:
+        return redirect('/')
+
     attendances = crud.get_all_attendance_for_a_user(user)                                 #returning a list
     events = []
     
