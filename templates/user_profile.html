@@ -25,6 +25,8 @@
                         <div class="card-footer">
                             <button type="submit" name="un_going" class="btn btn-primary" value="{{event.id}}">Sign out</button>
                             <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{event.name}}&details={{event.description}}&dates={{event.start_date_time.strftime('%Y%m%dT%H%M%S')}}/{{event.end_date_time.strftime('%Y%m%dT%H%M%S')}} &location={{event.location.address}}, {{event.location.city}} - {{event.location.zipcode}}">Add to Google Calendar</a>
+
                         </div>        
                     </div>                
             {% endfor %}
