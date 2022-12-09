@@ -54,7 +54,7 @@ class Event(db.Model):
     reviews = db.relationship("Review", back_populates="events")
 
     def __repr__(self):
-        return f'<review: {self.reviews.comment} event_name: {self.name} description: {self.description} date: {self.start_date_time} price: {self.price} location: {self.location.venue_name} event_type: {self.event_type.name}>'
+        return f'<event_name: {self.name} description: {self.description} start_date: {self.start_date_time} end_date: {self.end_date_time} price: {self.price} location: {self.location.venue_name} event_type: {self.event_type.name}>'
 
 
 

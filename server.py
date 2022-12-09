@@ -270,15 +270,18 @@ def user_profile():
     # user = session["current_user"]                                                          #getting user id from session
     # print(f"################ user id from session: {user}")
     user = session.get("current_user")
+    print(f"####################### USER IN SESSION: {user}")
     if user == None:
         return redirect('/')
 
     attendances = crud.get_all_attendance_for_a_user(user)                                 #returning a list
     events = []
+    print(f"##############################ATTENDNACES: {attendances}")
+    # print(f"########### EVENTS: {events}")
     
     for attendance in attendances:
         events.append(attendance.events)
-    # print(f"################# EVENTS THE USER IS SIGN IN FOR: {events}")
+    print(f"################# EVENTS THE USER IS SIGN IN FOR: {events}")
 
     user_reviews = crud.get_all_reviews_for_a_user(user)
     reviews = []
@@ -330,7 +333,7 @@ def add_event_type():
     """Add a new event type to the database"""
 
     event_name = request.form.get("event_name")
-    # print(f"########################### {event_name}")            #test
+    print(f"########################### {event_name}")            #test
 
     new_event_title = crud.create_event_type(event_name) 
 
@@ -364,15 +367,17 @@ def add_event_location():
 def add_event():
     """Add a event to the database"""
 
-    event_date = request.form.get("event_date")  
+    event_start_date_time = request.form.get("event_start_date")  
+    print(f"##################### START TIME DATE {event_start_date_time}")
+    event_end_date_time = request.form.get("event_end_date")
+    print(f"##################### end TIME DATE {event_end_date_time}")
     event_description = request.form.get("description")    
     event_price = request.form.get("price")
-    event_duration = request.form.get("event_duration")
     event_location_id = request.form.get("venues")
     event_type_id = request.form.get("type")
  
 
-    new_event = crud.create_event(date=event_date, description=event_description, price=event_price, duration=event_duration, location_id=event_location_id, event_type_id=event_type_id)
+    new_event = crud.create_event(start_date=event_start_date_time, end_date=event_end_date_time, description=event_description, price=event_price, location_id=event_location_id, event_type_id=event_type_id)
     print(f"%%%%%%%%%%%%%%%%%%%%%%%%%%%%{new_event}")
     db.session.add(new_event)
     db.session.commit()
@@ -392,7 +397,7 @@ def edit_event(id):
     print(f"###################################### expression : {id == 'new'}")
 
     if id == "new":
-        event = Event(id=-1, duration=0, description="", date=datetime.now(), price=0)             #create a new instance of Event class
+        event = Event(id=-1, name="", description="", start_date_time=datetime.now(), end_date_time=datetime.now(), price=0)             #create a new instance of Event class
     else:
         event = crud.get_event_by_id(id)   
 
@@ -422,24 +427,29 @@ def check_event():
     else:                                                            # create a new event if id == -1
         event = crud.get_event_by_id(form_event_id)                 # passing the form id to the crud function
 
-
-    event_duration = request.form.get("event_duration")
+    event_name = request.form.get("event_name")
     event_description = request.form.get("description") 
-    event_date = request.form.get("event_date")      
+    event_start_date = request.form.get("event_start_date")    
+    event_end_date = request.form.get("event_end_date")       
     event_price = request.form.get("price")    
     event_location_id = request.form.get("venue")
     event_type_id = request.form.get("type")
     # print(f" EVENT LOCATION { event_location_id }")
     # print(f" EVENT TYPE ID {event_type_id}")
 
-    event.duration = event_duration
+    event.name = event_name
     event.description = event_description
-    event.date = event_date
+    event.start_date_time = event_start_date
+    # print(f"#########################3 EVENT START: {event.start_date_time}") 
+    event.end_date_time = event_end_date
+    # print(f"#################### EVENT END {event.end_date_time}")
     event.price = event_price
     event.location_id = event_location_id
     event.event_type_id = event_type_id
+    print(f"############ EVENT NAME: {event.name}")
 
     if event == -1:                                              # checking if the event being edit already in database add new event if does not exist in data base   
+        print(f"event id : {event}")
         db.session.add(event)
         db.session.commit()
     elif event == event:

@@ -2,8 +2,8 @@
     {
         "name": "Tango Class By Veronica Trill",        
         "description": "Workshop By the best dances from argentina.",
-        "start_date_time": "2023-02-03, 16:00",
-        "end_date_time": "2023-02-03, 21:00",
+        "start_date_time": "2023-02-03, 16:00:00",
+        "end_date_time": "2023-02-03, 21:00:00",
         "price": "30",
         "location_id": "2",
         "event_type_id": "1"
@@ -11,8 +11,8 @@
     {   
         "name": "Workshop By Dimma",        
         "description": "Tango Lesson focused on basics steps.",
-        "start_date_time": "2023-02-10, 19:00",
-        "end_date_time": "2023-02-10, 23:00",
+        "start_date_time": "2023-02-10, 19:00:00",
+        "end_date_time": "2023-02-10, 23:00:00",
         "price": "15",
         "location_id": "1",
         "event_type_id": "2"
@@ -20,8 +20,8 @@
     {   
         "name": "Milonga dos anges",        
         "description": "Milonga social dance night.",
-        "start_date_time": "2023-02-16, 20:00",
-        "end_date_time": "2023-02-17, 03:00",
+        "start_date_time": "2023-02-16, 20:00:00",
+        "end_date_time": "2023-02-17, 03:00:00",
         "price": "15",
         "location_id": "3",
         "event_type_id": "4"
@@ -29,8 +29,8 @@
     {   
         "name": "Friends meetup",         
         "description": "Time to practice what you learn during class.",
-        "start_date_time": "2023-02-23, 14:00",
-        "end_date_time": "2023-02-23, 20:00",
+        "start_date_time": "2023-02-23, 14:00:00",
+        "end_date_time": "2023-02-23, 20:00:00",
         "price": "10",
         "location_id": "5",
         "event_type_id": "3"
@@ -38,8 +38,8 @@
     {   
         "name": "Practica La Maria",         
         "description": "We will spend a fun day together with music, dance and games.",
-        "start_date_time": "2023-02-28, 20:00",
-        "end_date_time": "2023-03-01, 02:00",
+        "start_date_time": "2023-02-28, 20:00:00",
+        "end_date_time": "2023-03-01, 02:00:00",
         "price": "0",
         "location_id": "2",
         "event_type_id": "5"

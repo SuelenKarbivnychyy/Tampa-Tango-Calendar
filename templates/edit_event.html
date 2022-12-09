@@ -17,12 +17,17 @@
                     
                 {% if event.location != None %}
                     <option value="{{event.location.id}}">{{event.location.venue_name}}</option>
-                {% endif %}
+                {% endif %}               
             
                 {% for venue in locations_inf %}           
                     <option value="{{venue.id}}">{{venue.venue_name}}</option>
                 {% endfor %}
                 </select>  
+            </div>
+
+            <div class="row pb-4 px-5">
+                <label for="event_name">Event name:</label>
+                <input class="form-control" type="text" name="event_name" id="event_name_input" value="{{event.name}}"></input>
             </div>
 
             <div class="row pb-4 px-5">    
@@ -40,13 +45,19 @@
             </div> 
 
             <div class="row pb-4 px-5">
-                <label for="date_input">Event Date:</label>
-                <input class="form-select" type="date" name="event_date" id = "date_input" value="{{event.date.strftime('%Y-%m-%d')}}">            
+                <label for="date_input">Event start Date and Time:</label>
+                <input class="form-select" type="datetime-local" name="event_start_date" id = "date_start_input" value="{{event.start_date_time.strftime('%Y-%m-%dT%H:%M')}}">  
+                
+            </div>
+
+            <div class="row pb-4 px-5">
+                <label for="date_input">Event end time:</label>
+                <input class="form-select" type="datetime-local" name="event_end_date" id = "date_end_input" value="{{event.end_date_time.strftime('%Y-%m-%dT%H:%M')}}">            
             </div>
 
             <div class="row pb-4 px-5">
                 <label for="description_input">Event description:</label>
-                <textarea class="form-control" type="text" name="description" id="description_input" value="{{event.description}}"></textarea>
+                <textarea class="form-control" type="text" name="description" id="description_input" value="{{event.description}}">{{event.description}}</textarea>
             </div>     
 
             <div class="row pb-4 mx-4">
@@ -55,10 +66,7 @@
                     <input class="form-control" type="number" name="price" id="price_input" value="{{event.price}}">                   
                 </div>
                 
-                <div class="col">
-                    <label for="duration_input">Event Duration:</label>    
-                    <input class="form-control" type="number" name="event_duration" id="duration_input" value="{{event.duration}}">                    
-                </div>                
+                         
             </div>            
        
             <div class="row pb-4 mx-4">
