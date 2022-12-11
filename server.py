@@ -81,6 +81,18 @@ def all_events():
 
 
     events = crud.get_all_events()
+    # print(f"############ events {events}")
+
+    rate = {}    
+    for event in events:
+        counter = 0
+        for review in event.reviews:
+            total_review_per_event = len(event.reviews)
+            counter += review.rate
+            rate[event.id] = counter / total_review_per_event
+    print(f"############### reviews rate: {rate}")
+
+    
     list_of_attendance = crud.get_all_attendance()
     # print(f"############ LIST OF ATTENDANCE {list_of_attendance}")
 
@@ -99,7 +111,8 @@ def all_events():
 
     return render_template("events.html", events=events,
                                         attendances=current_user_events,
-                                        attendance_number = list_of_attendance
+                                        attendance_number = list_of_attendance,
+                                        rate=rate
                                         )
 
 
