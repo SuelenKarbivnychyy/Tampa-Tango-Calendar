@@ -5,25 +5,88 @@
         "event_id": "2",
         "user_id": "1"
     },
-
     {
         "rate": "5",
         "comment": "The event was great.",
-        "event_id": "1",
+        "event_id": "7",
         "user_id": "3"
     },
-
     {
         "rate": "3",
         "comment": "I love it.",
-        "event_id": "4",
+        "event_id": "8",
         "user_id": "2"
     },
-
     {
         "rate": "5",
-        "comment": "This is perfect.",
-        "event_id": "3",
+        "comment": "This event is perfect, it should never had end.",
+        "event_id": "5",
         "user_id": "2"
+    },
+    {
+        "rate": "5",
+        "comment": "We have such an amazing time dancing and having fun with everyone.",
+        "event_id": "3",
+        "user_id": "10"
+    },
+    {
+        "rate": "5",
+        "comment": "Best Christmas ever I had since I was kid.",
+        "event_id": "6",
+        "user_id": "10"
+    },
+    {
+        "rate": "5",
+        "comment": "Amazing Christmas atmosphere, nice music and best dances I ever had.",
+        "event_id": "6",
+        "user_id": "8"
+    },
+    {
+        "rate": "5",
+        "comment": "This was such I nice idea to get together everyone out of town. I will definitely come back next year.",
+        "event_id": "6",
+        "user_id": "16"
+    },
+    {
+        "rate": "5",
+        "comment": "I danced so much that I couldn't barelly walk the next day. Higly recommend it. ",
+        "event_id": "6",
+        "user_id": "13"
+    },
+    {
+        "rate": "5",
+        "comment": "Best milonga I ever attended.",
+        "event_id": "6",
+        "user_id": "18"
+    },
+    {
+        "rate": "5",
+        "comment": "Amazing time with friends. Great dance and wonderful music.",
+        "event_id": "6",
+        "user_id": "12"
+    },
+    {
+        "rate": "5",
+        "comment": "I love dance with this crew, Amazing time here.",
+        "event_id": "4",
+        "user_id": "12"
+    },
+    {
+        "rate": "5",
+        "comment": "I really like how the organizes planned this event. Will always attend it when I'm in town.",
+        "event_id": "1",
+        "user_id": "12"
+    },
+    {
+        "rate": "5",
+        "comment": "Really leanerd a lot of basic techniques that you usually don't see teachers including in them classes. ",
+        "event_id": "9",
+        "user_id": "12"
+    },
+    {
+        "rate": "5",
+        "comment": "I always enjoy this class, so much fun and got to know new friends.",
+        "event_id": "10",
+        "user_id": "3"
     }
 ]

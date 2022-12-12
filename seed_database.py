@@ -17,7 +17,7 @@ model.connect_to_db(server.app, "tango-project")
 model.db.create_all()
 
 
-#Load movie data from json file
+#Load event data from json file
 # SEEDING THE EVENT_TYPE TABLE
 with open('data/events_type.json') as file:
     events_type= json.loads(file.read())
@@ -120,16 +120,18 @@ model.db.session.add_all(reviews_in_db)
 
 
 # ###########################################################################################################################################
-#GENERATE 10 FAKE ACCOUNTS
+#GENERATE FAKE ACCOUNTS
 
-for n in range(5):
+for n in range(20):
     fname = f"{n}dima"
     lname = f"karb{n}"
     email = f"suelenmatosr+{n}@gmail.com"  # Voila! A unique email!
     password = "test"
     is_adm = False
 
-    user = crud.create_user(fname, lname, email, password, is_adm)
+    user = crud.create_user(fname, lname, email, password, is_adm)    
     model.db.session.add(user)
 
+adm = crud.create_user('suelen', 'matos', 'suelenmatosr@outlook.com', '123', True )
+model.db.session.add(adm)
 model.db.session.commit()                                               #COMMIT TO THE DATABASE AT THE VERY END TO AVOID COMMIT ALL THE TIME YOU ADD NEW INF TO THE DATABASE
