@@ -12,8 +12,7 @@
         <div class="card-group">
             {% for event in events %}               
                 <div class="card" style_old="width: 18rem;">
-                    <div class="card-header">
-                        <a href="events/{{event.id}}"> {{event.name}}</a>
+                    <div class="card-header" name="link_to_details" event_id="{{event.id}}">
                         <img src="/static/css/card1.jpg" class="card-img-top" alt="...">
                     </div>
                     <div class="card-body">
@@ -64,5 +63,6 @@
 
 <script src="/static/event_sign_in.js"></script>
 <script src="/static/delete_review.js"></script>
+<script src="/static/event_details.js"></script>
 
 {% endblock %}
