@@ -26,7 +26,7 @@ table, th, td {
         <tbody>         
                 {% for event in events_inf %}
                 <tr> 
-                    <td>{{event.event_type.name}}</td>
+                    <td>{{event.name}}</td>
                     <td>{{event.location.venue_name}} </td>
                     <td><button class="bg-success text-white" onclick="window.location.href = '/edit_event/{{event.id}}'">Edit Event</button></td>
                     <td><button class="bg-danger text-white" onclick="window.location.href ='/delete_event/{{event.id}}'">Delet Event</button></td>

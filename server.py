@@ -18,11 +18,12 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     """Render home page"""    
 
+    # identify = {'events' : 'events', 'adm' : 'adm', 'user_profile': 'user_profile'}
+
     identify = request.args.get("/homepage")
 
     if identify == 'events':
-        return redirect("events")
-     
+        return redirect("events")     
     elif identify == 'adm':
         return redirect("adm") 
     elif identify == "user_profile":
@@ -95,9 +96,7 @@ def all_events():
     
     list_of_attendance = crud.get_all_attendance()
     # print(f"############ LIST OF ATTENDANCE {list_of_attendance}")
-
     # print(f" ################## all events: {events}")
-
     user_id = session.get("current_user")
     # print(f"########################## ID IN SESSION {user_id}")
 

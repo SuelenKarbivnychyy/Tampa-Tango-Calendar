@@ -20,9 +20,8 @@ table, th, td {
         <div class="card-group">
         {% for event in events %}               
           <div class="card" style_old="width: 18rem;">
-            <div class="card-header">
-                <a href="events/{{event.id}}"> {{event.name}}</a>
-                <img src="/static/css/card2.jpg" class="card-img-top" alt="img">
+            <div class="card-header" name="link_to_details" event_id="{{event.id}}">             
+              <img src="/static/css/card2.jpg" class="card-img-top" alt="img">
             </div>
             <div class="card-body">
               <h5 class="card-title">{{event.name}}</h5>
@@ -34,11 +33,7 @@ table, th, td {
                 <li class="list-group-item">rate: {{rate.get(event.id, "Event has no rate yet")}}</li>
                 <li class="list-group-item">
                   <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{event.name}}&details={{event.description}}&dates={{event.start_date_time.strftime('%Y%m%dT%H%M%S')}}/{{event.end_date_time.strftime('%Y%m%dT%H%M%S')}} &location={{event.location.address}}, {{event.location.city}} - {{event.location.zipcode}}">Add to Google Calendar</a>
-                </li>
-                <!-- <li class="list-group-item">
-                  <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
-                  </div>            
-                </li> -->
+                </li>                
               </ul>
               {% if event.id in attendances.keys() %} 
                 <button class="bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Sign out</button>
@@ -53,12 +48,11 @@ table, th, td {
         </div>
     </div>        
   </div>  
-  </main>
-
-  
+  </main>  
 
 
 <script src="/static/event_sign_in.js"></script>       <!-- importing javascript file -->
+<script src="/static/event_details.js"></script>
 
 {% endblock %}
 

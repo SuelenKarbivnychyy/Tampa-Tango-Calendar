@@ -2,36 +2,34 @@
 
 {% block title %}User Profile{% endblock %}
 
-
-
 {% block body %}
 
 <p class="text-center">Welcome {{ session["user_name"].title() }}</p>
 
 <main role="main">
 <div class="container">    
-        <div class="row">
-            <div class="card-group">
+    <div class="row">
+        <div class="card-group">
             {% for event in events %}               
-                    <div class="card" style_old="width: 18rem;">
-                        <div class="card-header">
-                            <a href="events/{{event.id}}"> {{event.name}}</a>
-                            <img src="/static/css/card1.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{event.name}}</h5>
-                            <p class="card-text">{{event.description}}</p>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" name="un_going" class="btn btn-primary" value="{{event.id}}">Sign out</button>
-                            <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{event.name}}&details={{event.description}}&dates={{event.start_date_time.strftime('%Y%m%dT%H%M%S')}}/{{event.end_date_time.strftime('%Y%m%dT%H%M%S')}} &location={{event.location.address}}, {{event.location.city}} - {{event.location.zipcode}}">Add to Google Calendar</a>
+                <div class="card" style_old="width: 18rem;">
+                    <div class="card-header">
+                        <a href="events/{{event.id}}"> {{event.name}}</a>
+                        <img src="/static/css/card1.jpg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{event.name}}</h5>
+                        <p class="card-text">{{event.description}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="un_going" class="btn btn-primary" value="{{event.id}}">Sign out</button>
+                        <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{event.name}}&details={{event.description}}&dates={{event.start_date_time.strftime('%Y%m%dT%H%M%S')}}/{{event.end_date_time.strftime('%Y%m%dT%H%M%S')}} &location={{event.location.address}}, {{event.location.city}} - {{event.location.zipcode}}">Add to Google Calendar</a>
 
-                        </div>        
-                    </div>                
+                    </div>        
+                </div>                
             {% endfor %}
-            </div>
-        </div>        
+        </div>
+    </div>        
 </div>  
 </main>
 
