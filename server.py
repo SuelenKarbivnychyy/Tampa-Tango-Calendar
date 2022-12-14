@@ -79,7 +79,7 @@ def show_all_events():
         for review in event.reviews:
             total_review_rate += review.rate
         total_reviews_per_event = len(event.reviews)
-        rate[event.id] = total_review_rate / total_reviews_per_event
+        rate[event.id] = round(total_review_rate / total_reviews_per_event, 1)
     print(f"############### reviews rate: {rate}")
 
     
