@@ -18,7 +18,7 @@
         "user_id": "2"
     },
     {
-        "rate": "5",
+        "rate": "2",
         "comment": "This event is perfect, it should never had end.",
         "event_id": "5",
         "user_id": "2"
@@ -42,7 +42,7 @@
         "user_id": "8"
     },
     {
-        "rate": "5",
+        "rate": "3",
         "comment": "This was such I nice idea to get together everyone out of town. I will definitely come back next year.",
         "event_id": "6",
         "user_id": "16"
@@ -62,7 +62,7 @@
     {
         "rate": "5",
         "comment": "Amazing time with friends. Great dance and wonderful music.",
-        "event_id": "6",
+        "event_id": "3",
         "user_id": "12"
     },
     {

@@ -15,26 +15,15 @@ app.jinja_env.undefined = StrictUndefined
 
 
 @app.route("/")
-def homepage():
-    """Render home page"""    
-
-    # identify = {'events' : 'events', 'adm' : 'adm', 'user_profile': 'user_profile'}
-
-    identify = request.args.get("/homepage")
-
-    if identify == 'events':
-        return redirect("events")     
-    elif identify == 'adm':
-        return redirect("adm") 
-    elif identify == "user_profile":
-        return redirect("user_profile")                       
-    else:     
-        return render_template("homepage.html")
+def show_homepage():
+    """Render home page""" 
+     
+    return render_template("homepage.html")
 
 
 
 @app.route("/event_sign_in", methods=["POST"])
-def count_attendance():
+def sign_in_for_event():
     """Display the attendance for the events"""    
 
     event_id = request.json.get("event_id")
@@ -65,10 +54,10 @@ def cancel_user_attendance():
     event_id = request.json.get("event_id")
     # print(f"######### EVENT ID FROM SIGN OUT ROUT {event_id} %%%%%%%%%%%%")
     user_id = session['current_user'] 
-    check_attendance = crud.get_attendance(event_id, user_id)
+    attendance = crud.get_attendance(event_id, user_id)
 
-    if check_attendance != None: 
-        db.session.delete(check_attendance)
+    if attendance != None: 
+        db.session.delete(attendance)
         db.session.commit()
         return "You are signed out for this event. We are sorry to let you go."
     else:
@@ -77,7 +66,7 @@ def cancel_user_attendance():
 
 
 @app.route("/events")
-def all_events():
+def show_all_events(): 
     """View all events"""
 
 
@@ -86,11 +75,11 @@ def all_events():
 
     rate = {}    
     for event in events:
-        counter = 0
+        total_review_rate = 0
         for review in event.reviews:
-            total_review_per_event = len(event.reviews)
-            counter += review.rate
-            rate[event.id] = counter / total_review_per_event
+            total_review_rate += review.rate
+        total_reviews_per_event = len(event.reviews)
+        rate[event.id] = total_review_rate / total_reviews_per_event
     print(f"############### reviews rate: {rate}")
 
     
@@ -130,8 +119,8 @@ def show_event_details(id):
 
 
 @app.route("/review", methods=["POST"])
-def make_review():
-    """Create an review"""
+def create_review():
+    """Create a review"""
     
     #pseudocode
     #get user in session
@@ -164,14 +153,7 @@ def make_review():
 @app.route("/delete_review", methods=["POST"])
 def delete_review():
     """Delete a review"""
-
-    #pseudocode
-    #get event id and user id
-    #check if has a review in data base with that event id and user id
-    #delete event if it does
-
-    user_id = session.get('current_user')  
-    event_id = request.json.get('event_id')
+    
     review_id = request.json.get('review_id')
     review_in_db = crud.get_review_by_id(review_id)
     
@@ -276,19 +258,18 @@ def add_account():
 
 
 @app.route("/user_profile")
-def user_profile():
+def display_user_profile():
     """Display user's profile"""
 
-    # user = session["current_user"]                                                          #getting user id from session
-    # print(f"################ user id from session: {user}")
+    
     user = session.get("current_user")
-    print(f"####################### USER IN SESSION: {user}")
+    # print(f"####################### USER IN SESSION: {user}")
     if user == None:
         return redirect('/')
 
     attendances = crud.get_all_attendance_for_a_user(user)                                 #returning a list
     events = []
-    print(f"##############################ATTENDNACES: {attendances}")
+    # print(f"##############################ATTENDNACES: {attendances}")
     # print(f"########### EVENTS: {events}")
     
     for attendance in attendances:
@@ -318,7 +299,7 @@ def user_profile():
 # ADM BUSINESS STARTS FROM HERE  
 
 @app.route("/adm")
-def adm_page():
+def display_adm_page(): #'sisplay_adm_page'
     """Display events at the adm's page"""
 
     events_inf = Event.query.all()
@@ -345,14 +326,11 @@ def add_event_type():
     """Add a new event type to the database"""
 
     event_name = request.form.get("event_name")
-    print(f"########################### {event_name}")            #test
-
     new_event_title = crud.create_event_type(event_name) 
 
     db.session.add(new_event_title)
     db.session.commit()
    
-    # return render_template("/adm.html", event_name = event_name)
     return redirect("/adm")
 
 
@@ -371,7 +349,6 @@ def add_event_location():
     db.session.add(new_event_location)
     db.session.commit()
 
-    # print(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ {new_event_location}")              #test
     return redirect("/adm")
 
 
@@ -379,18 +356,15 @@ def add_event_location():
 def add_event():
     """Add a event to the database"""
 
-    event_start_date_time = request.form.get("event_start_date")  
-    print(f"##################### START TIME DATE {event_start_date_time}")
-    event_end_date_time = request.form.get("event_end_date")
-    print(f"##################### end TIME DATE {event_end_date_time}")
+    event_start_date_time = request.form.get("event_start_date")      
+    event_end_date_time = request.form.get("event_end_date")    
     event_description = request.form.get("description")    
     event_price = request.form.get("price")
     event_location_id = request.form.get("venues")
-    event_type_id = request.form.get("type")
- 
+    event_type_id = request.form.get("type") 
 
     new_event = crud.create_event(start_date=event_start_date_time, end_date=event_end_date_time, description=event_description, price=event_price, location_id=event_location_id, event_type_id=event_type_id)
-    print(f"%%%%%%%%%%%%%%%%%%%%%%%%%%%%{new_event}")
+    
     db.session.add(new_event)
     db.session.commit()
 
@@ -401,8 +375,7 @@ def add_event():
 @app.route("/edit_event/<id>")
 def edit_event(id):
     """Show edit event form"""
-
-    # events_inf = Event.query.all()
+    
     locations_inf = crud.get_all_location()
     events_type_inf = crud.get_all_events_type()    
     print(f"######################################{id}")
@@ -446,8 +419,7 @@ def check_event():
     event_price = request.form.get("price")    
     event_location_id = request.form.get("venue")
     event_type_id = request.form.get("type")
-    # print(f" EVENT LOCATION { event_location_id }")
-    # print(f" EVENT TYPE ID {event_type_id}")
+    
 
     event.name = event_name
     event.description = event_description
@@ -491,7 +463,7 @@ def send_email_handler():
 
     users_email = 'suelenmatosr@gmail.com';                         #this overrides the users_email list to be only one email.
 
-    # print(f"############### ALL USERS email: {users_email}")   
+      
 
     result = send_email.send_email_updates(users_email, email_subject, email_message)
 
