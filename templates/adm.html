@@ -28,14 +28,14 @@ table, th, td {
                 <tr> 
                     <td>{{event.name}}</td>
                     <td>{{event.location.venue_name}} </td>
-                    <td><button class="bg-success text-white" onclick="window.location.href = '/edit_event/{{event.id}}'">Edit Event</button></td>
-                    <td><button class="bg-danger text-white" onclick="window.location.href ='/delete_event/{{event.id}}'">Delet Event</button></td>
+                    <td><button class="btn bg-success text-white" onclick="window.location.href = '/edit_event/{{event.id}}'">Edit Event</button></td>
+                    <td><button class="btn bg-danger text-white" onclick="window.location.href ='/delete_event/{{event.id}}'">Delet Event</button></td>
                                                     
                 {% endfor %} 
                 </tr> 
         </tbody>
     </table>
-    <button class="bg-primary text-white" onclick="window.location.href ='/edit_event/new'" name="add_event">Add new event</button>                           <!-- adding this button with '/edit_event/new' to create a new event instead od updating an existing event -->
+    <button class="btn bg-primary text-white" onclick="window.location.href ='/edit_event/new'" name="add_event">Add new event</button>                           <!-- adding this button with '/edit_event/new' to create a new event instead od updating an existing event -->
 </div> <br><br>
 
 
@@ -51,7 +51,7 @@ table, th, td {
         </div>
         <div class="row pb-4 mx-4">
             <div class="col">
-                <input class="bg-primary text-white" type="submit" value="Add Event Type" id="add_event_type">            
+                <input class="btn bg-primary text-white" type="submit" value="Add Event Type" id="add_event_type">            
             </div>
         </div>    
       </div>
@@ -86,7 +86,7 @@ table, th, td {
         </div>
         <div class="row pb-4 mx-4">
             <div class="col">
-                <input class="bg-primary text-white" type="submit" value="Add Venue" id="add_event_location">
+                <input class="btn bg-primary text-white" type="submit" value="Add Venue" id="add_event_location">
             </div>
         </div>           
       </div>
@@ -97,7 +97,7 @@ table, th, td {
     <p class="card-body bg-info">Click at the buttom bellow to send news to the subscribes:</p>         
     <div class="row pb-4 mx-4">
         <div class="col"> 
-            <button class="bg-primary text-white" type="submit" id="subscribe">Send Events Info</button>   
+            <button class="btn bg-primary text-white" type="submit" id="subscribe">Send Events Info</button>   
         </div>
     </div>     
 </div>    

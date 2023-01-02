@@ -30,18 +30,15 @@ def sign_in_for_event():
     user_id = session.get('current_user')
 
     if user_id == None:                                                                                  #if user not in session it will not allows user to sign in for event
-        print(user_id)
         return "Please login."
 
     check_attendance = crud.get_attendance(event_id, user_id)
-    # print(f"############################### I'M THE event id and user id: {check_attendance}")           #test
-    
-    if check_attendance == None:       
-        # print("##################### I'M IN DATA BASE")                                                  #test
+        
+    if check_attendance == None:   
         add_attendance = crud.create_attendance(event_id, user_id)
         db.session.add(add_attendance)        
         db.session.commit()
-        print(f"############ ADDED TO DATABASE {event_id} {user_id}")
+        
         return "You are sucessfully sign in for this event."
     else:
         return "You are already sign in for this event."
@@ -52,7 +49,6 @@ def cancel_user_attendance():
     """Cancel user attendance to an event"""   
 
     event_id = request.json.get("event_id")
-    # print(f"######### EVENT ID FROM SIGN OUT ROUT {event_id} %%%%%%%%%%%%")
     user_id = session['current_user'] 
     attendance = crud.get_attendance(event_id, user_id)
 
@@ -71,7 +67,6 @@ def show_all_events():
 
 
     events = crud.get_all_events()
-    # print(f"############ events {events}")
 
     rate = {}    
     for event in events:
@@ -79,24 +74,20 @@ def show_all_events():
         for review in event.reviews:
             total_review_rate += review.rate
         total_reviews_per_event = len(event.reviews)
-        rate[event.id] = round(total_review_rate / total_reviews_per_event, 1)
-    print(f"############### reviews rate: {rate}")
-
+        if total_review_rate > 0:
+            rate[event.id] = round(total_review_rate / total_reviews_per_event, 1)
+    
     
     list_of_attendance = crud.get_all_attendance()
-    # print(f"############ LIST OF ATTENDANCE {list_of_attendance}")
-    # print(f" ################## all events: {events}")
     user_id = session.get("current_user")
-    # print(f"########################## ID IN SESSION {user_id}")
-
+    
     current_user_events={}
 
     if user_id != None:    
         attendances = crud.get_all_attendance_for_a_user(user_id)  
         for attendance in attendances:
             current_user_events[attendance.event_id] = "true"
-    # print(f"########################## DICTIONARY WITH EVENTS USER IS GOING TO {current_user_events}") 
-
+    
     return render_template("events.html", events=events,
                                         attendances=current_user_events,
                                         attendance_number = list_of_attendance,
@@ -109,10 +100,8 @@ def show_event_details(id):
     """View event details"""
 
     user = session.get("current_user")
-    # print(f"####### user id {user}")
     event = crud.get_event_by_id(id)
     review = crud.get_review_by_event_and_user(event.id, user)
-    # print(f"######################### review {review}")
     reviews_db = crud.get_all_reviews_by_event_id(event.id)
     
     return render_template("events_details.html", event = event, review = review, reviews_db = reviews_db)
@@ -130,15 +119,11 @@ def create_review():
     #add it to the databe if dont
 
     event_id = request.json.get('event_id')
-    # print(f"################################### event id in python: {event_id}")
     user_id = session.get('current_user')    
     user_rate = request.json.get("user_rate")
-    # print(f"####### user rate python: {user_rate}")
     user_review = request.json.get("user_review")
-    # print(f"################## user review: {user_review}")
     review_from_db = crud.get_review_by_event_and_user(event_id, user_id)
-    print(f"############# review from db: {review_from_db}")
-
+    
     if review_from_db == None:    
         new_review = crud.create_review(user_rate, user_review, event_id, user_id)
         db.session.add(new_review)
@@ -180,12 +165,10 @@ def validate_user_credentials():
    
     email_from_input = request.json.get("email")                                      #information from browser as json
     password = request.json.get("password")
-    # print(f" ################################## {email}, {password}")
-
+    
     user_db = crud.get_user_by_email(email_from_input)                      #checking if the user's email input from the browser has any matchs at the database
     
     if user_db == None :                                                    #checking if user is not in db and return "no results if true"
-        # flash("Account does not existe. create an account")        
         return "no result"  
    
     user_id= user_db.id
@@ -196,8 +179,7 @@ def validate_user_credentials():
         
         is_administrator = user_db.is_adm
         session["is_adm"]= is_administrator  
-        print(f"################# adm information {is_administrator}")      
-        # print(f"#############################{user_id}")                    #test
+        
         return "true"
     else:
         return "false"
@@ -238,8 +220,8 @@ def create_account():
 
     return render_template("create_account.html") 
 
-#Route to submit the form
-@app.route("/add_user_to_db", methods=["POST"])                              #route to submit the form
+
+@app.route("/add_user_to_db", methods=["POST"])
 def add_account():
     """Add an user account to database (create account)"""   
 
@@ -251,7 +233,7 @@ def add_account():
     new_user = crud.create_user(first_name, last_name, email, password)
     db.session.add(new_user)
     db.session.commit()
-        # print(new_user)                                                    #test
+     
     return redirect("/")  
 
 
@@ -262,26 +244,22 @@ def display_user_profile():
     """Display user's profile"""
 
     
-    user = session.get("current_user")
-    # print(f"####################### USER IN SESSION: {user}")
+    user = session.get("current_user")    
     if user == None:
         return redirect('/')
 
-    attendances = crud.get_all_attendance_for_a_user(user)                                 #returning a list
+    attendances = crud.get_all_attendance_for_a_user(user)
     events = []
-    # print(f"##############################ATTENDNACES: {attendances}")
-    # print(f"########### EVENTS: {events}")
     
     for attendance in attendances:
         events.append(attendance.events)
-    print(f"################# EVENTS THE USER IS SIGN IN FOR: {events}")
-
+    
     user_reviews = crud.get_all_reviews_for_a_user(user)
     reviews = []
 
     for review in user_reviews:
         reviews.append(review)
-    # print(f"########################## REVIEWS: {reviews}")    
+      
 
     return render_template("/user_profile.html", events=events, reviews=reviews)
 
@@ -305,13 +283,9 @@ def display_adm_page(): #'sisplay_adm_page'
     events_inf = Event.query.all()
     locations_inf = Location.query.all()
     events_type_inf = Event_type.query.all()
-
-    user_id = session.get('current_user')
-    # print(f"####### user in session {user_id}")                       #test
-    
+    user_id = session.get('current_user')        
     user_id_in_db = crud.get_user_by_id(user_id)
-    # print(f"######### database {user_id_in_db}")                     #test
-
+    
     if user_id == None:
         return redirect('/')
     elif user_id_in_db.is_adm == True:
@@ -326,8 +300,7 @@ def add_event_type():
     """Add a new event type to the database"""
 
     event_name = request.form.get("event_name")
-    new_event_title = crud.create_event_type(event_name) 
-
+    new_event_title = crud.create_event_type(event_name)
     db.session.add(new_event_title)
     db.session.commit()
    
@@ -336,25 +309,25 @@ def add_event_type():
 
 
 @app.route("/add_event_location", methods=["POST"])
-def add_event_location():                                        
+def add_event_location(): 
+    """Creating a new venue location"""                                       
 
     venue = request.form.get("venue_name")  
     address = request.form.get("venue_address") 
     city = request.form.get("venue_city")  
     state = request.form.get("venue_state") 
-    zipcode = request.form.get("venue_zipcode")                                
+    zipcode = request.form.get("venue_zipcode")
 
-    new_event_location = crud.create_location(venue, address, city, state, zipcode)
-       
+    new_event_location = crud.create_location(venue, address, city, state, zipcode)       
     db.session.add(new_event_location)
     db.session.commit()
 
     return redirect("/adm")
 
 
-@app.route("/add_event", methods=["POST"])                                      #adding a new event to the data base
+@app.route("/add_event", methods=["POST"])
 def add_event():
-    """Add a event to the database"""
+    """Add an event to the database"""
 
     event_start_date_time = request.form.get("event_start_date")      
     event_end_date_time = request.form.get("event_end_date")    
@@ -364,7 +337,6 @@ def add_event():
     event_type_id = request.form.get("type") 
 
     new_event = crud.create_event(start_date=event_start_date_time, end_date=event_end_date_time, description=event_description, price=event_price, location_id=event_location_id, event_type_id=event_type_id)
-    
     db.session.add(new_event)
     db.session.commit()
 

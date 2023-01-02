@@ -48,8 +48,7 @@ const signOutFromEvent = (evt) => {
 
     let button = evt.target;
     let eventId = button.value;  
-    // alert(evt.target.outerHTML); 
-
+    
     const checkAttendance = {
         event_id : eventId        
     }
