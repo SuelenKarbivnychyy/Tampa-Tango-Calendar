@@ -1,137 +1,92 @@
 {% extends 'base.html' %}
 
-{% block title %}- Details{% endblock %}
+{% block title %}Details - {{event.name}}{% endblock %}
 
 {% block body %}
-<h1 class="mt-5 text-center">Event Details</h1>
 
-<div class="container rounded border border-secondary mt-3 py-4 px-5">
-  <table class="table">    
-      <thead>
-        <tr class="card-header bg-info text-center">   
-            <th scope="col">Event</th>
-            <th scope="col">Description</th>
-            <th scope="col">Date</th>  
-            <th scope="col">Time</th> 
-            <th scope="col">Price</th> 
-            <th scope="col">Venue</th> 
-            <th scope="col">Address</th>      
-        </tr>
-      </thead>
-      <tbody>         
-          <tr class="text-center"> 
-            <td>{{event.event_type.name}}</td> 
-            <td>{{event.description}}</td>
-            <td>{{event.start_date_time.strftime('%d/%m/%y')}}</td> 
-            <td>{{event.start_date_time.strftime("%H:%M")}}</td>  
-            <td>{{event.price}}</td> 
-            <td>{{event.location.venue_name}}</td>
-            <td>{{event.location.address}}, {{event.location.city}}, {{event.location.state}} - {{event.location.zipcode}}</td>
-          </tr> 
-      </tbody>
-  </table>
-  
+
+<h3 class="mt-2 text-center">{{event.name}}</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-4 py-2"><img src="/static/css/card2.jpg" class="card-img-top" alt="img"></div>
+
+    <div class="col-8 py-2">
+      <div class="container container rounded border border-secondary px-4">
+        <h4 class="mt-2 text-center">Event details</h4>
+        <p class="lead">{{event.event_type.name}}</p> 
+        <p class="lead">{{event.description}}</p>
+        <p class="lead">{{event.start_date_time.strftime('%d/%m/%y')}} {{event.start_date_time.strftime("%H:%M")}}, ${{event.price}}</p> 
+        <p class="lead">{{event.location.venue_name}}</p>
+        <p class="lead">{{event.location.address}}, {{event.location.city}}, {{event.location.state}} - {{event.location.zipcode}}</p> 
+      </div>
+    
+      {% if session.get("user_name") != None %}
+      
+      <div class="container rounded border border-secondary pb-4 mt-3 px-2">
+        <h4 class="mt-2 text-center">Your review</h4>
+        <div class="container">
+          <div class="row align-bottom" >
+              <div class="col-2">
+                <label for="rate_id">Rate this event</label>
+              </div>
+              <div class="col-10">
+                <form method = "POST">
+                  <select name="lang" id="rate_id">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </form> 
+              </div>
+          </div>
+        
+          <div class="row py-2">
+            <div class="col-2">
+              <p>Write a review</p>
+            </div>
+            <div class="col-10">
+              {% if review == None %}
+                <textarea id="review_text" class="md-textarea form-control" rows="6"></textarea>
+              {% else %}
+                <textarea id="review_text" class="md-textarea form-control" rows="6">{{review.comment}}</textarea>
+              {% endif %}
+            </div>
+          </div>
+          <div class="row py-2 px-2">
+            <div class="col"><button id="review_button" class="btn btn-primary">Submit Review</button>  </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 <p hidden id="event_id">{{event.id}}</p>
-<!-- create a element with hidden display that holds the event id / get in java script and alert it -->
 
-<br>
-
-{% if session.get("user_name") != None %}
-<form method = "POST">
-  <label for="rate_id">Rate this event:</label>
-
-  <select name="lang" id="rate_id">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-</form> <br>
-<p>Review this event</p>
-
-{% if review == None %}
-  <textarea id="review_text"></textarea> <br>
-{% else %}
-  <textarea id="review_text">
-    {{review.comment}}
-  </textarea> <br>
-{% endif %}
-<button id="review_button">Submit Review</button>
-{% endif %}
-
-<br><br>
-<hr/> 
-
-<p class="text-center"> What does people are talking about our events: </p>
-<main role="main">
-<div class="container">
+<h3 class=" text-center mt-1"> What does people are talking about this event</h3>
+<!-- <main role="main"> -->
+<div class="container container rounded border border-secondary py-3 px-2">
     <div class="row">
         <div class="card-group">
             {% for review in reviews_db %}
-            <div class="card" style_old="width: 18rem;">
-                <div class="card-header">
-                    <p>Event: {{review.events.name}}</p>
+            <div class="card mx-2 rounded border" >
+                <div class="card-header bg-info">
+                    <p class="fw-bolder">{{review.events.name}}</p>
                 </div>
                 <div class="card-body">
-                    <p class="card-title">Rate: {{review.rate}}</p>
-                    <p class="card-text">review: {{review.comment}}</p>
+                    <p class="card-title"><i>Rate:</i> {{review.rate}}</p>
+                    <p class="card-text"><i>Review:</i> {{review.comment}}</p>
                 </div>                
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
-</main>
+<!-- </main> -->
 
-<!-- <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> -->
-
-
-<!-- ############################################################################################################# -->
-
-
- <!-- <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="/static/css/card2.jpg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
-
-
-
-
-
-<!-- <main role="main">
-  <div class="container">    
-          <div class="row">
-              <div class="card-group">                           
-                      <div class="card" style_old="width: 18rem;">
-                          <div class="card-header">
-                              <img src="/static/css/card2.jpg" class="card-img-top" alt="img">
-                          </div>
-                          <div class="card-footer">
-                            <button class="bg-warning text-white like" type="submit" value="{{event.id}}" name="like_event">Add To wish list</button>
-                            <button class="bg-primary text-white" type="submit" value="{{event.id}}" name="sign_up">Sign in</button>
-                          </div>        
-                      </div>                
-             
-              </div>
-          </div>        
-  </div>  
-  </main>  -->
 
 
 <script src="/static/review.js"></script>

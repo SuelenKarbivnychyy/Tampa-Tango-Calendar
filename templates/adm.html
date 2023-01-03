@@ -1,107 +1,109 @@
 {% extends 'base.html' %}
 
-{% block title %} Adm {% endblock %}
+{% block title %} Administration {% endblock %}
 
 {% block body %}
+<!-- <div class="background_image"> -->
+ 
 
-<h1 class="text-center mt-5"> Adm  </h1>
 
-<style>
+
+<h1 class="text-center mt-1">Administration</h1>
+
+<div class="img-content"> 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <div class="container rounded border border-secondary pt-2 ">
+                <table class="table">    
+                    <thead>
+                    <tr class="card-header bg-info">   
+                        <th scope="col">Events</th>
+                        <th scope="col">Venue</th>
+                        <th scope="col">Edit event</th>  
+                        <th scope="col">Delete event</th>       
+                    </tr>
+                    </thead>
+                    <tbody>         
+                            {% for event in events_inf %}
+                            <tr> 
+                                <td>{{event.name}}</td>
+                                <td>{{event.location.venue_name}} </td>
+                                <td><button class="btn bg-success text-white" onclick="window.location.href = '/edit_event/{{event.id}}'">Edit</button></td>
+                                <td><button class="btn bg-danger text-white" onclick="window.location.href ='/delete_event/{{event.id}}'">Delete</button></td>
+                                                                
+                            {% endfor %} 
+                            </tr> 
+                    </tbody>
+                </table>
+                <button class="btn bg-primary text-white mb-2" onclick="window.location.href ='/edit_event/new'" name="add_event">Add new event</button>                           <!-- adding this button with '/edit_event/new' to create a new event instead od updating an existing event -->
+            </div> 
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="container rounded border border-secondary">
+                <p class=" lead">Add new event type</p>
+                    <form  action ="/add_event_type" method = "POST">
+                        <div class="form-row pb-2">
+                            <div class="form-group col">
+                                <label for="event_name_input">Event Type Name</label>
+                                <input type="text" class="form-control" name="event_name" id="event_name_input">
+                            </div>
+                        </div>
+                        <input class="btn bg-primary text-white mb-2" type="submit" value="Add Event Type" id="add_event_type">            
+                    </form>
+            </div> 
+            
+            
+            <div class="container rounded border border-secondary mt-3">
+                <p class="card-body lead">Add new venue</p>
+                <form action ="/add_event_location" class="" method = "POST">
+                    <div class="form-row pb-2">
+                        <div class="form-group col-12">
+                            <label for="venue_input">Venue Name</label>
+                            <input type="text" class="form-control" name="venue_name" id="event_name_input">
+                        </div>
+                    </div>
+                    <div class="form-row pb-2">
+                        <div class="form-group col-12">
+                            <label for="address_input">Street</label>
+                            <input type="text" class="form-control" name="venue_address" id="address_input">
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="form-group col-6">
+                            <label for="city_input">City</label>
+                            <input type="text" class="form-control" name="venue_city" id="city_input">
+                        </div>
+                        <div class="form-group col-2">
+                            <label for="state_input">State</label>    
+                            <input type="text" class="form-control" name="venue_state" id="state_input">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="zipcode_input">Zipcode</label>    
+                            <input type="text" class="form-control" name="venue_zipcode" id="zipcode_input">
+                        </div>
+                    </div>
+                    <input class="btn bg-primary text-white mb-2" type="submit" value="Add Venue" id="add_event_location" />
+                </form> 
+            </div>    
+            
+            <div class="container rounded border border-secondary mt-3">  
+                <p class="card-body lead">Click at the buttom bellow to send news to the subscribes</p>         
+                <button class="btn bg-primary text-white mb-2" type="submit" id="subscribe">Send Events Info</button>   
+            </div> 
+        </div>
+    </div>
+</div>
+
+<!-- <style>
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;    
 }
-</style>
-
-<div class="container rounded border border-secondary mt-3  py-4  px-5">
-    <table class="table">    
-        <thead>
-        <tr class="card-header bg-info">   
-            <th scope="col">Events</th>
-            <th scope="col">Venue</th>
-            <th scope="col">Edit event</th>  
-            <th scope="col">Delet event</th>       
-        </tr>
-        </thead>
-        <tbody>         
-                {% for event in events_inf %}
-                <tr> 
-                    <td>{{event.name}}</td>
-                    <td>{{event.location.venue_name}} </td>
-                    <td><button class="btn bg-success text-white" onclick="window.location.href = '/edit_event/{{event.id}}'">Edit Event</button></td>
-                    <td><button class="btn bg-danger text-white" onclick="window.location.href ='/delete_event/{{event.id}}'">Delet Event</button></td>
-                                                    
-                {% endfor %} 
-                </tr> 
-        </tbody>
-    </table>
-    <button class="btn bg-primary text-white" onclick="window.location.href ='/edit_event/new'" name="add_event">Add new event</button>                           <!-- adding this button with '/edit_event/new' to create a new event instead od updating an existing event -->
-</div> <br><br>
+</style> -->
 
 
-
-<div class="container rounded border border-secondary mt-3">
-    <p class="card-body bg-info">Provide the type of event you would like to add:</p>
-    
-    <form class="row" action ="/add_event_type" method = "POST">
-      <div class="col-md-6">
-        <div class="row pb-4 px-5">
-          <label for="event_name_input">Event Name</label>
-          <input type="text" name="event_name" id="event_name_input">
-        </div>
-        <div class="row pb-4 mx-4">
-            <div class="col">
-                <input class="btn bg-primary text-white" type="submit" value="Add Event Type" id="add_event_type">            
-            </div>
-        </div>    
-      </div>
-    </form> 
-</div> <br><br>
-
-
-<div class="container rounded border border-secondary mt-3">
-    <p class="card-body bg-info">Provide the venue informations:</p>
-    
-    <form class="row" action ="/add_event_location" method = "POST">
-      <div class="col-md-6">
-        <div class="row pb-4 px-5">
-          <label for="venue_input">Venue Name:</label>
-          <input type="text" name="venue_name" id="event_name_input">
-        </div>
-        <div class="row pb-4 px-5">
-            <label for="address_input">Address:</label>
-            <input type="text" name="venue_address" id="address_input">
-        </div>
-        <div class="row pb-4 px-5">
-            <label for="city_input">City:</label>
-            <input type="text" name="venue_city" id="city_input">
-        </div>  
-        <div class="row pb-4 px-5">
-            <label for="state_input">State:</label>    
-            <input type="text" name="venue_state" id="state_input">
-        </div>
-        <div class="row pb-4 px-5">
-            <label for="zipcode_input">Zipcode:</label>    
-            <input type="text" name="venue_zipcode" id="zipcode_input">
-        </div>
-        <div class="row pb-4 mx-4">
-            <div class="col">
-                <input class="btn bg-primary text-white" type="submit" value="Add Venue" id="add_event_location">
-            </div>
-        </div>           
-      </div>
-    </form> 
-</div>    
-
-<div class="container rounded border border-secondary mt-3">  
-    <p class="card-body bg-info">Click at the buttom bellow to send news to the subscribes:</p>         
-    <div class="row pb-4 mx-4">
-        <div class="col"> 
-            <button class="btn bg-primary text-white" type="submit" id="subscribe">Send Events Info</button>   
-        </div>
-    </div>     
-</div>    
-
+<!-- </div> -->
 <script src="/static/email_update.js"></script>
 
 

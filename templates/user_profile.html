@@ -8,8 +8,9 @@
 <div class="container">    
     <div class="row">
         <div class="card-group">
-            {% for event in events %}               
-                <div class="card" style_old="width: 18rem;">
+            {% for event in events %}    
+            <div class="col-3 m-1">
+                <div class="card h-100" >
                     <div class="card-header" name="link_to_details" event_id="{{event.id}}">
                         <img src="/static/css/card1.jpg" class="card-img-top" alt="...">
                     </div>
@@ -25,11 +26,13 @@
                             </svg>
                             Share
                         </a> 
+                        <br/>
                         <!-- <div class="fb-share-button" data-href="http://127.0.0.1:5000/events/{{event.id}}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> -->
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{event.name}}&details={{event.description}}&dates={{event.start_date_time.strftime('%Y%m%dT%H%M%S')}}/{{event.end_date_time.strftime('%Y%m%dT%H%M%S')}} &location={{event.location.address}}, {{event.location.city}} - {{event.location.zipcode}}">Add to Google Calendar</a>
 
                     </div>        
-                </div>                
+                </div>    
+            </div>                
             {% endfor %}
         </div>
     </div>        
@@ -46,7 +49,7 @@
     <div class="row">
         <div class="card-group">
             {% for review in reviews %}
-            <div class="col-md-3 m-1">
+            <div class="col-3 m-1">
                 <div class="card h-100" style_old="width: 18rem;">
                     <div class="card-header">
                         <p>Event: {{review.events.name}}</p>
