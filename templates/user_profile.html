@@ -3,7 +3,7 @@
 {% block title %}User Profile{% endblock %}
 
 {% block body %}
-<p class="text-center display-5"> Upcoming Events </p>
+<p class="text-center display-5"> Your Upcoming Events </p>
 <main role="main">
 <div class="container">    
     <div class="row">
@@ -59,7 +59,7 @@
                         <p class="card-text"><b>Review:</b> {{review.comment}}</p>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-warning" name="delete_review" value="{{review.id}}">Delete review</button>
+                        <button type="submit" class="btn btn-danger" name="delete_review" value="{{review.id}}">Delete</button>
                     </div>
                 </div>
             </div>    

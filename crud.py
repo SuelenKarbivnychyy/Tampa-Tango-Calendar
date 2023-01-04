@@ -85,7 +85,7 @@ def get_event_by_id(id):
     return Event.query.get(id)  
 
 
-def get_all_events():                                               #getting all events from database
+def get_all_events():                                               
     """Return all events"""
     
     return Event.query.all()

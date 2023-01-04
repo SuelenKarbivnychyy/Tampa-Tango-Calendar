@@ -7,17 +7,6 @@
     padding: 280px 0 220px;
 }
 
-.background_image {
-    position: relative;
-    background: url(tango.jpg);
-    opacity: 0.5;  
-    min-height:100vh;    
-    background-size: cover;
-    background-position: center;
-    padding: 280px 0 220px;
-
-}
-
 
 
 .main h2{
@@ -43,4 +32,6 @@
 
 body {
     padding-top: 60px;
+    background-color: #E6DEDD ;
   }
+

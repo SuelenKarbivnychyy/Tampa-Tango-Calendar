@@ -13,7 +13,7 @@
     <div class="col-8 py-2">
       <div class="container container rounded border border-secondary px-4">
         <h4 class="mt-2 text-center">Event details</h4>
-        <p class="lead">{{event.event_type.name}}</p> 
+        <!-- <p class="lead">{{event.event_type.name}}</p>  -->
         <p class="lead">{{event.description}}</p>
         <p class="lead">{{event.start_date_time.strftime('%d/%m/%y')}} {{event.start_date_time.strftime("%H:%M")}}, ${{event.price}}</p> 
         <p class="lead">{{event.location.venue_name}}</p>
@@ -73,7 +73,7 @@
         <div class="card-group">
             {% for review in reviews_db %}
             <div class="card mx-2 rounded border" >
-                <div class="card-header bg-info">
+                <div class="card-header">
                     <p class="fw-bolder">{{review.events.name}}</p>
                 </div>
                 <div class="card-body">
