@@ -1,8 +1,5 @@
 let listCards = document.querySelectorAll('[name="link_to_details"]');
 
- 
-
-
 
 const redirect_to_events_details = (evt) => {
     evt.preventDefault();

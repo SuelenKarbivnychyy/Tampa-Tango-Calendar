@@ -5,7 +5,7 @@ const validateUserCredentials = (evt) => {
 
     let emailImputValue = document.getElementById("email").value;
     let passwordImputValue = document.getElementById("password").value;
-    // alert(emailImputValue);
+    
     if (emailImputValue === '' || passwordImputValue === '') {         // checking if all the fields are filled and let the users now if its not
         display_warning_message("All the fields are required", "Please verify the informations and try again");   
         return ;    
