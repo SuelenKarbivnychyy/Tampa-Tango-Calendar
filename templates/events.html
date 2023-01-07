@@ -4,26 +4,31 @@
 
 {% block body %}
 
-
-<h1 class="text-center mt-5"> Events  </h1>
-
 <style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;    
-}
-</style>
+  table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;    
+  }
+  
+  body {
+       margin: 0;
+       background: url("/static/img/background.jpg") repeat;
+   } 
+  
+  </style>
+  
+
+<h1 class="text-center m-1 header-text"> Events  </h1>
 
 
 <main role="main">
   <div class="container">    
-    <div class="row">
-        <div class="card-group">
+    <div class="row justify-content-center">
         {% for event in events %}
-          <div class="col-3 m-1">
-            <div class="card h-100" style_old="width: 18rem;">
+          <div class="col-3 col-xs-6 p-1">
+            <div class="card h-100">
               <div class="card-header" name="link_to_details" event_id="{{event.id}}">             
-                <img src="/static/css/card2.jpg" class="card-img-top" alt="img">
+                <img src="/static/img/tango{{event.id % 10}}.jpg" class="card-img-top" alt="img">
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{event.name or '<Name does not provided!>'}}</h5>
@@ -49,10 +54,11 @@ table, th, td {
                   Share
                 </a> 
               </div> 
-            </div>       
+            </div>   
+            
+            
           </div>
         {% endfor %}
-        </div>
     </div>        
   </div>  
   </main>  

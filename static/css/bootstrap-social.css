@@ -1,0 +1,983 @@
+/*Bootstrap Social Media sharing button*/
+/*https://f86597.github.io/bootstrap-social-share/*/
+/*licence" MIT https://opensource.org/licenses/MIT*/
+/*twitter.com/f86597*/
+.f-social {
+    position: relative;
+    padding-left: 44px;
+    padding-right: 44px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    border: none;
+    color: #fff;
+    border: 1px solid rgba(225, 255, 255, 0.2);
+  }
+  
+  .f-social:hover {
+    background: #fff;
+    color: #000;
+  }
+  
+  .f-social :nth-child(1) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 36px;
+    line-height: 36px;
+    font-size: 1.3em;
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  .f-social :nth-child(2) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 36px;
+    line-height: 36px;
+    font-size: 1.3em;
+    text-align: center;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  .f-social.btn-lg {
+    padding-left: 61px;
+    padding-right: 61px;
+  }
+  
+  .f-social.btn-lg :nth-child(2) {
+    line-height: 48px;
+    width: 45px;
+    font-size: 1.6em;
+  }
+  
+  .f-social.btn-lg :nth-child(1) {
+    line-height: 48px;
+    width: 45px;
+    font-size: 1.8em;
+  }
+  
+  .f-social.btn-sm {
+    padding-left: 38px;
+  }
+  
+  .f-social.btn-sm :first-child {
+    line-height: 28px;
+    width: 28px;
+    font-size: 1.4em;
+  }
+  
+  .f-social.btn-sm :last-child {
+    line-height: 28px;
+    width: 28px;
+    font-size: 1.4em;
+  }
+  
+  .f-facebook {
+    background-color: #3b5998;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-facebook:hover {
+    background-color: #2d4373;
+    color: #fff;
+  }
+  
+  .f-facebook:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #1e2e4f;
+            box-shadow: 0 0 0 0.2rem #1e2e4f;
+  }
+  
+  .f-facebook:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #718dc8;
+            box-shadow: 0 0 0 0.2rem #718dc8;
+  }
+  
+  .f-twitter {
+    background-color: #00b6f1;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-twitter:hover {
+    background-color: #008fbe;
+    color: #fff;
+  }
+  
+  .f-twitter:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #00698b;
+            box-shadow: 0 0 0 0.2rem #00698b;
+  }
+  
+  .f-twitter:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #58d6ff;
+            box-shadow: 0 0 0 0.2rem #58d6ff;
+  }
+  
+  .f-youtube {
+    background-color: #ff0000;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-youtube:hover {
+    background-color: #cc0000;
+    color: #fff;
+  }
+  
+  .f-youtube:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #990000;
+            box-shadow: 0 0 0 0.2rem #990000;
+  }
+  
+  .f-youtube:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #ff6666;
+            box-shadow: 0 0 0 0.2rem #ff6666;
+  }
+  
+  .f-instagram-magenta {
+    background-color: #c32aa3;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-instagram-magenta:hover {
+    background-color: #992180;
+    color: #fff;
+  }
+  
+  .f-instagram-magenta:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #6f185d;
+            box-shadow: 0 0 0 0.2rem #6f185d;
+  }
+  
+  .f-instagram-magenta:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #e172ca;
+            box-shadow: 0 0 0 0.2rem #e172ca;
+  }
+  
+  .f-instagram-blue {
+    background-color: #4c5fd7;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-instagram-blue:hover {
+    background-color: #2c41c4;
+    color: #fff;
+  }
+  
+  .f-instagram-blue:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #23339a;
+            box-shadow: 0 0 0 0.2rem #23339a;
+  }
+  
+  .f-instagram-blue:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #9faaea;
+            box-shadow: 0 0 0 0.2rem #9faaea;
+  }
+  
+  .f-instagram-purple {
+    background-color: #7232bd;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-instagram-purple:hover {
+    background-color: #5a2795;
+    color: #fff;
+  }
+  
+  .f-instagram-purple:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #411d6c;
+            box-shadow: 0 0 0 0.2rem #411d6c;
+  }
+  
+  .f-instagram-purple:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #a779dc;
+            box-shadow: 0 0 0 0.2rem #a779dc;
+  }
+  
+  .f-instagram-orange {
+    background-color: #f46f30;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-instagram-orange:hover {
+    background-color: #e5520c;
+    color: #fff;
+  }
+  
+  .f-instagram-orange:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #b4400a;
+            box-shadow: 0 0 0 0.2rem #b4400a;
+  }
+  
+  .f-instagram-orange:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #f9b291;
+            box-shadow: 0 0 0 0.2rem #f9b291;
+  }
+  
+  .f-instagram-yellow {
+    background-color: #ffdc7d;
+    color: #555;
+    border: 0px;
+  }
+  
+  .f-instagram-yellow:hover {
+    background-color: #ffce4a;
+    color: #555;
+  }
+  
+  .f-instagram-yellow:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #ffc117;
+            box-shadow: 0 0 0 0.2rem #ffc117;
+  }
+  
+  .f-instagram-yellow:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #fff7e3;
+            box-shadow: 0 0 0 0.2rem #fff7e3;
+  }
+  
+  .f-pinterest {
+    background-color: #cb2027;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-pinterest:hover {
+    background-color: #9f191f;
+    color: #fff;
+  }
+  
+  .f-pinterest:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #731216;
+            box-shadow: 0 0 0 0.2rem #731216;
+  }
+  
+  .f-pinterest:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #e76a6f;
+            box-shadow: 0 0 0 0.2rem #e76a6f;
+  }
+  
+  .f-google-plus {
+    background-color: #df4a32;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-google-plus:hover {
+    background-color: #c0341e;
+    color: #fff;
+  }
+  
+  .f-google-plus:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #942817;
+            box-shadow: 0 0 0 0.2rem #942817;
+  }
+  
+  .f-google-plus:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #ed988a;
+            box-shadow: 0 0 0 0.2rem #ed988a;
+  }
+  
+  .f-linkedin {
+    background-color: #007bb6;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-linkedin:hover {
+    background-color: #005983;
+    color: #fff;
+  }
+  
+  .f-linkedin:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #003650;
+            box-shadow: 0 0 0 0.2rem #003650;
+  }
+  
+  .f-linkedin:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #1db6ff;
+            box-shadow: 0 0 0 0.2rem #1db6ff;
+  }
+  
+  .f-vimeo-blue {
+    background-color: #45bbff;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-vimeo-blue:hover {
+    background-color: #12a8ff;
+    color: #fff;
+  }
+  
+  .f-vimeo-blue:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #008dde;
+            box-shadow: 0 0 0 0.2rem #008dde;
+  }
+  
+  .f-vimeo-blue:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #abe0ff;
+            box-shadow: 0 0 0 0.2rem #abe0ff;
+  }
+  
+  .f-vimeo-green {
+    background-color: #aad450;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-vimeo-green:hover {
+    background-color: #93c130;
+    color: #fff;
+  }
+  
+  .f-vimeo-green:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #749925;
+            box-shadow: 0 0 0 0.2rem #749925;
+  }
+  
+  .f-vimeo-green:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #d2e8a2;
+            box-shadow: 0 0 0 0.2rem #d2e8a2;
+  }
+  
+  .f-vimeo-orange {
+    background-color: #f7b42c;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-vimeo-orange:hover {
+    background-color: #e79e09;
+    color: #fff;
+  }
+  
+  .f-vimeo-orange:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #b67c07;
+            box-shadow: 0 0 0 0.2rem #b67c07;
+  }
+  
+  .f-vimeo-orange:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #fbd78e;
+            box-shadow: 0 0 0 0.2rem #fbd78e;
+  }
+  
+  .f-vimeo-pink {
+    background-color: #f27490;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-vimeo-pink:hover {
+    background-color: #ee456b;
+    color: #fff;
+  }
+  
+  .f-vimeo-pink:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #e91746;
+            box-shadow: 0 0 0 0.2rem #e91746;
+  }
+  
+  .f-vimeo-pink:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #fbd1da;
+            box-shadow: 0 0 0 0.2rem #fbd1da;
+  }
+  
+  .f-tumbler {
+    background-color: #2c4762;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-tumbler:hover {
+    background-color: #1c2e3f;
+    color: #fff;
+  }
+  
+  .f-tumbler:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #0c141c;
+            box-shadow: 0 0 0 0.2rem #0c141c;
+  }
+  
+  .f-tumbler:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #4c7aa8;
+            box-shadow: 0 0 0 0.2rem #4c7aa8;
+  }
+  
+  .f-snapchat {
+    background-color: #fffc00;
+    color: #555;
+    border: 0px;
+  }
+  
+  .f-snapchat:hover {
+    background-color: #ccca00;
+    color: #555;
+  }
+  
+  .f-snapchat:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #999700;
+            box-shadow: 0 0 0 0.2rem #999700;
+  }
+  
+  .f-snapchat:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #fffd66;
+            box-shadow: 0 0 0 0.2rem #fffd66;
+  }
+  
+  .f-whatsapp-green {
+    background-color: #25d366;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-whatsapp-green:hover {
+    background-color: #1da851;
+    color: #fff;
+  }
+  
+  .f-whatsapp-green:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #167c3c;
+            box-shadow: 0 0 0 0.2rem #167c3c;
+  }
+  
+  .f-whatsapp-green:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #77e7a1;
+            box-shadow: 0 0 0 0.2rem #77e7a1;
+  }
+  
+  .f-whatsapp-teal1 {
+    background-color: #075e54;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-whatsapp-teal1:hover {
+    background-color: #032f2a;
+    color: #fff;
+  }
+  
+  .f-whatsapp-teal1:active {
+    -webkit-box-shadow: 0 0 0 0.2rem black;
+            box-shadow: 0 0 0 0.2rem black;
+  }
+  
+  .f-whatsapp-teal1:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #0ebda9;
+            box-shadow: 0 0 0 0.2rem #0ebda9;
+  }
+  
+  .f-whatsapp-teal2 {
+    background-color: #128c7e;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-whatsapp-teal2:hover {
+    background-color: #0c5f55;
+    color: #fff;
+  }
+  
+  .f-whatsapp-teal2:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #06322d;
+            box-shadow: 0 0 0 0.2rem #06322d;
+  }
+  
+  .f-whatsapp-teal2:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #21e3cc;
+            box-shadow: 0 0 0 0.2rem #21e3cc;
+  }
+  
+  .f-four-square-pink {
+    background-color: #fc4575;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-four-square-pink:hover {
+    background-color: #fb1350;
+    color: #fff;
+  }
+  
+  .f-four-square-pink:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #d8033b;
+            box-shadow: 0 0 0 0.2rem #d8033b;
+  }
+  
+  .f-four-square-pink:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #fea9bf;
+            box-shadow: 0 0 0 0.2rem #fea9bf;
+  }
+  
+  .f-four-square-blue {
+    background-color: #2d5be3;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-four-square-blue:hover {
+    background-color: #1a45c3;
+    color: #fff;
+  }
+  
+  .f-four-square-blue:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #143596;
+            box-shadow: 0 0 0 0.2rem #143596;
+  }
+  
+  .f-four-square-blue:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #87a1ef;
+            box-shadow: 0 0 0 0.2rem #87a1ef;
+  }
+  
+  .f-skype-blue {
+    background-color: #00aff0;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-skype-blue:hover {
+    background-color: #008abd;
+    color: #fff;
+  }
+  
+  .f-skype-blue:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #00658a;
+            box-shadow: 0 0 0 0.2rem #00658a;
+  }
+  
+  .f-skype-blue:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #57d2ff;
+            box-shadow: 0 0 0 0.2rem #57d2ff;
+  }
+  
+  .f-skype-green {
+    background-color: #7fba00;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-skype-green:hover {
+    background-color: #5c8700;
+    color: #fff;
+  }
+  
+  .f-skype-green:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #395400;
+            box-shadow: 0 0 0 0.2rem #395400;
+  }
+  
+  .f-skype-green:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #b9ff21;
+            box-shadow: 0 0 0 0.2rem #b9ff21;
+  }
+  
+  .f-android {
+    background-color: #a4c639;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-android:hover {
+    background-color: #839e2e;
+    color: #fff;
+  }
+  
+  .f-android:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #627722;
+            box-shadow: 0 0 0 0.2rem #627722;
+  }
+  
+  .f-android:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #c8dd88;
+            box-shadow: 0 0 0 0.2rem #c8dd88;
+  }
+  
+  .f-stumble-upon {
+    background-color: #eb4924;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-stumble-upon:hover {
+    background-color: #ca3412;
+    color: #fff;
+  }
+  
+  .f-stumble-upon:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #9b280e;
+            box-shadow: 0 0 0 0.2rem #9b280e;
+  }
+  
+  .f-stumble-upon:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #f49781;
+            box-shadow: 0 0 0 0.2rem #f49781;
+  }
+  
+  .f-flickr-pink {
+    background-color: #f40083;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-flickr-pink:hover {
+    background-color: #c10068;
+    color: #fff;
+  }
+  
+  .f-flickr-pink:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #8e004c;
+            box-shadow: 0 0 0 0.2rem #8e004c;
+  }
+  
+  .f-flickr-pink:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #ff5bb3;
+            box-shadow: 0 0 0 0.2rem #ff5bb3;
+  }
+  
+  .f-flickr-blue {
+    background-color: #006add;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-flickr-blue:hover {
+    background-color: #0052aa;
+    color: #fff;
+  }
+  
+  .f-flickr-blue:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #003977;
+            box-shadow: 0 0 0 0.2rem #003977;
+  }
+  
+  .f-flickr-blue:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #449eff;
+            box-shadow: 0 0 0 0.2rem #449eff;
+  }
+  
+  .f-yahoo {
+    background-color: #430297;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-yahoo:hover {
+    background-color: #2d0165;
+    color: #fff;
+  }
+  
+  .f-yahoo:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #160132;
+            box-shadow: 0 0 0 0.2rem #160132;
+  }
+  
+  .f-yahoo:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #7003fc;
+            box-shadow: 0 0 0 0.2rem #7003fc;
+  }
+  
+  .f-sound-cloud {
+    background-color: #ff5500;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-sound-cloud:hover {
+    background-color: #cc4400;
+    color: #fff;
+  }
+  
+  .f-sound-cloud:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #993300;
+            box-shadow: 0 0 0 0.2rem #993300;
+  }
+  
+  .f-sound-cloud:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #ff9966;
+            box-shadow: 0 0 0 0.2rem #ff9966;
+  }
+  
+  .f-spotify-green {
+    background-color: #1ed760;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-spotify-green:hover {
+    background-color: #18aa4c;
+    color: #fff;
+  }
+  
+  .f-spotify-green:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #127d38;
+            box-shadow: 0 0 0 0.2rem #127d38;
+  }
+  
+  .f-spotify-green:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #70eb9c;
+            box-shadow: 0 0 0 0.2rem #70eb9c;
+  }
+  
+  .f-spotify-dark-green {
+    background-color: #1db954;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-spotify-dark-green:hover {
+    background-color: #168d40;
+    color: #fff;
+  }
+  
+  .f-spotify-dark-green:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #0f612c;
+            box-shadow: 0 0 0 0.2rem #0f612c;
+  }
+  
+  .f-spotify-dark-green:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #57e589;
+            box-shadow: 0 0 0 0.2rem #57e589;
+  }
+  
+  .f-dribbble {
+    background-color: #ea4c89;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-dribbble:hover {
+    background-color: #e51e6b;
+    color: #fff;
+  }
+  
+  .f-dribbble:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #ba1655;
+            box-shadow: 0 0 0 0.2rem #ba1655;
+  }
+  
+  .f-dribbble:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #f5a7c5;
+            box-shadow: 0 0 0 0.2rem #f5a7c5;
+  }
+  
+  .f-reddit {
+    background-color: #ff5700;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-reddit:hover {
+    background-color: #cc4600;
+    color: #fff;
+  }
+  
+  .f-reddit:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #993400;
+            box-shadow: 0 0 0 0.2rem #993400;
+  }
+  
+  .f-reddit:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #ff9a66;
+            box-shadow: 0 0 0 0.2rem #ff9a66;
+  }
+  
+  .f-deviantart {
+    background-color: #4a5d4e;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-deviantart:hover {
+    background-color: #334136;
+    color: #fff;
+  }
+  
+  .f-deviantart:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #1d241e;
+            box-shadow: 0 0 0 0.2rem #1d241e;
+  }
+  
+  .f-deviantart:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #79947f;
+            box-shadow: 0 0 0 0.2rem #79947f;
+  }
+  
+  .f-pocket {
+    background-color: #ee4056;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-pocket:hover {
+    background-color: #e6152f;
+    color: #fff;
+  }
+  
+  .f-pocket:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #b81026;
+            box-shadow: 0 0 0 0.2rem #b81026;
+  }
+  
+  .f-pocket:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #f69ea9;
+            box-shadow: 0 0 0 0.2rem #f69ea9;
+  }
+  
+  .f-quora {
+    background-color: #aa2200;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-quora:hover {
+    background-color: #771800;
+    color: #fff;
+  }
+  
+  .f-quora:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #440e00;
+            box-shadow: 0 0 0 0.2rem #440e00;
+  }
+  
+  .f-quora:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #ff4111;
+            box-shadow: 0 0 0 0.2rem #ff4111;
+  }
+  
+  .f-quora-blue {
+    background-color: #2b6dad;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-quora-blue:hover {
+    background-color: #215384;
+    color: #fff;
+  }
+  
+  .f-quora-blue:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #173a5b;
+            box-shadow: 0 0 0 0.2rem #173a5b;
+  }
+  
+  .f-quora-blue:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #65a0d9;
+            box-shadow: 0 0 0 0.2rem #65a0d9;
+  }
+  
+  .f-slide-share-orange {
+    background-color: #f7941e;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-slide-share-orange:hover {
+    background-color: #da7a08;
+    color: #fff;
+  }
+  
+  .f-slide-share-orange:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #a95f06;
+            box-shadow: 0 0 0 0.2rem #a95f06;
+  }
+  
+  .f-slide-share-orange:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #fbc380;
+            box-shadow: 0 0 0 0.2rem #fbc380;
+  }
+  
+  .f-slide-share-blue {
+    background-color: #1191d0;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-slide-share-blue:hover {
+    background-color: #0d70a1;
+    color: #fff;
+  }
+  
+  .f-slide-share-blue:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #094f72;
+            box-shadow: 0 0 0 0.2rem #094f72;
+  }
+  
+  .f-slide-share-blue:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #56bef1;
+            box-shadow: 0 0 0 0.2rem #56bef1;
+  }
+  
+  .f-500px {
+    background-color: #0099e5;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-500px:hover {
+    background-color: #0077b2;
+    color: #fff;
+  }
+  
+  .f-500px:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #00557f;
+            box-shadow: 0 0 0 0.2rem #00557f;
+  }
+  
+  .f-500px:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #4cc4ff;
+            box-shadow: 0 0 0 0.2rem #4cc4ff;
+  }
+  
+  .f-vine {
+    background-color: #00b489;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-vine:hover {
+    background-color: #008162;
+    color: #fff;
+  }
+  
+  .f-vine:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #004e3b;
+            box-shadow: 0 0 0 0.2rem #004e3b;
+  }
+  
+  .f-vine:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #1bffc9;
+            box-shadow: 0 0 0 0.2rem #1bffc9;
+  }
+  
+  .f-github {
+    background-color: #444444;
+    color: #fff;
+    border: 0px;
+  }
+  
+  .f-github:hover {
+    background-color: #2b2b2b;
+    color: #fff;
+  }
+  
+  .f-github:active {
+    -webkit-box-shadow: 0 0 0 0.2rem #111111;
+            box-shadow: 0 0 0 0.2rem #111111;
+  }
+  
+  .f-github:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem #777777;
+            box-shadow: 0 0 0 0.2rem #777777;
+  }
+  /*# sourceMappingURL=bootstrap-social.css.map */
