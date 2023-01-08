@@ -30,7 +30,7 @@ const serverData = (data) => {
     if(data == "Please login.") {
         display_warning_message("Please login in.", "You need to login to register for a class.", redirect_after_action);
     } else {
-        display_warning_message("Signed in.", "You're sucessfully sign in for this event.", redirect_after_action);
+        display_warning_message("Registered.", "You're sucessfully registered for this event.", redirect_after_action);
     }    
 }
 
@@ -65,7 +65,7 @@ const signOutFromEvent = (evt) => {
 }
 
 const serverAnswer = (data) => {
-    display_warning_message("You are sign out.", "We are sorry to see you go!" ,redirect_after_action);    
+    display_warning_message("You've sucessfully cancel your registration.", "We are sorry to see you go!", redirect_after_action);    
 }
 
 for (button of signOutButton) {                                                          // adding event handler for each button
