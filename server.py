@@ -74,9 +74,10 @@ def show_all_events():
         for review in event.reviews:
             total_review_rate += review.rate
         total_reviews_per_event = len(event.reviews)
+        rate_character = "⭐"
         if total_review_rate > 0:
-            rate[event.id] = round(total_review_rate / total_reviews_per_event, 1)
-    
+            average_rate_per_event = round(total_review_rate / total_reviews_per_event)
+            rate[event.id] = rate_character * average_rate_per_event
     
     list_of_attendance = crud.get_all_attendance()
     user_id = session.get("current_user")

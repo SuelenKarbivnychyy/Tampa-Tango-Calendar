@@ -88,7 +88,10 @@ def get_event_by_id(id):
 def get_all_events():                                               
     """Return all events"""
     
-    return Event.query.all()
+    return Event.query.order_by('start_date_time').all()
+    # events = db.session.query(Event)
+    # return events.order_by('start_date_time').all
+
 
 ################################################################
 #NEW QUERY TO GET EVENT ID AND NAME

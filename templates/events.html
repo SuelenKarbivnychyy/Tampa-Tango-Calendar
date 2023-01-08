@@ -36,16 +36,19 @@
               </div>
               <div class="card-footer">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"> {{event.attendances|length}} people are going.</li>
-                  <li class="list-group-item">rate: {{rate.get(event.id, "Event has no rate yet")}}</li>
+                  <!-- <li class="list-group-item">{{event.attendances|length}} people are going</li> -->
+                  <li class="list-group-item">{{event.start_date_time.strftime('%d/%m/%y')}} {{event.start_date_time.strftime("%I:%M %p")}}</li>
+                  <li class="list-group-item">{{rate.get(event.id, "Event has no rate yet")}}</li>
                   <li class="list-group-item">
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{event.name}}&details={{event.description}}&dates={{event.start_date_time.strftime('%Y%m%dT%H%M%S')}}/{{event.end_date_time.strftime('%Y%m%dT%H%M%S')}} &location={{event.location.address}}, {{event.location.city}} - {{event.location.zipcode}}">Add to Google Calendar</a>
                   </li>                
                 </ul>
                 {% if event.id in attendances.keys() %} 
-                  <button class="btn bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Sign out</button>
+                  <button class="btn bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Cancel registration</button>
                 {% else %}
-                  <button class="btn bg-success text-white" type="submit" value="{{event.id}}" name="sign_up">Sign in</button>
+                  <button class="btn bg-success text-white" type="submit" value="{{event.id}}" name="sign_up">Register
+
+                  </button>
               {% endif %} 
                 <a type="button" class="btn btn-primary" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
