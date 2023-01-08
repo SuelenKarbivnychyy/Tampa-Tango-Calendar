@@ -52,11 +52,12 @@
             <div class="col-3 m-1">
                 <div class="card h-100" style_old="width: 18rem;">
                     <div class="card-header">
-                        <p>Event: {{review.events.name}}</p>
+                        <p>{{review.events.name}}</p>
                     </div>
                     <div class="card-body">
-                        <p class="card-title"><b>Rate:</b> {{review.rate}}</p>
-                        <p class="card-text"><b>Review:</b> {{review.comment}}</p>
+                        <p class="card-title">{{review.user.fname}}</p>
+                        <p class="card-title">{{review.rate * "⭐"}}</p>
+                        <p class="card-text"><i>{{review.comment}}</i></p>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-danger" name="delete_review" value="{{review.id}}">Delete</button>

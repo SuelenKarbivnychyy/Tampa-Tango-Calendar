@@ -5,7 +5,8 @@ from model import connect_to_db, db, Event, Location, Event_type
 import crud
 from jinja2 import StrictUndefined                                   #configure a Jinja2 setting to make it throw errors for undefined variables
 from datetime import datetime 
-import send_email                            
+import send_email 
+from sqlalchemy import update                           
 
 app = Flask(__name__)
 app.app_context().push()
@@ -133,7 +134,7 @@ def create_review():
     else:
         print(f"################## review {review_from_db.comment}")
         return "false"
-
+    
 
 
 @app.route("/delete_review", methods=["POST"])

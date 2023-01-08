@@ -39,6 +39,7 @@ def create_review(rate, comment, event_id, user_id):
     review = Review(rate=rate, comment=comment, event_id=event_id, user_id=user_id)
     return review
 
+
 def get_all_reviews_for_a_user(user_id):
     """Return all reviews"""
 
@@ -49,6 +50,7 @@ def get_review_by_event_and_user(event_id, user_id):
     """Return review by event id and user_id"""
 
     return Review.query.filter(Review.event_id == event_id, Review.user_id == user_id).first()
+
 
 def get_review_by_id(review_id):
     """Return a review by id"""
@@ -89,8 +91,7 @@ def get_all_events():
     """Return all events"""
     
     return Event.query.order_by('start_date_time').all()
-    # events = db.session.query(Event)
-    # return events.order_by('start_date_time').all
+   
 
 
 ################################################################
@@ -188,10 +189,7 @@ def get_all_attendance_for_a_user(user_id):
 
 
 
-# def create_a_subscribe(email):
-#     """Create and return a subscriber user"""
 
-#     email_to_subscribe = Subscribe()
 
 
 
