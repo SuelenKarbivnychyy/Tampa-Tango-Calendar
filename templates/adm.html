@@ -3,15 +3,20 @@
 {% block title %} Administration {% endblock %}
 
 {% block body %}
+<style>
+    body {
+       margin: 0;
+       background: url("/static/img/background.jpg") repeat;
+    } 
+</style>
 
-
-<h1 class="text-center mt-1">Administration</h1>
+<h1 class="text-center m-1 header-text">Administration</h1>
 
 <div class="img-content"> 
-<div class="container">
+<div class="container ">
     <div class="row">
         <div class="col-lg-6 col-12">
-            <div class="container rounded border border-secondary pt-2 ">
+            <div class="container rounded border border-secondary pt-2 bg-admin-panel">
                 <table class="table">    
                     <thead>
                     <tr class="card-header ">   
@@ -37,7 +42,7 @@
             </div> 
         </div>
         <div class="col-lg-6 col-12">
-            <div class="container rounded border border-secondary">
+            <div class="container rounded border border-secondary bg-admin-panel">
                 <p class=" lead">Add new event type</p>
                     <form  action ="/add_event_type" method = "POST">
                         <div class="form-row pb-2">
@@ -51,7 +56,7 @@
             </div> 
             
             
-            <div class="container rounded border border-secondary mt-3">
+            <div class="container rounded border border-secondary mt-3 bg-admin-panel">
                 <p class="card-body lead">Add new venue</p>
                 <form action ="/add_event_location" class="" method = "POST">
                     <div class="form-row pb-2">
@@ -84,7 +89,7 @@
                 </form> 
             </div>    
             
-            <div class="container rounded border border-secondary mt-3">  
+            <div class="container rounded border border-secondary mt-3 bg-admin-panel">  
                 <p class="card-body lead">Click at the buttom bellow to send news to the subscribes</p>         
                 <button class="btn bg-primary text-white mb-2" type="submit" id="subscribe">Send Events Info</button>   
             </div> 

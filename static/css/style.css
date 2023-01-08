@@ -31,8 +31,8 @@
 }
 
 body {
-    padding-top: 60px;
-    background-color: #E6DEDD ;
+    padding-top: 75px;
+    /* background-color: #E6DEDD ; */
 }
 
 .header-text {
@@ -40,8 +40,33 @@ body {
     font-optical-sizing: auto; font-family: "Montserrat rev=1"; font-weight: 300; font-style: italic; font-stretch: normal; line-height: initial;
 }
 
+.golden-text {
+    color:#D4AF37;
+}
+
 .bg-dark-purple {
-    background-color: #41102f;
+    background-color: #42102F;
+    border-color : #42102F;
+}
+
+.bg-purple {
+    background-color: #653e70;
+    border-color : #653e70;
+}
+
+.bg-dark-sienna {
+    background-color: #440D1C;
+    border-color : #440D1C;
+}
+
+.bg-dark-red {
+    background-color: #a12a15; 
+    border-color : #a12a15; 
+}
+
+.bg-admin-panel {
+    background-color: #e9d5d5; 
+    border-color : #e9d5d5; 
 }
 
 .card-img-top {
@@ -49,4 +74,14 @@ body {
     height: 40vh;
     object-fit: cover;
 }
+
+.navbar-brand, .navbar-nav, .navbar-text, .nav-link {
+    font-size: x-large;
+}
+
+body {
+    margin: 0;
+    background: url("/static/img/background.jpg") repeat;
+} 
+
 

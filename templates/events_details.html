@@ -4,13 +4,21 @@
 
 {% block body %}
 
+<style>
+  body {
+       margin: 0;
+       background: url("/static/img/background.jpg") repeat;
+   } 
+  
+  </style>
 
-<h3 class="mt-2 text-center">{{event.name}}</h3>
+
+<h1 class="text-center m-1 header-text">{{event.name}}</h1>
 <div class="container">
   <div class="row">
     <div class="col-4 py-2"><img src="/static/img/tango{{event.id % 10}}.jpg" class="card-img-top" alt="img"></div>
 
-    <div class="col-8 py-2">
+    <div class="col-8 py-2 golden-text">
       <div class="container container rounded border border-secondary px-4">
         <h4 class="mt-2 text-center">Event information</h4>
         <!-- <p class="lead">{{event.event_type.name}}</p>  -->
@@ -56,7 +64,9 @@
             </div>
           </div>
           <div class="row py-2 px-2">
-            <div class="col"><button id="review_button" class="btn btn-primary">Submit Review</button>  </div>
+            <div class="col">
+              <button id="review_button" class="btn btn-dark bg-dark-sienna text-white">Submit Review</button>  
+            </div>
           </div>
         </div>
       </div>
@@ -67,8 +77,7 @@
 
 <p hidden id="event_id">{{event.id}}</p>
 
-<h3 class=" text-center mt-1"> What does people are talking about this event</h3>
-<!-- <main role="main"> -->
+<h1 class="text-center m-1 header-text pb-1"> What does people are talking about this event</h1>
 <div class="container container rounded border border-secondary py-3 px-2">
     <div class="row">
         <div class="card-group">
@@ -87,7 +96,6 @@
         </div>
     </div>
 </div>
-<!-- </main> -->
 
 
 

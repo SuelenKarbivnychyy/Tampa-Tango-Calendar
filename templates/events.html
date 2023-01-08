@@ -23,7 +23,7 @@
 
 <main role="main">
   <div class="container">    
-    <div class="row justify-content-center">
+    <div class="row ">
         {% for event in events %}
           <div class="col-3 col-xs-6 p-2">
             <div class="card h-100">
@@ -39,23 +39,20 @@
                   <!-- <li class="list-group-item">{{event.attendances|length}} people are going</li> -->
                   <li class="list-group-item">{{event.start_date_time.strftime('%d/%m/%y')}} {{event.start_date_time.strftime("%I:%M %p")}}</li>
                   <li class="list-group-item">{{rate.get(event.id, "Event has no rate yet")}}</li>
-                  <li class="list-group-item">
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{event.name}}&details={{event.description}}&dates={{event.start_date_time.strftime('%Y%m%dT%H%M%S')}}/{{event.end_date_time.strftime('%Y%m%dT%H%M%S')}} &location={{event.location.address}}, {{event.location.city}} - {{event.location.zipcode}}">Add to Google Calendar</a>
-                  </li>                
                 </ul>
                 {% if event.id in attendances.keys() %} 
-                  <button class="btn bg-warning text-white" type="submit" value="{{event.id}}" name="sign_out">Cancel registration</button>
+                  <button class="btn btn-dark btn-primary bg-purple text-white" type="submit" value="{{event.id}}" name="sign_out">Unregister</button>
                 {% else %}
-                  <button class="btn bg-success text-white" type="submit" value="{{event.id}}" name="sign_up">Register
-
-                  </button>
+                  <button class="btn btn-dark bg-dark-sienna text-white" type="submit" value="{{event.id}}" name="sign_up">Register</button>
               {% endif %} 
-                <a type="button" class="btn btn-primary" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                <a type="button" class="btn btn-dark bg-dark-sienna text-white" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fevents%2F1&amp;src=sdkpreparse">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16">
                       <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
                   </svg>
-                  Share
                 </a> 
+                <a class="btn btn-dark bg-dark-sienna text-white m-1" target="_blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{event.name}}&details={{event.description}}&dates={{event.start_date_time.strftime('%Y%m%dT%H%M%S')}}/{{event.end_date_time.strftime('%Y%m%dT%H%M%S')}} &location={{event.location.address}}, {{event.location.city}} - {{event.location.zipcode}}">
+                  <img src="/static/img/calendar.png" width="30" />
+                </a>
               </div> 
             </div>   
             
