@@ -21,16 +21,14 @@ model.db.create_all()
 # SEEDING THE EVENT_TYPE TABLE
 with open('data/events_type.json') as file:
     events_type= json.loads(file.read())
-    # print(f"####################### THIS IS THE EVENTS TYPE FROM JSON FILE {events_type}")
+    
 
 events_type_in_db = []
 for event_type in events_type:
     name = event_type['name']   
-    # print(f"############################## THIS IS THE EVENT NAME{name}")
+    
     db_event_type = crud.create_event_type(name)
     events_type_in_db.append(db_event_type)
-
-# print(f"################################## THE LIST AFTER APPEND {events_type_in_db}")
 
 model.db.session.add_all(events_type_in_db)
 
@@ -123,8 +121,8 @@ model.db.session.add_all(reviews_in_db)
 #GENERATE FAKE ACCOUNTS
 
 for n in range(20):
-    fname = f"{n}dima"
-    lname = f"karb{n}"
+    fname = f"{n}Amanda"
+    lname = f"Salles{n}"
     email = f"suelenmatosr+{n}@gmail.com"  # Voila! A unique email!
     password = "test"
     is_adm = False

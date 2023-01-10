@@ -1,25 +1,43 @@
 [
     {
-        "rate": "4",
-        "comment": "Nice event, everyone had so much fun and the music was great",
+        "rate": "5",
+        "comment": "The best Workshop I had ever attended. Dima as a nice technique and he makes sure that everyone understand the concept! Highly recommend it.",
         "event_id": "2",
         "user_id": "1"
     },
     {
         "rate": "5",
-        "comment": "The event was great.",
-        "event_id": "7",
+        "comment": "The Workshop was great. I realize that my technique was totally wrong. Thanks so much Dima to explain in the easiest way we could understand.",
+        "event_id": "2",
         "user_id": "3"
     },
     {
         "rate": "3",
-        "comment": "I love it.",
-        "event_id": "8",
+        "comment": "The workshop was excellent, I just wound like more food were available.",
+        "event_id": "2",
+        "user_id": "4"
+    },
+    {
+        "rate": "5",
+        "comment": "Best new year ever. The organizers did an amazing job planing this event. Would love to attend next year.",
+        "event_id": "7",
+        "user_id": "3"
+    },
+    {
+        "rate": "4",
+        "comment": "I love to spend new year dancing until morning. Thank you to the ones who work to make it happen.",
+        "event_id": "7",
         "user_id": "2"
     },
     {
-        "rate": "2",
-        "comment": "This event is perfect, it should never had end.",
+        "rate": "4",
+        "comment": "It was my first time doing Argentine Tango and the teacher was so kinda! Highly recommend.",
+        "event_id": "1",
+        "user_id": "2"
+    },
+    {
+        "rate": "4",
+        "comment": "This Practica is perfect, it should never have to end.",
         "event_id": "5",
         "user_id": "2"
     },
@@ -31,7 +49,7 @@
     },
     {
         "rate": "5",
-        "comment": "Best Christmas ever I had since I was kid.",
+        "comment": "Best Christmas ever I had since I was a kid.",
         "event_id": "6",
         "user_id": "10"
     },
@@ -42,51 +60,51 @@
         "user_id": "8"
     },
     {
-        "rate": "3",
+        "rate": "4",
         "comment": "This was such I nice idea to get together everyone out of town. I will definitely come back next year.",
-        "event_id": "6",
+        "event_id": "1",
         "user_id": "16"
     },
     {
         "rate": "5",
-        "comment": "I danced so much that I couldn't barelly walk the next day. Higly recommend it. ",
-        "event_id": "6",
+        "comment": "I danced so much that I couldn't barely walk the next day. Highly recommend it.",
+        "event_id": "1",
         "user_id": "13"
     },
     {
-        "rate": "5",
-        "comment": "Best milonga I ever attended.",
-        "event_id": "6",
+        "rate": "4",
+        "comment": "Best Milonga I ever attended.",
+        "event_id": "1",
         "user_id": "18"
     },
     {
         "rate": "5",
-        "comment": "Amazing time with friends. Great dance and wonderful music.",
+        "comment": "Amazing time with friends. Great dances and wonderful music.",
         "event_id": "3",
         "user_id": "12"
     },
     {
         "rate": "5",
-        "comment": "I love dance with this crew, Amazing time here.",
+        "comment": "I love to dance with this crew, Amazing time here.",
         "event_id": "4",
         "user_id": "12"
     },
     {
         "rate": "5",
         "comment": "I really like how the organizes planned this event. Will always attend it when I'm in town.",
-        "event_id": "1",
+        "event_id": "9",
         "user_id": "12"
     },
     {
         "rate": "5",
-        "comment": "Really leanerd a lot of basic techniques that you usually don't see teachers including in them classes. ",
+        "comment": "Really learned a lot of basic techniques that you usually don't see teachers including in their classes.",
         "event_id": "9",
         "user_id": "12"
     },
     {
         "rate": "5",
         "comment": "I always enjoy this class, so much fun and got to know new friends.",
-        "event_id": "10",
+        "event_id": "1",
         "user_id": "3"
     }
 ]

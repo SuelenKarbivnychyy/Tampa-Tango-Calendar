@@ -77,17 +77,17 @@
 
 <p hidden id="event_id">{{event.id}}</p>
 
-<h1 class="text-center m-1 header-text pb-1"> What does people are talking about this event</h1>
+<h1 class="text-center m-1 header-text pb-2"> Reviews </h1>
 <div class="container container rounded border border-secondary py-3 px-2">
     <div class="row">
         <div class="card-group">
             {% for review in reviews_db %}
             <div class="card mx-2 rounded border" >
                 <div class="card-header">
-                    <p class="fw-bolder">{{review.events.name}}</p>
+                    <p class="fw-bolder">{{review.user.fname}}</p>
                 </div>
                 <div class="card-body">
-                    <p class="card-title">{{review.user.fname}} </p>
+                    <!-- <p class="card-title">{{review.user.fname}} </p> -->
                     <p class="card-title">{{review.rate * "⭐"}} </p>
                     <p class="card-text"><i>{{review.comment}}</i></p>
                 </div>                
