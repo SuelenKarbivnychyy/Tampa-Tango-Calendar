@@ -2,8 +2,8 @@
 
 
 
-Welcome to Tampa Tango Calendar, the one-stop place to know about all tango-related events happening in the area. 
-You can register to events, syncronize plans with your social network accounts and calendar, put reviews, get emails and much more! 
+Welcome to Tampa Tango Calendar, the one-stop place to know about all tango-related events happening in Tampa area, state of Florida. 
+Users are able to see all events available in the app, as well all proper information related to that event, the event's reviews, synchronize plans with your social network accounts and calendar. Users that have an active account are able to register for any event he is interesting at, review events he has attempt, and get emails updates.
   
   
 
@@ -21,6 +21,8 @@ You can register to events, syncronize plans with your social network accounts a
 
 * Python
 * Javascript 
+* Html
+* Css
 * Flask
 * Jinja2
 * PostgreSQL
@@ -38,34 +40,33 @@ You can register to events, syncronize plans with your social network accounts a
 
 #### Events Page
 
-On this page user can see all the events happening in the area in calendar order. Every event will have description, date, average rating. Buttons on the bottom of event card can help register for the event, cancel registration, share even on a Facebook profile and add it to the Google Calendar.
-    
+On this page, the user can see all the events available in the area in calendar order. Every event will display its description, date, time, and average rating. On the bottom of each event card, are implemented buttons to register for the event or cancel registration, share the event on his Facebook profile and add it to his Google Calendar. 
+
+
 
 #### Profile Page
 
-User Profile is the page where the user can see all the event he signed in for, and manage that list. Also the user can see all reviews he created for the events and delete them if we want so.
+User Profile is the page where the user can see all the event he signed in for, and manage that list. Also, the user can see all reviews he created for the events and delete them if he wants so.
   
 
 #### Event Details Page
 
-To get to the Event Details page user can click on any event card in the "Events" page or "Profile" page. 
-Information on event details will show where the event is happening, what is the date, time and cost of the event, how many people are registered for the event aleady.
-Also user can add or edit his review for particular event and read what other say. 
+To get to the Event Details page, the user can click on any event card in the "Events" page or "Profile" page. On this page are display Information about the event, such as price, how many people are going to this event, where the event is being held as well the address, and reviews available for this particular event. In this page, the user can leave a review for the event.
 
   
 
 #### Registration Page
 
-In the Marketplace, user can see all games being sold and filter to see only ones matching their wishlist or listings for recommended games. To recommend games, the app's algorithm analyzes the games the user owns or wishes to own, finds the top three mechanics and categories for a total of 6 traits, and finds matches in the marketplace that have at least one of these traits, not including any games the user already owns or wishes to own. The matched traits are shown along with the results.
+Users who are not logged in will see "Create Account" link in the navigation bar. User has to provide first and last name, value email plus password to register. Then email and password should be used to log in to the system which will allow him to receive email updates. 
 
   
-
-
 #### Administrator Page
 
-To learn more about a game listing, user can click on the game name. A modal appears with the listing comment, if any, along with standard game details. If the seller has any other games listed in the Marketplace, a button will appear for the user to filter all the marketplace listings by that seller. If user is interested in contacting the seller, they can click on the button to open up a new email in their default email client, with the seller email address in the TO field and the game name in the email subject prepopulated.
+This page has limited access - you have to be registered as a system administrator to see it in the navigation bar. The intent of this page to work with the list of the events by adding new ones, deleting existent events, adding new types of events and venue locations where events may happen.
+Also, on this page, Administrator are allowed to send email updates to all registered users. 
 
-  
+#### Add New Event Page
+This page has limited access - you have to be registered as a system administrator to have access. This page is strict to the administrator to add new events or edit an existent event. There are a set of fields to be filled with details about the event.
 
 ## <a name="install"></a>Installation
 
@@ -80,21 +81,16 @@ To run Tampa Tango Calendar on your machine:
 Clone or fork this repo:
 
 ```
-
 https://github.com/SuelenKarbivnychyy/Final-Project
-
 ```
 
   
 
-Create and activate a virtual environment inside your Board Game Village directory:
+Create and activate a virtual environment inside your Tampa Tango Caledar directory:
 
 ```
-
 virtualenv env
-
 source env/bin/activate
-
 ```
 
   
@@ -102,9 +98,7 @@ source env/bin/activate
 Install the dependencies:
 
 ```
-
 pip install -r requirements.txt
-
 ```
 
   
@@ -123,9 +117,7 @@ Set up the database:
   
 
 ```
-
 python3 seed_database.py
-
 ```
 
   
@@ -135,9 +127,7 @@ Run the app:
   
 
 ```
-
 python3 server.py
-
 ```
 
   
