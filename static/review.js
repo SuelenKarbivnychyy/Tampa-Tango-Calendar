@@ -33,10 +33,10 @@ function redirectToEventsPage() {
 
 const userResponse = (data) => {
     if (data == "true") {
-        display_warning_message( "Thank you for your review", "Review sucessfully added", redirectToEventsPage);
+        display_warning_message( "Thank you for your review", "Review successfully added", redirectToEventsPage);
     }
     else if (data == "false") {
-        display_warning_message("You've reviewd this event already", "Thank you for your feedback", redirectToEventsPage);
+        display_warning_message("You've reviewed this event already", "Thank you for your feedback", redirectToEventsPage);
     }
 }
 
