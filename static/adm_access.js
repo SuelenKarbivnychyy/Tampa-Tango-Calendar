@@ -17,7 +17,7 @@ fetch("/send_email", {
 const serverAnswer = (data) => {
 
     if (data == "true") {
-        display_warning_message("Sent", "Your email were sucessfully send.");
+        display_warning_message("Sent", "Your email were successfully sent.");
     } else {
         display_warning_message("Error", "Please try again.");
     }

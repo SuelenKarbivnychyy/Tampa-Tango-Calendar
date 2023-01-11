@@ -423,7 +423,7 @@ def send_email_handler():
 
     email_subject = "Tampa Tango Calendar updates."
     events = crud.get_all_events_type()
-    email_message = (f"We are happy to send you our upcoming events, Register yourself for: ")
+    email_message = (f"We are happy to send you our upcoming events, register yourself for: ")
     
     for event in events:
         email_message += event.name + ", "   

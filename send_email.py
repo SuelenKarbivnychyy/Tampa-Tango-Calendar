@@ -22,7 +22,7 @@ def send_email_updates(recipients, subject, content):                           
         print(response.body)
         print(response.headers)
     except Exception as e:
-        print(e.message)
+        # print(e.message)
         result = False
 
     return result

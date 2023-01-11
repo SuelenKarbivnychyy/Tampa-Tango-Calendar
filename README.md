@@ -1,4 +1,4 @@
-
+![Tampa Tango Calendar](static/img/doc/logo.PNG)
 
 
 

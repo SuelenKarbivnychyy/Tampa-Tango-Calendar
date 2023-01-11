@@ -101,3 +101,9 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+.home-page-text {
+    color:#D4AF37;
+    font-size: 22px !important;
+
+}

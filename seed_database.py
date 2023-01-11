@@ -130,6 +130,6 @@ for n in range(20):
     user = crud.create_user(fname, lname, email, password, is_adm)    
     model.db.session.add(user)
 
-adm = crud.create_user('suelen', 'matos', 'suelenmatosr@outlook.com', '123', True )
+adm = crud.create_user('Suelen', 'Matos', 'suelenmatosr@outlook.com', '123', True )
 model.db.session.add(adm)
 model.db.session.commit()                                               #COMMIT TO THE DATABASE AT THE VERY END TO AVOID COMMIT ALL THE TIME YOU ADD NEW INF TO THE DATABASE
