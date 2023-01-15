@@ -3,7 +3,7 @@
 
 
 Welcome to Tampa Tango Calendar, the one-stop place to know about all tango-related events happening in Tampa area, state of Florida. 
-Users are able to see all events available in the app, as well all proper information related to that event, the event's reviews, synchronize plans with your social network accounts and calendar. Users that have an active account are able to register for any event he is interesting at, review events he has attempt, and get emails updates.
+Users are able to see all events available in the app, as well all proper information related to that event, the event's reviews, synchronize plans with your social network accounts and calendar. Users that have an active account are able to register for any event he is interesting at, review events he has attended, and get emails updates.
   
   
 
