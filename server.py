@@ -66,10 +66,9 @@ def cancel_user_attendance():
 def show_all_events(): 
     """View all events"""
 
-
     events = crud.get_all_events()
+    rate = {}  
 
-    rate = {}    
     for event in events:
         total_review_rate = 0
         for review in event.reviews:
@@ -366,10 +365,22 @@ def edit_event(id):
 @app.route("/delete_event/<id>")
 def delete_event(id):
     """Delete a event"""
+
+    #Pseudocode:
+    #check if the paerticular event has reviews
+    #if does, delete review first and then the event
+
    
     event_to_delete = crud.get_event_by_id(id) 
+    event_reviews = crud.get_all_reviews_by_event_id(id)
+        
+    for review in event_reviews:
+        review_id = crud.get_review_by_id(review.id)
+        db.session.delete(review_id)
+        db.session.commit()
+
     db.session.delete(event_to_delete)
-    db.session.commit()
+    db.session.commit()    
 
     return redirect("/adm")
 
@@ -397,10 +408,8 @@ def check_event():
 
     event.name = event_name
     event.description = event_description
-    event.start_date_time = event_start_date
-    # print(f"#########################3 EVENT START: {event.start_date_time}") 
-    event.end_date_time = event_end_date
-    # print(f"#################### EVENT END {event.end_date_time}")
+    event.start_date_time = event_start_date    
+    event.end_date_time = event_end_date    
     event.price = event_price
     event.location_id = event_location_id
     event.event_type_id = event_type_id

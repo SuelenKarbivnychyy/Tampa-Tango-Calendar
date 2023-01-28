@@ -37,7 +37,7 @@
               <div class="card-footer">
                 <ul class="list-group list-group-flush">
                   <!-- <li class="list-group-item">{{event.attendances|length}} people are going</li> -->
-                  <li class="list-group-item">{{event.start_date_time.strftime('%d/%m/%y')}} {{event.start_date_time.strftime("%I:%M %p")}}</li>
+                  <li class="list-group-item">{{event.start_date_time.strftime('%m/%d/%y')}} {{event.start_date_time.strftime("%I:%M %p")}}</li>
                   <li class="list-group-item">{{rate.get(event.id, "Event has no rate yet")}}</li>
                 </ul>
                 {% if event.id in attendances.keys() %} 
