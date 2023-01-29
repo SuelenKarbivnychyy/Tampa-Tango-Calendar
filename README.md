@@ -120,7 +120,13 @@ Set up the database:
 python3 seed_database.py
 ```
 
+Initialize api key:
+
   
+
+```
+source secrets.sh
+```  
 
 Run the app:
 
