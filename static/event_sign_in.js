@@ -6,13 +6,13 @@ const signInForEvent = (evt) => {
     let button = evt.target;
     let eventId = button.value;    
 
-    const countAttendance = {
+    const eventData = {
         event_id : eventId        
     }
 
     fetch('/event_sign_in', {
         method: 'POST',
-        body: JSON.stringify(countAttendance),
+        body: JSON.stringify(eventData),
         headers: {
             'Content-Type': 'application/json',
         },

@@ -1,9 +1,3 @@
-# pseudocode
-# configure data base
-# create tables 
-# add relationship between tables
-
-
 """Model for Tango app"""
 
 from flask import Flask
@@ -57,7 +51,6 @@ class Event(db.Model):
         return f'<event_name: {self.name} description: {self.description} start_date: {self.start_date_time} end_date: {self.end_date_time} price: {self.price} location: {self.location.venue_name} event_type: {self.event_type.name}>'
 
 
-
 class Event_type(db.Model):
     """A event type"""
 
@@ -72,7 +65,6 @@ class Event_type(db.Model):
 
     def __repr__(self):
         return f'<Event_type id={self.id} name={self.name}>'
-
 
 
 class Location(db.Model):
@@ -93,7 +85,6 @@ class Location(db.Model):
 
     def __repr__(self):
         return f'<Venue: {self.venue_name} address: {self.address}>'
-
 
 
 class User(db.Model):
@@ -118,7 +109,6 @@ class User(db.Model):
         return f'<User id={self.id} fname={self.fname} lname={self.lname} email={self.email} password={self.password} adm={self.is_adm}>'
 
 
-
 class Attendance(db.Model):
     """A attendence"""
 
@@ -130,17 +120,15 @@ class Attendance(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    events = db.relationship("Event", back_populates="attendances")                      #specifing the relationship in between tables
+    events = db.relationship("Event", back_populates="attendances")                     #specifing the relationship in between tables "foreign key"
     user = db.relationship("User", back_populates="attendances")                        #specifing the relationship in between tables
 
     def __repr__(self):
         return f'<Attendance_id={self.id} event_id={self.event_id} user_id={self.user_id}>' 
 
 
-
-
 def connect_to_db(app, db_name):
-    """Connect to database."""
+    """Connect flask service to the database."""
 
     app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql:///{db_name}"
     app.config["SQLALCHEMY_ECHO"] = True
@@ -148,14 +136,11 @@ def connect_to_db(app, db_name):
 
     db.app = app
     db.init_app(app)
-
     print("Connected to the db!")
 
  
- 
 
-if __name__ == "__main__":
-    from server import app
 
-    
-    connect_to_db(app, "tango-project") 
+if __name__ == "__main__":                      #check if we run the file or import it
+    from server import app    
+    connect_to_db(app, "tango-project")         #conncet the flask app to database

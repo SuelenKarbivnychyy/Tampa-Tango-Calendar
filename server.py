@@ -17,10 +17,8 @@ app.jinja_env.undefined = StrictUndefined
 
 @app.route("/")
 def show_homepage():
-    """Render home page""" 
-     
+    """Render home page"""      
     return render_template("homepage.html")
-
 
 
 @app.route("/event_sign_in", methods=["POST"])
@@ -59,7 +57,6 @@ def cancel_user_attendance():
         return "You are signed out for this event. We are sorry to let you go."
     else:
         return "You've signed out."      
-
 
 
 @app.route("/events")
@@ -135,7 +132,6 @@ def create_review():
         return "false"
     
 
-
 @app.route("/delete_review", methods=["POST"])
 def delete_review():
     """Delete a review"""
@@ -151,13 +147,7 @@ def delete_review():
     else:
         return "deleted"    
 
-
-
-
-
 ################################################################################################################################################
-
-
 
 #create the receiver API POST endpoint:
 @app.route("/validate_user_credentials", methods=["POST"])
@@ -193,8 +183,6 @@ def lougout():
     session.pop('is_adm')
 
     return redirect('/')
-
-
     
 
 #pseudocode
@@ -238,12 +226,9 @@ def add_account():
     return redirect("/")  
 
 
-
-
 @app.route("/user_profile")
 def display_user_profile():
     """Display user's profile"""
-
     
     user = session.get("current_user")    
     if user == None:
@@ -265,20 +250,11 @@ def display_user_profile():
     return render_template("/user_profile.html", events=events, reviews=reviews)
 
 
-
-
-
-
-
-
-
-
-
 ##########################################################################################################################
 # ADM BUSINESS STARTS FROM HERE  
 
 @app.route("/adm")
-def display_adm_page(): #'sisplay_adm_page'
+def display_adm_page(): #'display_adm_page'
     """Display events at the adm's page"""
 
     events_inf = Event.query.all()
@@ -295,7 +271,6 @@ def display_adm_page(): #'sisplay_adm_page'
         return redirect('/')
 
 
-
 @app.route("/add_event_type", methods=["POST"])
 def add_event_type():
     """Add a new event type to the database"""
@@ -306,7 +281,6 @@ def add_event_type():
     db.session.commit()
    
     return redirect("/adm")
-
 
 
 @app.route("/add_event_location", methods=["POST"])
@@ -342,7 +316,6 @@ def add_event():
     db.session.commit()
 
     return redirect("/adm")
-     
 
 
 @app.route("/edit_event/<id>")
@@ -369,7 +342,6 @@ def delete_event(id):
     #Pseudocode:
     #check if the paerticular event has reviews
     #if does, delete review first and then the event
-
    
     event_to_delete = crud.get_event_by_id(id) 
     event_reviews = crud.get_all_reviews_by_event_id(id)
@@ -388,7 +360,6 @@ def delete_event(id):
 @app.route("/update_event", methods=["POST"])
 def check_event():
     """Check if event exists in database"""
-
      
     form_event_id = request.form.get("event_id")                         # getting id from html form
     if form_event_id == "-1":
@@ -445,10 +416,9 @@ def send_email_handler():
         users_email.append(user.email)
 
     users_email = 'suelenmatosr@gmail.com';                         #this overrides the users_email list to be only one email.
+     
 
-      
-
-    result = send_email.send_email_updates(users_email, email_subject, email_message)
+    result = send_email.send_email_updates(users_email, email_subject, email_message)       #saving the result of send_email_updates function from send_email file
 
     if result == True:
         return "true"

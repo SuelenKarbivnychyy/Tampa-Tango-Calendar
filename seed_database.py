@@ -14,7 +14,7 @@ os.system('dropdb tango-project')
 os.system('createdb tango-project')
 
 model.connect_to_db(server.app, "tango-project")
-model.db.create_all()
+model.db.create_all()                               #create database structure
 
 
 #Load event data from json file

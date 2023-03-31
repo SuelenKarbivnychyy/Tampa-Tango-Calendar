@@ -2,8 +2,8 @@
     {
         "name": "Tango Class By Veronica Trill",        
         "description": "Class focus on basic steps technique, perfect for the ones who are first started to the dance.",
-        "start_date_time": "2023-02-03, 16:00:00",
-        "end_date_time": "2023-02-03, 21:00:00",
+        "start_date_time": "2024-02-03, 16:00:00",
+        "end_date_time": "2024-02-03, 21:00:00",
         "price": "30",
         "location_id": "2",
         "event_type_id": "1"
@@ -11,8 +11,8 @@
     {   
         "name": "Workshop By Dima",        
         "description": "Workshop focus on leader technique, perfect for the leaders who want to improve his style of dancing.",
-        "start_date_time": "2023-02-10, 19:00:00",
-        "end_date_time": "2023-02-10, 23:00:00",
+        "start_date_time": "2024-02-10, 19:00:00",
+        "end_date_time": "2024-02-10, 23:00:00",
         "price": "15",
         "location_id": "1",
         "event_type_id": "2"
@@ -20,8 +20,8 @@
     {   
         "name": "Milonga dos anges",        
         "description": "Social dance night, everyone is welcome to join and dance.",
-        "start_date_time": "2023-02-16, 20:00:00",
-        "end_date_time": "2023-02-17, 03:00:00",
+        "start_date_time": "2024-02-16, 20:00:00",
+        "end_date_time": "2024-02-17, 03:00:00",
         "price": "15",
         "location_id": "3",
         "event_type_id": "4"
@@ -29,8 +29,8 @@
     {   
         "name": "Friends meetup",         
         "description": "We will spend a fun day together with music, dance and games.",
-        "start_date_time": "2023-02-23, 14:00:00",
-        "end_date_time": "2023-02-23, 20:00:00",
+        "start_date_time": "2024-02-23, 14:00:00",
+        "end_date_time": "2024-02-23, 20:00:00",
         "price": "10",
         "location_id": "5",
         "event_type_id": "3"
@@ -38,8 +38,8 @@
     {   
         "name": "Practica La Maria",         
         "description": "Time to practice what you learn during class.",
-        "start_date_time": "2023-02-28, 20:00:00",
-        "end_date_time": "2023-03-01, 02:00:00",
+        "start_date_time": "2024-02-28, 20:00:00",
+        "end_date_time": "2024-03-01, 02:00:00",
         "price": "0",
         "location_id": "2",
         "event_type_id": "5"
@@ -47,8 +47,8 @@
     {   
         "name": "Christmas Milonga",         
         "description": "This is the best Milonga of the year. We will offer a traditional Christmas dinner, a lot of good music to celebrate this amazing time together.",
-        "start_date_time": "2023-12-24, 20:00:00",
-        "end_date_time": "2023-12-25, 03:00:00",
+        "start_date_time": "2024-12-24, 20:00:00",
+        "end_date_time": "2024-12-25, 03:00:00",
         "price": "30",
         "location_id": "5",
         "event_type_id": "4"
@@ -56,8 +56,8 @@
     {   
         "name": "Milonga New Year",         
         "description": "We are going to have dinner, dance all night long and watch the new year fireworks from our cozy Tango Rooftop by the beach.",
-        "start_date_time": "2023-12-31, 22:00:00",
-        "end_date_time": "2024-01-01, 05:00:00",
+        "start_date_time": "2024-12-31, 22:00:00",
+        "end_date_time": "2025-01-01, 05:00:00",
         "price": "40",
         "location_id": "3",
         "event_type_id": "4"
@@ -65,7 +65,7 @@
     {   
         "name": "Milonga Roses",         
         "description": "This Milonga is dedicated to all Women as we all celebrate the International Women's Day.",
-        "start_date_time": "2023-03-08, 16:00:00",
+        "start_date_time": "2024-03-08, 16:00:00",
         "end_date_time": "2024-03-08, 22:00:00",
         "price": "15",
         "location_id": "1",
@@ -74,7 +74,7 @@
     {   
         "name": "Workshop Solento",         
         "description": "This is a workshop by Valeria and Carlos, focused on Tango Nuevo technique followed by 2 hours of practice.",
-        "start_date_time": "2023-03-15, 16:00:00",
+        "start_date_time": "2024-03-15, 16:00:00",
         "end_date_time": "2024-03-15, 21:00:00",
         "price": "35",
         "location_id": "3",
@@ -83,7 +83,7 @@
     {   
         "name": "Tango Class By Monica Salles",         
         "description": "Traditional Argentine Tango class, focused on leaders and followers basic steps.",
-        "start_date_time": "2023-04-01, 19:00:00",
+        "start_date_time": "2024-04-01, 19:00:00",
         "end_date_time": "2024-04-01, 21:00:00",
         "price": "15",
         "location_id": "1",

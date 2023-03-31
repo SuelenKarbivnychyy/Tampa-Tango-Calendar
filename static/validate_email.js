@@ -17,10 +17,10 @@ const validateUserEmail = (evt) => {
         return ;
     }   
 
-    let emailImputValue = document.getElementById("email-input").value;                     // alert(emailImputValue);
+    let emailInputValue = document.getElementById("email-input").value;                     // alert(emailInputValue);
 
     const emailValidation = {                                                               //object. the keys are the expected value from server.py and value is the value from browser
-        email: emailImputValue          
+        email: emailInputValue          
     }
 
     fetch('/validate_email', {
@@ -31,20 +31,20 @@ const validateUserEmail = (evt) => {
         },
     })  
         .then((response) => response.text())
-        .then(emailUser);                                   // .then function is taking the routeUser function as parameter 
+        .then(createAccount);                                   // .then function is taking the routeUser function as parameter 
 } 
 
 const redirectHandler = () => {
     document.getElementById("submit_form").submit();
 }
 
-const emailUser = (data) => {                               // the response from server as "data"
+const createAccount = (data) => {                               // the response from server as "data"
     
     if (data == "true") {                                   //checking what the response from server will be
         display_warning_message("It looks like you already have an account", "Please login");
     }
     else {
-        display_warning_message("Sucessfully created an account", "You are welcome", redirectHandler);                  
+        display_warning_message("Successfully created an account", "You are welcome", redirectHandler);                  
     }
 }
 

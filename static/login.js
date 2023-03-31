@@ -31,6 +31,8 @@ function redirectToCreateAccount() {
     window.location.href = "/create_account"; 
 }
 
+
+
 const routeUser = (data) => {                                 // the response from server as "data"
     // alert(data);
 
@@ -47,13 +49,3 @@ if (button) {
     button.addEventListener('click', validateUserCredentials);
 }
 
-
-
-
-
-
-
-
-
-
-// implement a flash message to the adm on delete event. "are you sure you want to delete this event?"
