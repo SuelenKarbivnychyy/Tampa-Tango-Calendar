@@ -6,7 +6,8 @@ from admin_blueprint import admin_routing
 from event_blueprint import event_routing
 from user_blueprint import user_routing
 
-app = Flask(__name__)
+
+app = Flask(__name__, template_folder="../templates/")
 app.register_blueprint(admin_routing)
 app.register_blueprint(event_routing)
 app.register_blueprint(user_routing)
