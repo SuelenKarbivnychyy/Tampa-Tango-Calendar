@@ -27,10 +27,15 @@ const validateUserCredentials = (evt) => {
         .then(routeUser);                                       // .then function is taking the routeUser function as parameter 
 } 
 
+
 function redirectToCreateAccount() {
     window.location.href = "/create_account"; 
 }
 
+
+function redirectToHomePage() {
+    window.location.href = "/";
+}
 
 
 const routeUser = (data) => {                                 // the response from server as "data"
@@ -41,7 +46,7 @@ const routeUser = (data) => {                                 // the response fr
     } else if (data == "no result") {
         display_warning_message("Please create an account", "No registers for this email in the records.", redirectToCreateAccount);                               //taking a call back function as second parameter
     } else {
-        window.location.href = "/" ;       
+        display_warning_message("Invalid credentials", "Check your credentials and try again.", redirectToHomePage);             
     }
 }
 

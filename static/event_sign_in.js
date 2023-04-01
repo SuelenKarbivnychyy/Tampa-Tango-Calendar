@@ -41,7 +41,7 @@ for (button of signInButton) {                                                  
 // #################################################################################################################
 // HANDLING THE SIGN OUT BUTTON
 
-let signOutButton = document.querySelectorAll('[name="sign_out"]');
+let signOutButton = document.querySelectorAll('[name="cancel_attendance"]');
 
 const signOutFromEvent = (evt) => {
     evt.preventDefault();  
@@ -53,7 +53,7 @@ const signOutFromEvent = (evt) => {
         event_id : eventId        
     }
 
-    fetch('/sign_out', {
+    fetch('/cancel_attendance', {
         method: 'POST',
         body: JSON.stringify(checkAttendance),
         headers: {

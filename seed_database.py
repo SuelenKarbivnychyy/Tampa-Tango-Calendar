@@ -118,17 +118,25 @@ model.db.session.add_all(reviews_in_db)
 
 
 # ###########################################################################################################################################
-#GENERATE FAKE ACCOUNTS
+#GENERATE ACCOUNTS
 
-for n in range(20):
-    fname = f"{n}Amanda"
-    lname = f"Salles{n}"
-    email = f"suelenmatosr+{n}@gmail.com"  # Voila! A unique email!
+with open('data/user_names.json') as user_file:
+    users_name = json.loads(user_file.read())
+
+users_information_in_db = []
+n = 1
+for name in users_name:
+    fname = name["first_name"]
+    lname = name["last_name"]
+    email = f"suelenmatosr+{n}@gmail.com"
     password = "test"
     is_adm = False
+    n += 1    
 
-    user = crud.create_user(fname, lname, email, password, is_adm)    
-    model.db.session.add(user)
+    user = crud.create_user(fname, lname, email, password, is_adm)  
+    users_information_in_db.append(user)
+    model.db.session.add_all(users_information_in_db)   
+
 
 adm = crud.create_user('Suelen', 'Matos', 'suelenmatosr@outlook.com', '123', True )
 model.db.session.add(adm)

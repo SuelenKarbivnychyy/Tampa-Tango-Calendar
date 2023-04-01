@@ -68,7 +68,7 @@ def sign_in_for_event():
         return "You are already sign in for this event."
 
 
-@event_routing.route("/sign_out", methods=["POST"])    
+@event_routing.route("/cancel_attendance", methods=["POST"])    
 def cancel_user_attendance():
     """Cancel user attendance to an event"""   
 
