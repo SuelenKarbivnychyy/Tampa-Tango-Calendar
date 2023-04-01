@@ -1,16 +1,12 @@
-from flask import Flask, Blueprint, request, render_template, flash, session, redirect, jsonify
-from model import connect_to_db, db, Event, Location, Event_type
+from flask import Flask, Blueprint, request, render_template, session, redirect
+from model import connect_to_db, db
 import crud
-from jinja2 import StrictUndefined                                   
-from datetime import datetime 
-import send_email 
-from sqlalchemy import update  
 
 
-user_page = Blueprint('user_page', __name__, template_folder='templates')
+user_routing = Blueprint('user_routing', __name__, template_folder='templates')
 
 
-@user_page.route("/validate_user_credentials", methods=["POST"])
+@user_routing.route("/validate_user_credentials", methods=["POST"])
 def validate_user_credentials():           
     """Check if user's credentials are correct to login"""    
    
@@ -34,7 +30,7 @@ def validate_user_credentials():
         return "false"
 
 
-@user_page.route("/logout")
+@user_routing.route("/logout")
 def lougout():    
     """Logout user from session and redirect to homepage"""    
 
@@ -44,14 +40,14 @@ def lougout():
     return redirect('/')  
 
 
-@user_page.route("/create_account") 
+@user_routing.route("/create_account") 
 def create_account():
     """Render create account template"""   
 
     return render_template("create_account.html") 
 
 
-@user_page.route("/validate_email", methods=["POST"])
+@user_routing.route("/validate_email", methods=["POST"])
 def validate_email():
     """Validate email to create an account by check if the email is on database"""
 
@@ -63,7 +59,7 @@ def validate_email():
         return "false"
 
 
-@user_page.route("/add_user_to_db", methods=["POST"])
+@user_routing.route("/add_user_to_db", methods=["POST"])
 def add_account():
     """Add an user account to database"""   
 
@@ -78,7 +74,7 @@ def add_account():
     return redirect("/")  
 
 
-@user_page.route("/user_profile")
+@user_routing.route("/user_profile")
 def display_user_profile():
     """Display user's profile"""
     

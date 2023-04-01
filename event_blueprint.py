@@ -1,16 +1,12 @@
-from flask import Flask, Blueprint, request, render_template, flash, session, redirect, jsonify
-from model import connect_to_db, db, Event, Location, Event_type
+from flask import Flask, Blueprint, request, render_template, session
+from model import connect_to_db, db
 import crud
-from jinja2 import StrictUndefined                                   
-from datetime import datetime 
-import send_email 
-from sqlalchemy import update  
 
 
-event_functionality_page = Blueprint('event_functionality_page', __name__, template_folder='templates')
+event_routing = Blueprint('event_routing', __name__, template_folder='templates')
 
 
-@event_functionality_page.route("/events")
+@event_routing.route("/events")
 def show_all_events(): 
     """View all events"""
 
@@ -42,7 +38,7 @@ def show_all_events():
                                         )
 
 
-@event_functionality_page.route("/events/<id>")    
+@event_routing.route("/events/<id>")    
 def show_event_details(id):
     """View event details"""
 
@@ -53,7 +49,7 @@ def show_event_details(id):
     return render_template("events_details.html", event = event, review = review, reviews_db = reviews_db)
 
 
-@event_functionality_page.route("/event_sign_in", methods=["POST"])
+@event_routing.route("/event_sign_in", methods=["POST"])
 def sign_in_for_event():
     """Register user to attend an event"""    
 
@@ -72,7 +68,7 @@ def sign_in_for_event():
         return "You are already sign in for this event."
 
 
-@event_functionality_page.route("/sign_out", methods=["POST"])    
+@event_routing.route("/sign_out", methods=["POST"])    
 def cancel_user_attendance():
     """Cancel user attendance to an event"""   
 
@@ -88,7 +84,7 @@ def cancel_user_attendance():
         return "You've signed out."      
 
 
-@event_functionality_page.route("/review", methods=["POST"])
+@event_routing.route("/review", methods=["POST"])
 def create_review():
     """Create a review"""
 
@@ -108,7 +104,7 @@ def create_review():
         return "false"
     
 
-@event_functionality_page.route("/delete_review", methods=["POST"])
+@event_routing.route("/delete_review", methods=["POST"])
 def delete_review():
     """Delete a review"""
     

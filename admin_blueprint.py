@@ -1,15 +1,13 @@
-from flask import Flask, Blueprint, request, render_template, flash, session, redirect, jsonify, flash
+from flask import Flask, Blueprint, request, render_template, session, redirect
 from model import connect_to_db, db, Event, Location, Event_type
-import crud
-from jinja2 import StrictUndefined                                   
+import crud                               
 from datetime import datetime 
-import send_email 
-from sqlalchemy import update  
+import send_email
 
 
-admin_page = Blueprint('admin_page', __name__, template_folder='templates')
+admin_routing = Blueprint('admin_routing', __name__, template_folder='templates')
 
-@admin_page.route("/adm")
+@admin_routing.route("/adm")
 def display_adm_page():
     """Display events at the adm's page"""
 
@@ -27,7 +25,7 @@ def display_adm_page():
         return redirect('/')
     
 
-@admin_page.route("/add_event_type", methods=["POST"])
+@admin_routing.route("/add_event_type", methods=["POST"])
 def add_event_type():
     """Add a new event type to the database"""
 
@@ -38,7 +36,7 @@ def add_event_type():
     return redirect("/adm")
 
 
-@admin_page.route("/add_event_location", methods=["POST"])
+@admin_routing.route("/add_event_location", methods=["POST"])
 def add_event_location(): 
     """Creating a new venue location"""   
 
@@ -54,7 +52,7 @@ def add_event_location():
     return redirect("/adm")
 
 
-@admin_page.route("/add_event", methods=["POST"])
+@admin_routing.route("/add_event", methods=["POST"])
 def add_event():
     """Add an event to the database"""
 
@@ -71,7 +69,7 @@ def add_event():
     return redirect("/adm")
 
 
-@admin_page.route("/edit_event/<id>")
+@admin_routing.route("/edit_event/<id>")
 def edit_event(id):
     """Show edit event form"""  
 
@@ -87,7 +85,7 @@ def edit_event(id):
     return render_template("edit_event.html", event = event, locations_inf = locations_inf, events_type_inf = events_type_inf)
     
 
-@admin_page.route("/delete_event/<id>")
+@admin_routing.route("/delete_event/<id>")
 def delete_event(id):
     """This function checks if the event has reviews already, if does the reviews are deleted first then the event itself is Deleted."""   
     
@@ -103,7 +101,7 @@ def delete_event(id):
     return redirect("/adm")
 
 
-@admin_page.route("/update_event", methods=["POST"])
+@admin_routing.route("/update_event", methods=["POST"])
 def check_event():
     """Check if event exists in database, update it if does, create a new event if does not."""
      
@@ -143,7 +141,7 @@ def check_event():
     return redirect("/adm")    
 
 
-@admin_page.route("/send_email", methods=["POST"])
+@admin_routing.route("/send_email", methods=["POST"])
 def send_email_handler():
     """Function to send email to the users."""
 
