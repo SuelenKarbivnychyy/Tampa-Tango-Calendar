@@ -16,7 +16,7 @@ const validateUserCredentials = (evt) => {
         password: passwordImputValue       
     }
 
-    fetch('/validate_user_credentials', {
+    fetch('/login', {
         method: 'POST',
         body: JSON.stringify(emailValidation),                      // body takes in a object
         headers: {

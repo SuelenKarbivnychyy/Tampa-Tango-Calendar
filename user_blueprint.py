@@ -6,8 +6,8 @@ import crud
 user_routing = Blueprint('user_routing', __name__, template_folder='templates')
 
 
-@user_routing.route("/validate_user_credentials", methods=["POST"])
-def validate_user_credentials():           
+@user_routing.route("/login", methods=["POST"])
+def login():           
     """Check if user's credentials are correct to login"""    
    
     email_from_input = request.json.get("email")                                      #information from browser as json
