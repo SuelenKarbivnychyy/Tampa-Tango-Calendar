@@ -47,8 +47,8 @@ def create_account():
     return render_template("create_account.html") 
 
 
-@user_routing.route("/validate_email", methods=["POST"])
-def validate_email():
+@user_routing.route("/check_email_exist", methods=["POST"])
+def check_email_existl():
     """Validate email to create an account by check if the email is on database"""
 
     email = request.json.get("email")

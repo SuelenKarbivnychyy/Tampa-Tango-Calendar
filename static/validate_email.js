@@ -23,7 +23,7 @@ const validateUserEmail = (evt) => {
         email: emailInputValue          
     }
 
-    fetch('/validate_email', {
+    fetch('/check_email_exist', {
         method: 'POST',
         body: JSON.stringify(emailValidation),               // body takes in a object
         headers: {
