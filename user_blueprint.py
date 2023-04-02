@@ -31,7 +31,7 @@ def validate_user_credentials():
 
 
 @user_routing.route("/logout")
-def lougout():    
+def logout():    
     """Logout user from session and redirect to homepage"""    
 
     session.pop('user_name')
